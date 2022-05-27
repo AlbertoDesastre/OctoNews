@@ -1,8 +1,9 @@
 li.news {
     border-top: 10px solid red;
     background-color: rgb(255, 255, 255);
-    margin: 1rem 0.5rem;
+    margin: 1rem 0;
     border-radius: 10px;
+    width: 100%;
 }
 
 hr{
@@ -16,6 +17,7 @@ img.img-news {
     float: right;
     margin-right: 0.7rem;
     margin-top: 3rem;
+    margin-left: 0.3rem;
 }
 
 p.title-news {
@@ -23,6 +25,7 @@ p.title-news {
     font-size: 21px;
     line-height: 25px;
     letter-spacing: -.5px;
+    margin-bottom: 0.3rem;
 }
 
 p.category-news,
@@ -41,11 +44,12 @@ p.category-news, p.desc-news{
 }
 p.desc-news {
     line-height: 20px;
+    margin-right: 1rem;
 }
 
 p.category-news {
     margin-top: 0.5rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.5rem;
     display: inline-block;
     border: 3px solid red;
     border-radius: 10px;
@@ -58,10 +62,11 @@ p.author-news {
 }
 
 div.actions-news {
-    margin-top: 1rem;
+    padding: 1rem 0;
     display: flex;
     justify-content: flex-end;
     gap: 1.5rem;
+
 }
 
 div.actions-news button:first-child {
