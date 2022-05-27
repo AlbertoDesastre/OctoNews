@@ -1,0 +1,4 @@
+section.feed {
+    display: flex;
+    grid-column: span 12;
+}

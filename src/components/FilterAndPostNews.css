@@ -1,0 +1,18 @@
+div.filterAndPost {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.5rem;
+    justify-self: normal;
+    grid-column: span 12;
+    gap: 2rem;
+}
+
+svg#verticalLine {
+      background: rgb(207, 205, 205);
+      width: 25px;
+  }
+
+#verticalLine line {
+      stroke: #000000;
+      stroke-width: 2
+  }
