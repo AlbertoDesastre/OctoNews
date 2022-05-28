@@ -1,0 +1,12 @@
+section.carousel {
+    grid-column: span 12;
+    justify-self: normal;
+}
+
+section.carousel > ul {
+    display: flex;
+    justify-content: space-evenly;
+
+    gap: 3rem;
+    margin: 0.5rem;
+}

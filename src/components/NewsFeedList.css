@@ -1,0 +1,9 @@
+section.feed {
+    display: flex;
+    grid-column: span 12;
+    width: 95%;
+}
+
+ul{
+    width: 100%;
+}
