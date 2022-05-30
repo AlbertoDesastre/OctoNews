@@ -30,3 +30,7 @@ li{
 p{
   overflow-wrap: anywhere;
 }
+
+ul {
+width: 100%;
+}
