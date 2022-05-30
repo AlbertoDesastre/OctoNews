@@ -1,11 +1,52 @@
 section.carousel {
     grid-column: span 12;
+    width: 100%;
+    /*Make overflow hidden and move with scrollbar*/
+    overflow-x: scroll;
+    /*Hide scrollbar*/
+    /* IE and Edge */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 section.carousel > ul {
     display: flex;
-    justify-content: space-evenly;
-    width: 95%;
-    gap: 2rem;
+    gap: 5%;
     margin: 0.5rem 0;
+}
+
+li.categories-list:first-child {
+    padding-left: 1rem;
+}
+
+li.categories-list:last-child {
+    padding-right: 1rem;
+}
+
+article.carousel-items {
+    text-align: center;  
+}
+
+
+article.carousel-items > img {
+    text-align: center;
+    width: 85px;
+    height: 70px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0px 0px 15px rgb(96, 95, 95);
+}
+
+article.carousel-items > p {
+    
+    font-size: 13px;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.carousel::-webkit-scrollbar {
+    display: none;
 }

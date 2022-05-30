@@ -1,20 +1,37 @@
+import { capitalize } from "../utils/capitalizeString";
+import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./NewsCards.css";
 
 export const NewsCards = ({
+  username,
+  date,
   title,
   description,
   text,
   image,
   votes,
   className,
+  category,
 }) => {
+  const [color] = getStylesForCategory(category?.name);
   return (
-    <article className={className ? className : undefined}>
+    <article
+      className={className ? className : undefined}
+      style={{ borderTop: `10px solid ${color}` }}
+    >
       <hr />
-      <p className="author-news">Published by Gnomo 15 minutes ago</p>
-      <p className="category-news">Category</p>
+      <p className="author-news">
+        Published by {username} {new Date(date).toLocaleString()} ago
+      </p>
+      <p className="category-news" style={{ border: `3px solid ${color}` }}>
+        {capitalize(category?.name)}
+      </p>
       {image ? (
-        <img className="img-news" src="/favicon.ico" alt="news img" />
+        <img
+          className="img-news"
+          src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
+          alt="news img"
+        />
       ) : (
         ""
       )}

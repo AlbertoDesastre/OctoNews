@@ -1,0 +1,9 @@
+{
+  "categoryColors": [
+    { "name": "culture", "color": "#3cc4ff9f", "img": "2134234234252.jpg" },
+    { "name": "nature", "color": "#13AF0880", "img": "339314301050201.webp" },
+    { "name": "politics", "color": "#eff92d9f", "img": "2352352135675843.png" },
+    { "name": "art", "color": "#ff24959f", "img": "2134234234252.jpg" },
+    { "name": "health", "color": "#f92d2d9f", "img": "35236216.webp" }
+  ]
+}

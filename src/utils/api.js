@@ -6,7 +6,7 @@ export const get = async (url, callback, headers = {}) => {
     });
     if (response.ok) {
       const body = await response.json();
-      callback(body);
+      callback(body.data);
     } else {
       console.log("error");
     }
@@ -26,7 +26,7 @@ export const post = async (url, body, callback) => {
     });
     if (response.ok) {
       const body = await response.json();
-      callback(body);
+      callback(body.data);
     } else {
       console.log("error");
     }
