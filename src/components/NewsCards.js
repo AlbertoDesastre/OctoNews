@@ -1,3 +1,4 @@
+import { capitalize } from "../utils/capitalizeString";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./NewsCards.css";
 
@@ -23,7 +24,7 @@ export const NewsCards = ({
         Published by {username} {new Date(date).toLocaleString()} ago
       </p>
       <p className="category-news" style={{ border: `3px solid ${color}` }}>
-        {category?.name}
+        {capitalize(category?.name)}
       </p>
       {image ? (
         <img
