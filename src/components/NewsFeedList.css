@@ -3,3 +3,10 @@ section.feed {
     grid-column: span 12;
     width: 95%;
 }
+
+li.news {
+    background-color: rgb(255, 255, 255);
+    margin: 1rem 0;
+    border-radius: 10px;
+    width: 100%;
+}

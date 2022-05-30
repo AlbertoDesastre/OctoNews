@@ -1,9 +1,5 @@
-li.news {
-    border-top: 10px solid red;
-    background-color: rgb(255, 255, 255);
-    margin: 1rem 0;
+li.news > article{
     border-radius: 10px;
-    width: 100%;
 }
 
 hr{
@@ -12,12 +8,12 @@ hr{
 }
 
 img.img-news {
-    max-height: 25%;
-    max-width: 25%;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
     float: right;
-    margin-right: 0.7rem;
-    margin-top: 3rem;
-    margin-left: 0.3rem;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
 }
 
 p.title-news {
@@ -51,7 +47,6 @@ p.category-news {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     display: inline-block;
-    border: 3px solid red;
     border-radius: 10px;
     padding: 1px;
 
