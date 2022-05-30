@@ -9,7 +9,7 @@ export const NewsCards = ({
   className,
 }) => {
   return (
-    <li className={`news ${className ? className : ""}`}>
+    <article className={className ? className : undefined}>
       <hr />
       <p className="author-news">Published by Gnomo 15 minutes ago</p>
       <p className="category-news">Category</p>
@@ -27,6 +27,6 @@ export const NewsCards = ({
         <p>{votes}</p>
         <button type="button">-1</button>
       </div>
-    </li>
+    </article>
   );
 };

@@ -4,9 +4,15 @@ export const CarouselList = () => {
   return (
     <section className="carousel">
       <ul>
-        <CarouselItems />
-        <CarouselItems />
-        <CarouselItems />
+        <li>
+          <CarouselItems />
+        </li>
+        <li>
+          <CarouselItems />
+        </li>
+        <li>
+          <CarouselItems />
+        </li>
       </ul>
     </section>
   );
@@ -14,9 +20,9 @@ export const CarouselList = () => {
 
 const CarouselItems = () => {
   return (
-    <li className="carousel-items">
+    <article className="carousel-items">
       <p>category</p>
       <img src="/favicon.ico" alt="img category" />
-    </li>
+    </article>
   );
 };
