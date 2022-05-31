@@ -4,9 +4,16 @@ section.feed {
     width: 95%;
 }
 
+
+section.feed > ul{
+    width: 100%;
+}
+
 li.news {
     background-color: rgb(255, 255, 255);
     margin: 1rem 0;
     border-radius: 10px;
     width: 100%;
+    list-style: none;
+
 }

@@ -27,15 +27,7 @@ main{
 
 }
 
-li{
-  margin-top: 1rem;
-  list-style: none;
-}
-
 p{
   overflow-wrap: anywhere;
 }
 
-ul {
-width: 100%;
-}
