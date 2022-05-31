@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+form.FormToLoginOrRegister {
+  padding: 1rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+button {
+  padding: 0.4rem;
+}
