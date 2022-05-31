@@ -16,6 +16,11 @@ section.carousel > ul {
     margin: 0.5rem 0;
 }
 
+li.categories-list {
+    margin-top: 1rem;
+    list-style: none;
+}
+
 li.categories-list:first-child {
     padding-left: 1rem;
 }

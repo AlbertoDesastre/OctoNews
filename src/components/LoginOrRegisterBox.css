@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 form.FormToLoginOrRegister {
   padding: 1rem;
@@ -12,12 +7,12 @@ form.FormToLoginOrRegister {
   align-content: center;
 }
 
-div {
+div.news-page {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-button {
+button.buttonOrInputWithBorderRadius {
   padding: 0.4rem;
 }
