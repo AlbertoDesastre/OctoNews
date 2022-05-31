@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.ButtonOrInputWithBorderRadius {
+  border-radius: 60%;
+}
+
+section.SectionOfCommentsBanner > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Comment {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.Comment > article {
+  display: flex;
+  flex-direction: row;
+}
+
+.Comment > article,
+.Comment > p {
+  margin-left: 0.5rem;
+}
+
+.LiOfUserData {
+  margin-top: 0;
+}
+
+footer.FooterOfComment {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
