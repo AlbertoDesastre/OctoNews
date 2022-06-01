@@ -9,15 +9,15 @@ export const CreateComment = () => {
     <>
       <form
         method="POST"
-        className="FormToSubmitAComment"
-        id="FormToSubmitAComment"
+        className="news-page-formToSubmitAComment"
+        id="news-page-formToSubmitAComment"
         onSubmit={handleOnChange}
       >
-        <img src="../../public/favicon.ico" alt="Avatar user"></img>
+        <img src="/octopus.png" alt="Avatar user" className="news-page"></img>
         <label htmlFor="leaveACommentInput">
           <input
             type="text"
-            maxlength="2000"
+            maxLength="2000"
             placeholder="Leave a comment..."
             id="leaveACommentInput"
           ></input>

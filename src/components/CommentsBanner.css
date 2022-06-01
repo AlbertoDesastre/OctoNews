@@ -1,41 +1,41 @@
-section.SectionOfCommentsBanner {
+section.news-page-sectionOfCommentsBanner {
   display: flex;
   flex-direction: column;
   background-color: white;
 }
 
-.ButtonOrInputWithBorderRadius {
+.news-page-buttonOrInputWithBorderRadius {
   border-radius: 60%;
 }
 
-section.SectionOfCommentsBanner > div {
+section.news-page-sectionOfCommentsBanner > div {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.Comment {
+.news-page-comment {
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-.Comment > article {
+.news-page-comment > article {
   display: flex;
   flex-direction: row;
 }
 
-.Comment > article,
-.Comment > p {
+.news-page-comment > article,
+.news-page-comment > p {
   margin-left: 0.5rem;
 }
 
-.LiOfUserData {
+.news-page-liOfUserData {
   margin-top: 0;
 }
 
-footer.FooterOfComment {
+footer.news-page-footerOfComment {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
