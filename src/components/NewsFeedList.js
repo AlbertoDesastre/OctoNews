@@ -1,12 +1,12 @@
+import { useContext } from "react";
+import { newsContext } from "../context/NewsContext";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { get } from "../utils/api";
 import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({ categories }) => {
-  const [newsList, setNewsList, isLoading, error] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/news`
-  );
+  const { newsList, isLoading, error } = useContext(newsContext);
 
   return (
     <section className="feed">
@@ -16,6 +16,8 @@ export const NewsFeedList = ({ categories }) => {
           src="/three-dots.svg"
           alt="loading"
         />
+      ) : error ? (
+        <p className="home-page error">{error}</p>
       ) : (
         <ul>
           {newsList.map((news) => {

@@ -3,7 +3,7 @@ import { get } from "../utils/api";
 
 export const useGetRemoteData = (url) => {
   const [value, setValue] = useState([]);
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   useEffect(() => {
     const getRemoteData = async (url) => {
@@ -20,5 +20,5 @@ export const useGetRemoteData = (url) => {
     getRemoteData(url);
   }, [url]);
 
-  return [value, setValue, isloading, error];
+  return [value, setValue, isLoading, error];
 };
