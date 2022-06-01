@@ -6,9 +6,8 @@ import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { get } from "../utils/api";
 
 export const Home = () => {
-  const [categories] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/categories`,
-    get
+  const [categories, , isLoading, error] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/categories`
   );
 
   return (

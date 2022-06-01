@@ -4,9 +4,8 @@ import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({ categories }) => {
-  const [newsList, setNewsList] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/news`,
-    get
+  const [newsList, setNewsList, isLoading, error] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/news`
   );
 
   return (
