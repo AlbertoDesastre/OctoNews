@@ -17,3 +17,9 @@ li.news {
     list-style: none;
 
 }
+
+.home-page.loading.feed{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5rem;
+}

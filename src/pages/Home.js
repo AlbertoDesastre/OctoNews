@@ -14,7 +14,11 @@ export const Home = () => {
     <>
       <Header />
       <main>
-        <CarouselList categories={categories} />
+        <CarouselList
+          categories={categories}
+          categoryIsLoading={isLoading}
+          categoryError={error}
+        />
         <FilterAndPostNews />
         <NewsFeedList categories={categories} />
       </main>

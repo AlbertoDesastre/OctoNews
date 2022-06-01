@@ -10,24 +10,32 @@ export const NewsFeedList = ({ categories }) => {
 
   return (
     <section className="feed">
-      <ul>
-        {newsList.map((news) => {
-          return (
-            <li key={news.id} className="news">
-              <NewsCards
-                username={news.user_name}
-                date={news.creation_date}
-                title={news.title}
-                image={news.image}
-                description={news.introduction_text}
-                text={news.news_text}
-                votes={news.votos}
-                category={categories.find((e) => e.id === news.id_category)}
-              />
-            </li>
-          );
-        })}
-      </ul>
+      {isLoading ? (
+        <img
+          className="home-page loading feed"
+          src="/three-dots.svg"
+          alt="loading"
+        />
+      ) : (
+        <ul>
+          {newsList.map((news) => {
+            return (
+              <li key={news.id} className="news">
+                <NewsCards
+                  username={news.user_name}
+                  date={news.creation_date}
+                  title={news.title}
+                  image={news.image}
+                  description={news.introduction_text}
+                  text={news.news_text}
+                  votes={news.votos}
+                  category={categories.find((e) => e.id === news.id_category)}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </section>
   );
 };
