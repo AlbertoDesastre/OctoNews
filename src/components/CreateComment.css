@@ -1,5 +1,18 @@
-form#FormToSubmitAComment {
+form#news-page-formToSubmitAComment {
   display: grid;
+  grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr;
+  column-gap: 10px;
   background-color: white;
+}
+
+/* Seguir estudiando grid para ajustar los botones en sus celdas y como me gustan */
+#leaveACommentInput {
+  justify-self: end;
+}
+
+img.news-page {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
 }

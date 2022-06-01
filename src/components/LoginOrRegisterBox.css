@@ -1,5 +1,5 @@
-
-form.FormToLoginOrRegister {
+.news-page-formToLoginOrRegister {
+  margin-top: 70px;
   padding: 1rem;
   background-color: white;
   display: flex;
@@ -13,6 +13,6 @@ div.news-page {
   gap: 0.5rem;
 }
 
-button.buttonOrInputWithBorderRadius {
+button.news-page-buttonWithBorderRadius {
   padding: 0.4rem;
 }
