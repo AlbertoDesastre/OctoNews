@@ -1,5 +1,4 @@
 .news-page-formToLoginOrRegister {
-  margin-top: 70px;
   padding: 1rem;
   background-color: white;
   display: flex;
@@ -10,9 +9,29 @@
 div.news-page {
   display: flex;
   flex-direction: column;
+  grid-column: span 12;
   gap: 0.5rem;
 }
 
+/* Tengo el mismo problema que con otro botón.
+Puedo darle min width sin problema
+pero si le doy maxwidth nunca crece hasta su máximo
+estipulado */
 button.news-page-buttonWithBorderRadius {
+  border-radius: 20px;
   padding: 0.4rem;
+  min-width: 6rem;
+  font-weight: bold;
+}
+
+.news-page-loginButton {
+  background-color: rgb(57, 83, 150);
+  color: white;
+  border: 2px solid rgb(44, 44, 157);
+}
+
+.news-page-registerButton {
+  background-color: rgb(170, 64, 64);
+  color: white;
+  border: 2px solid rgb(44, 44, 157);
 }

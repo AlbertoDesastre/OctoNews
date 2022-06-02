@@ -11,13 +11,13 @@ export const LoginOrRegisterBox = () => {
       {/* I use this div to be able to put one button of top of the other one */}
       <div className="news-page">
         <button
-          className="news-page-buttonWithBorderRadius"
+          className="news-page-buttonWithBorderRadius news-page-loginButton"
           onClick={handleClickThatRedirectsToAModal}
         >
           Login
         </button>
         <button
-          className="news-page-buttonWithBorderRadius"
+          className="news-page-buttonWithBorderRadius news-page-registerButton"
           onClick={handleClickThatRedirectsToAModal}
         >
           Register

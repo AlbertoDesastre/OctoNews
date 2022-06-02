@@ -11,7 +11,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/News" element={<News />} />
+            <Route path="/News/:id" element={<News />} />
           </Routes>
         </BrowserRouter>
       </NewsContextProvider>
