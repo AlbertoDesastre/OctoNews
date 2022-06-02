@@ -6,12 +6,17 @@ import { CommentsBanner } from "../components/CommentsBanner";
 
 export const News = () => {
   return (
-    <>
-      <Header />
-      {/* <NewsCards /> */}
-      <LoginOrRegisterBox />
-      <CreateComment />
-      <CommentsBanner />
-    </>
+    /* Este div me hace falta para poder separar las 
+    secciones */
+    <main>
+      <div className="news-page">
+        <Header />
+        {/*  <NewsCards props={props} /> */}
+
+        <LoginOrRegisterBox />
+        <CreateComment />
+        <CommentsBanner />
+      </div>
+    </main>
   );
 };
