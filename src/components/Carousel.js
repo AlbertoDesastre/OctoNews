@@ -2,18 +2,30 @@ import { capitalize } from "../utils/capitalizeString";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./Carousel.css";
 
-export const CarouselList = ({ categories }) => {
+export const CarouselList = ({
+  categories,
+  categoryIsLoading,
+  categoryError,
+}) => {
   return (
     <section className="carousel">
-      <ul>
-        {categories.map((category) => {
-          return (
-            <li key={category.id} className="categories-list">
-              <CarouselItems categoryName={category.name} />
-            </li>
-          );
-        })}
-      </ul>
+      {categoryIsLoading ? (
+        <img
+          className="home-page loading carousel"
+          src="/three-dots.svg"
+          alt="loading"
+        />
+      ) : (
+        <ul>
+          {categories.map((category) => {
+            return (
+              <li key={category.id} className="categories-list">
+                <CarouselItems categoryName={category.name} />
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </section>
   );
 };

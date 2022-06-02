@@ -17,3 +17,13 @@ li.news {
     list-style: none;
 
 }
+
+.home-page.loading.feed{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+.home-page.error{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}

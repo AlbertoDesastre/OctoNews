@@ -14,6 +14,7 @@ export const NewsCards = ({
   category,
 }) => {
   const [color] = getStylesForCategory(category?.name);
+
   return (
     <article
       className={className ? className : undefined}

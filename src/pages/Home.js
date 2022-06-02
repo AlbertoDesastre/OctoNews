@@ -6,16 +6,19 @@ import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { get } from "../utils/api";
 
 export const Home = () => {
-  const [categories] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/categories`,
-    get
+  const [categories, , isLoading, error] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/categories`
   );
 
   return (
     <>
       <Header />
       <main>
-        <CarouselList categories={categories} />
+        <CarouselList
+          categories={categories}
+          categoryIsLoading={isLoading}
+          categoryError={error}
+        />
         <FilterAndPostNews />
         <NewsFeedList categories={categories} />
       </main>
