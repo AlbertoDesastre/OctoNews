@@ -1,18 +1,74 @@
-div.filterAndPost {
+section.filterAndPost {
+    justify-self: normal;
     display: flex;
     justify-content: space-evenly;
-    margin: 0.5rem;
-    justify-self: normal;
+    margin: 2rem 0.5rem 0.5rem 0.5rem;
     grid-column: span 12;
-    gap: 2rem;
+    gap: 0.5rem;
+    grid-row: 2;
+
+}
+
+
+select.filter,
+select.filter-date,
+button.post-button,
+svg#verticalLine {
+    height: 40px;
+    
+}
+select.filter,
+select.filter-date,
+button.post-button{
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.298);
+}
+select.filter,
+select.filter-date{
+    border-radius: 25px;
+    width:40%;
+    max-width: 200px;
+    font-weight: bold;
+    color:rgb(214, 6, 6);
+    background-color: white;
+    border: 3px solid rgb(214, 6, 6);
+}
+
+select.filter-date{
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+select.filter{
+    font-size: 1.2rem;
+    padding-left: 2.7rem;
+}
+
+.new{
+    background: url("/public/new-icon.svg") no-repeat 10px;
+    background-size: 25px;
+}
+
+.top{
+    background: url("/public/top-icon.svg") no-repeat 10px;
+    background-size: 25px;
+}
+
+button.post-button{
+    min-width: 40px;
+    width: 10%;
+    border-radius: 10px;
+    color: rgb(24, 0, 122);
+    border: 3px solid rgb(24, 0, 122);
+    background: url("/public/post-icon.svg") no-repeat center white;
+    background-size: 30px;
 }
 
 svg#verticalLine {
-      background: rgb(207, 205, 205);
-      width: 25px;
-  }
+    width: 15px;
+    }
 
 #verticalLine line {
-      stroke: #000000;
-      stroke-width: 2
-  }
+    display: block;
+    stroke: #000000;
+    stroke-width: 2;
+    }

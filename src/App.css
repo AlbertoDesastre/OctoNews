@@ -14,13 +14,13 @@ html{
 
 body{
   min-height: 100vh;
-  background-color: rgb(207, 205, 205);
+  background-color: rgba(207, 205, 205, 0.699);
 
 }
 
 main{
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
   grid-template-columns: repeat(12, 1fr);
   justify-items: center;
   margin-top: 77px;
