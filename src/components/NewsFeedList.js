@@ -6,10 +6,10 @@ import "./NewsFeedList.css";
 export const NewsFeedList = ({ categories }) => {
   // const { newsList, isLoading, error } = useContext(newsContext);
 
-  const [filterNewsBy, filterDate] = useGetFilters();
+  const [filterAction, filterDate] = useGetFilters();
 
   const [newsList, setNewsList, isLoading, error] = useGetNewsFiltered(
-    filterNewsBy,
+    filterAction,
     filterDate
   );
 

@@ -12,7 +12,7 @@ export const get = async (url, callback, headers = {}) => {
   callback(json.data);
 };
 
-export const getOrderBy = async (url, callback, headers = {}) => {
+export const getOrderByAsc = async (url, callback, headers = {}) => {
   const response = await fetch(url, {
     method: "GET",
     headers,

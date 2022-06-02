@@ -1,11 +1,10 @@
-import { CarouselList } from "../components/Carousel";
 import { FilterAndPostNews } from "../components/FilterAndPostNews";
 import { Header } from "../components/Header";
 import { NewsFeedList } from "../components/NewsFeedList";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 
-export const Home = () => {
-  const [categories, , isLoading, error] = useGetRemoteData(
+export const Search = () => {
+  const [categories] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/categories`
   );
 
@@ -13,12 +12,7 @@ export const Home = () => {
     <>
       <Header />
       <main>
-        <CarouselList
-          categories={categories}
-          categoryIsLoading={isLoading}
-          categoryError={error}
-        />
-        <FilterAndPostNews />
+        <FilterAndPostNews className="search-page" />
         <NewsFeedList categories={categories} />
       </main>
     </>

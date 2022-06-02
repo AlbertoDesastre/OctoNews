@@ -1,20 +1,23 @@
 import { format, sub } from "date-fns";
 import { useEffect, useState } from "react";
-import { get, getOrderBy } from "../utils/api";
+import { useSearchParams } from "react-router-dom";
+import { get, getOrderByAsc } from "../utils/api";
 
 export const useGetNewsFiltered = (filterNews, filterDate) => {
   const [newsList, setNewsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const [searchParams] = useSearchParams();
+
   useEffect(() => {
     const getNewsData = async (url) => {
       try {
         setIsLoading(true);
         setError(null);
-        if (filterNews === "new") {
-          await get(url, setNewsList);
+        if (filterNews === "top") {
+          await getOrderByAsc(url, setNewsList);
         } else {
-          await getOrderBy(url, setNewsList);
+          await get(url, setNewsList);
         }
       } catch (error) {
         setError(error.message);
@@ -25,6 +28,7 @@ export const useGetNewsFiltered = (filterNews, filterDate) => {
 
     switch (filterNews) {
       case "new":
+        console.log("¿hola?");
         getNewsData(`${process.env.REACT_APP_BACKEND}/news`);
         break;
       case "top":
@@ -42,11 +46,16 @@ export const useGetNewsFiltered = (filterNews, filterDate) => {
           );
         }
         break;
+      case "search":
+        console.log("probando");
+        const text = searchParams.get("q");
+        getNewsData(`${process.env.REACT_APP_BACKEND}/news?q=${text}`);
+        break;
       default:
         getNewsData(`${process.env.REACT_APP_BACKEND}/news`);
         break;
     }
-  }, [filterNews, filterDate]);
+  }, [filterNews, filterDate, searchParams]);
 
   return [newsList, setNewsList, isLoading, error];
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { capitalize } from "../utils/capitalizeString";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./NewsCards.css";
