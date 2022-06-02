@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { capitalize } from "../utils/capitalizeString";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./NewsCards.css";
@@ -14,6 +15,9 @@ export const NewsCards = ({
   category,
 }) => {
   const [color] = getStylesForCategory(category?.name);
+  //test variable for like button when news not voted
+  let [likeTest, setLikeTest] = useState(false);
+  let [dislikeTest, setDisLikeTest] = useState(false);
 
   return (
     <article
@@ -39,11 +43,25 @@ export const NewsCards = ({
       <p className="title-news">{title}</p>
       <p className="desc-news">{className ? text : description}</p>
       <div className="actions-news">
-        <button type="button">S</button>
-        <button type="button">C</button>
-        <button type="button">+1</button>
-        <p>{votes}</p>
-        <button type="button">-1</button>
+        <button className="share" type="button" />
+        <button className="comments" type="button">
+          154
+        </button>
+        <button
+          className={likeTest ? "like" : "no-like"}
+          type="button"
+          onClick={(e) => {
+            setLikeTest(!likeTest);
+          }}
+        />
+        <p className="votes">{votes}</p>
+        <button
+          className={dislikeTest ? "dislike" : "no-dislike"}
+          type="button"
+          onClick={(e) => {
+            setDisLikeTest(!dislikeTest);
+          }}
+        />
       </div>
     </article>
   );

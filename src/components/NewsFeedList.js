@@ -1,12 +1,17 @@
-import { useContext } from "react";
-import { newsContext } from "../context/NewsContext";
-import { useGetRemoteData } from "../hooks/useGetRemoteData";
-import { get } from "../utils/api";
+import { useGetFilters } from "../hooks/useGetFilters";
+import { useGetNewsFiltered } from "../hooks/useGetNewsFiltered";
 import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({ categories }) => {
-  const { newsList, isLoading, error } = useContext(newsContext);
+  // const { newsList, isLoading, error } = useContext(newsContext);
+
+  const [filterAction, filterDate] = useGetFilters();
+
+  const [newsList, setNewsList, isLoading, error] = useGetNewsFiltered(
+    filterAction,
+    filterDate
+  );
 
   return (
     <section className="feed">
@@ -30,7 +35,7 @@ export const NewsFeedList = ({ categories }) => {
                   image={news.image}
                   description={news.introduction_text}
                   text={news.news_text}
-                  votes={news.votos}
+                  votes={news.votes}
                   category={categories.find((e) => e.id === news.id_category)}
                 />
               </li>

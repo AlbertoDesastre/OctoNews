@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { createSearchParams, Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 
 export const Header = () => {
+  const [inputValue, setInputValue] = useState("");
   const [isDropdown, setIsDropdown] = useState(false);
   const navigate = useNavigate();
   const node = useRef();
@@ -26,6 +27,15 @@ export const Header = () => {
     };
   }, [isDropdown]);
 
+  const handleKeyPress = async (e) => {
+    if (e.keyCode === 13) {
+      navigate({
+        pathname: "/search",
+        search: `?${createSearchParams({ q: inputValue })}`,
+      });
+    }
+  };
+
   return (
     <header>
       <img
@@ -33,7 +43,15 @@ export const Header = () => {
         alt="icon octonews"
         onClick={() => navigate("/")}
       />
-      <input type="search" placeholder="search..." />
+      <input
+        type="search"
+        placeholder="search..."
+        value={inputValue}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
+        onKeyDown={handleKeyPress}
+      />
       <button
         ref={node}
         className="settings"

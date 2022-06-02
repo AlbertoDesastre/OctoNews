@@ -2,19 +2,20 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { News } from "./pages/News";
-import { NewsContextProvider } from "./context/NewsContext";
+import { Search } from "./pages/Search";
 
 function App() {
   return (
     <>
-      <NewsContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/News/:id" element={<News />} />
-          </Routes>
-        </BrowserRouter>
-      </NewsContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}>
+            <Route path="/:filter" element={<Home />} />
+          </Route>
+          <Route path="/search" element={<Search />} />
+          <Route path="/News/:id" element={<News />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

@@ -73,3 +73,44 @@ div.actions-news button:first-child {
 div.actions-news button:last-child {
     margin-right: 0.7rem;
 }
+button.share{
+    min-width: 25px;
+    background: url("/public/share-icon.svg") no-repeat left;
+    background-size: 20px;
+    border: none;
+}
+
+button.comments {
+    min-width: 50px;
+    background: url("/public/comment-icon.svg") no-repeat left;
+    background-size: 20px;
+    padding-left: 1.5rem;
+    border: none;
+}
+
+button.like {
+    min-width: 25px;
+    background: url("/public/like-icon.svg") no-repeat left;
+    background-size: 20px;
+    border: none;
+}
+button.no-like {
+    min-width: 25px;
+    background: url("/public/like-hollow-icon.svg") no-repeat left;
+    background-size: 20px;
+    border: none;
+}
+
+button.dislike {
+    min-width: 25px;
+    background: url("/public/dislike-icon.svg") no-repeat left;
+    background-size: 20px;
+    border: none;
+}
+
+button.no-dislike {
+    min-width: 25px;
+    background: url("/public/dislike-hollow-icon.svg") no-repeat left;
+    background-size: 20px;
+    border: none;
+}

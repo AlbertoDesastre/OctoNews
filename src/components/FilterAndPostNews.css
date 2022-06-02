@@ -9,6 +9,10 @@ section.filterAndPost {
 
 }
 
+section.search-page{
+    grid-row:1;
+}
+
 
 select.filter,
 select.filter-date,
