@@ -1,9 +1,9 @@
-import { format, sub } from "date-fns";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { get, getOrderByAsc } from "../utils/api";
+import { getCurrentAndPreviousDay } from "../utils/getCurrentAndPreviousDate";
 
-export const useGetNewsFiltered = (filterNews, filterDate) => {
+export const useGetNewsFiltered = (filterNews, filterDate, sortFilter) => {
   const [newsList, setNewsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -28,34 +28,42 @@ export const useGetNewsFiltered = (filterNews, filterDate) => {
 
     switch (filterNews) {
       case "new":
-        console.log("¿hola?");
         getNewsData(`${process.env.REACT_APP_BACKEND}/news`);
         break;
       case "top":
-        const currentDate = new Date();
+        const [currentDate, yesterdayDate] = getCurrentAndPreviousDay(1);
         if (filterDate === "today") {
-          const todayDateFormatted = format(currentDate, "yyyy-MM-dd");
           getNewsData(
-            `${process.env.REACT_APP_BACKEND}/news?date=${todayDateFormatted}`
+            `${process.env.REACT_APP_BACKEND}/news?date=${currentDate}`
           );
         } else if (filterDate === "yesterday") {
-          const yesterdayDate = sub(currentDate, { days: 1 });
-          const yesterdayDateFormatted = format(yesterdayDate, "yyyy-MM-dd");
           getNewsData(
-            `${process.env.REACT_APP_BACKEND}/news?date=${yesterdayDateFormatted}`
+            `${process.env.REACT_APP_BACKEND}/news?date=${yesterdayDate}`
           );
         }
         break;
       case "search":
-        console.log("probando");
         const text = searchParams.get("q");
-        getNewsData(`${process.env.REACT_APP_BACKEND}/news?q=${text}`);
+        if (sortFilter === "top") {
+          const [currentDate, yesterdayDate] = getCurrentAndPreviousDay(1);
+          if (filterDate === "today") {
+            getNewsData(
+              `${process.env.REACT_APP_BACKEND}/news?q=${text}&date=${currentDate}`
+            );
+          } else if (filterDate === "yesterday") {
+            getNewsData(
+              `${process.env.REACT_APP_BACKEND}/news?q=${text}&date=${yesterdayDate}`
+            );
+          }
+        } else {
+          getNewsData(`${process.env.REACT_APP_BACKEND}/news?q=${text}`);
+        }
         break;
       default:
         getNewsData(`${process.env.REACT_APP_BACKEND}/news`);
         break;
     }
-  }, [filterNews, filterDate, searchParams]);
+  }, [filterNews, filterDate, searchParams, sortFilter]);
 
   return [newsList, setNewsList, isLoading, error];
 };

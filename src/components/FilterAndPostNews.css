@@ -5,12 +5,7 @@ section.filterAndPost {
     margin: 2rem 0.5rem 0.5rem 0.5rem;
     grid-column: span 12;
     gap: 0.5rem;
-    grid-row: 2;
 
-}
-
-section.search-page{
-    grid-row:1;
 }
 
 
