@@ -12,7 +12,6 @@ import "./FilterAndPostNews.css";
 export const FilterAndPostNews = ({ className }) => {
   const [, dateFilter, sortFilter] = useGetFilters();
   const [selectedFilterNews, setSelectedFilterNews] = useState(sortFilter);
-  console.log(sortFilter);
   const [selectedFilterDate, setSelectedFilterDate] = useState(dateFilter);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigateFilter = useNavigate();
@@ -31,8 +30,12 @@ export const FilterAndPostNews = ({ className }) => {
       navigateFilter(`/${e.target.value}`);
     } else {
       setSelectedFilterNews(e.target.value);
-      let params = searchParamsToObject(searchParams);
-      params.sort = e.target.value;
+      let { q } = searchParamsToObject(searchParams);
+
+      const params = {
+        q,
+        sort: e.target.value,
+      };
       setSearchParams(createSearchParams(params));
     }
   };
@@ -75,10 +78,16 @@ export const FilterAndPostNews = ({ className }) => {
       ) : (
         ""
       )}
-      <svg id="verticalLine">
-        <line x1="6" y1="0" x2="6" y2="40"></line>
-      </svg>
-      <button className="post-button" type="button" />
+      {className === "search-page" ? (
+        ""
+      ) : (
+        <>
+          <svg id="verticalLine">
+            <line x1="6" y1="0" x2="6" y2="40"></line>
+          </svg>
+          <button className="post-button" type="button" />
+        </>
+      )}
     </section>
   );
 };

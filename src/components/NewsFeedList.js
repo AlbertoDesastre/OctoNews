@@ -4,13 +4,12 @@ import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({ categories }) => {
-  // const { newsList, isLoading, error } = useContext(newsContext);
-
-  const [filterAction, filterDate] = useGetFilters();
+  const [filterAction, filterDate, sortFilter] = useGetFilters();
 
   const [newsList, setNewsList, isLoading, error] = useGetNewsFiltered(
     filterAction,
-    filterDate
+    filterDate,
+    sortFilter
   );
 
   return (
@@ -23,6 +22,8 @@ export const NewsFeedList = ({ categories }) => {
         />
       ) : error ? (
         <p className="home-page error">{error}</p>
+      ) : newsList.length === 0 ? (
+        <p className="home-page error"> Your query is incorrect </p>
       ) : (
         <ul>
           {newsList.map((news) => {
