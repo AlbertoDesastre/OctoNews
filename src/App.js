@@ -4,6 +4,10 @@ import { Home } from "./pages/Home";
 import { News } from "./pages/News";
 import { Search } from "./pages/Search";
 
+import { UserCreate } from "./pages/UserCreate";
+import { LoginPage } from "./pages/UserLogin";
+// UserCreate UserLogin
+
 function App() {
   return (
     <>
@@ -12,6 +16,8 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="/:filter" element={<Home />} />
           </Route>
+          <Route path="/register" element={<UserCreate />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<Search />} />
           <Route path="/News/:id" element={<News />} />
         </Routes>
