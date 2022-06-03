@@ -14,7 +14,7 @@ export const FilterAndPostNews = ({ className }) => {
   const [selectedFilterNews, setSelectedFilterNews] = useState(sortFilter);
   const [selectedFilterDate, setSelectedFilterDate] = useState(dateFilter);
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigateFilter = useNavigate();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const FilterAndPostNews = ({ className }) => {
 
   const handleFilterNewsOnChange = (e) => {
     if (pathname !== "/search") {
-      navigateFilter(`/${e.target.value}`);
+      navigate(`/${e.target.value}`);
     } else {
       setSelectedFilterNews(e.target.value);
       let { q } = searchParamsToObject(searchParams);
@@ -85,7 +85,11 @@ export const FilterAndPostNews = ({ className }) => {
           <svg id="verticalLine">
             <line x1="6" y1="0" x2="6" y2="40"></line>
           </svg>
-          <button className="post-button" type="button" />
+          <button
+            className="post-button"
+            type="button"
+            onClick={() => navigate("/submit")}
+          />
         </>
       )}
     </section>

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { capitalize } from "../utils/capitalizeString";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./Carousel.css";
@@ -7,6 +8,8 @@ export const CarouselList = ({
   categoryIsLoading,
   categoryError,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <section className="carousel">
       {categoryIsLoading ? (
@@ -19,7 +22,11 @@ export const CarouselList = ({
         <ul>
           {categories.map((category) => {
             return (
-              <li key={category.id} className="categories-list">
+              <li
+                key={category.id}
+                className="categories-list"
+                onClick={() => navigate(`/category/${category.id}`)}
+              >
                 <CarouselItems categoryName={category.name} />
               </li>
             );

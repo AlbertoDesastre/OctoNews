@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { capitalize } from "../utils/capitalizeString";
+import { copyNewsLinkToClipBoard } from "../utils/copyNewsLinkToClipBoard";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./NewsCards.css";
 
 export const NewsCards = ({
+  newsId,
   username,
   date,
   title,
@@ -11,13 +14,34 @@ export const NewsCards = ({
   text,
   image,
   votes,
+  comments,
   className,
   category,
 }) => {
+  const navigate = useNavigate();
   const [color] = getStylesForCategory(category?.name);
   //test variable for like button when news not voted
   let [likeTest, setLikeTest] = useState(false);
   let [dislikeTest, setDisLikeTest] = useState(false);
+  const [isDropdownShare, setIsDropdownShare] = useState(false);
+
+  const handleDropdown = (e) => {
+    setIsDropdownShare(!isDropdownShare);
+    copyNewsLinkToClipBoard(newsId);
+  };
+
+  useEffect(() => {
+    let countdownToHide;
+    if (isDropdownShare) {
+      countdownToHide = setTimeout(() => {
+        setIsDropdownShare(false);
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(countdownToHide);
+    };
+  }, [isDropdownShare]);
 
   return (
     <article
@@ -36,16 +60,20 @@ export const NewsCards = ({
           className="img-news"
           src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
           alt="news img"
+          onClick={() => navigate(`/news/${newsId}`)}
         />
       ) : (
         ""
       )}
-      <p className="title-news">{title}</p>
+      <p className="title-news" onClick={() => navigate(`/news/${newsId}`)}>
+        {title}
+      </p>
       <p className="desc-news">{className ? text : description}</p>
       <div className="actions-news">
-        <button className="share" type="button" />
+        <button className="share" type="button" onClick={handleDropdown} />
+        <DropdownMenu isDropdown={isDropdownShare} />
         <button className="comments" type="button">
-          154
+          {comments}
         </button>
         <button
           className={likeTest ? "like" : "no-like"}
@@ -64,5 +92,19 @@ export const NewsCards = ({
         />
       </div>
     </article>
+  );
+};
+
+const DropdownMenu = ({ isDropdown }) => {
+  return (
+    <div
+      className={
+        isDropdown
+          ? "dropdown-content-newscard dropdown-newscard"
+          : "dropdown-newscard"
+      }
+    >
+      <button>Link copied!</button>
+    </div>
   );
 };
