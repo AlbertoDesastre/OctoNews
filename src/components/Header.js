@@ -4,17 +4,17 @@ import "./Header.css";
 
 export const Header = () => {
   const [inputValue, setInputValue] = useState("");
-  const [isDropdown, setIsDropdown] = useState(false);
+  const [isDropdownNavMenu, setIsDropdownNavMenu] = useState(false);
   const navigate = useNavigate();
   const node = useRef();
 
   const handleDropdown = (e) => {
-    setIsDropdown(!isDropdown);
+    setIsDropdownNavMenu(!isDropdownNavMenu);
   };
 
   const clickOutsideDropdown = (e) => {
     if (!node.current.contains(e.target)) {
-      setIsDropdown(false);
+      setIsDropdownNavMenu(false);
     }
   };
 
@@ -25,7 +25,7 @@ export const Header = () => {
       document.removeEventListener("touchmove", clickOutsideDropdown);
       document.removeEventListener("mousedown", clickOutsideDropdown);
     };
-  }, [isDropdown]);
+  }, [isDropdownNavMenu]);
 
   const handleKeyPress = async (e) => {
     if (e.keyCode === 13) {
@@ -59,16 +59,20 @@ export const Header = () => {
         onClick={handleDropdown}
       >
         <img
-          src={isDropdown ? "/users-arrow-down.svg" : "/users-arrow-left.svg"}
+          src={
+            isDropdownNavMenu
+              ? "/users-arrow-down.svg"
+              : "/users-arrow-left.svg"
+          }
           alt="user-settings"
         />
       </button>
-      <DropdownMenu isDropdown={isDropdown} />
+      <DropdownNavMenu isDropdown={isDropdownNavMenu} />
     </header>
   );
 };
 
-const DropdownMenu = ({ isDropdown }) => {
+const DropdownNavMenu = ({ isDropdown }) => {
   return (
     <nav className={isDropdown ? "dropdown-content" : ""}>
       <Link to="/News">Register</Link>

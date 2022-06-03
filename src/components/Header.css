@@ -46,6 +46,11 @@ button.settings{
     border: none;
     width: 40px;
 }
+
+button.settings:hover{
+    cursor: pointer;
+}
+
 button.settings > img {
     padding-top: 10px;
     width: 40px;

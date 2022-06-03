@@ -13,7 +13,9 @@ function App() {
             <Route path="/:filter" element={<Home />} />
           </Route>
           <Route path="/search" element={<Search />} />
-          <Route path="/News/:id" element={<News />} />
+          <Route path="/news/:id" element={<News />} />
+          <Route path="/category/:id" element={<p> category page</p>} />
+          <Route path="/submit" element={<p> post/submit page</p>} />
         </Routes>
       </BrowserRouter>
     </>

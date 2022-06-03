@@ -30,6 +30,7 @@ export const NewsFeedList = ({ categories }) => {
             return (
               <li key={news.id} className="news">
                 <NewsCards
+                  newsId={news.id}
                   username={news.user_name}
                   date={news.creation_date}
                   title={news.title}
@@ -37,6 +38,7 @@ export const NewsFeedList = ({ categories }) => {
                   description={news.introduction_text}
                   text={news.news_text}
                   votes={news.votes}
+                  comments={news.comments}
                   category={categories.find((e) => e.id === news.id_category)}
                 />
               </li>
