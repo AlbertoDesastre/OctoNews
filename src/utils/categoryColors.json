@@ -1,9 +1,39 @@
 {
   "categoryColors": [
-    { "name": "culture", "color": "#3cc4ff9f", "img": "2134234234252.jpg" },
-    { "name": "nature", "color": "#13AF0880", "img": "339314301050201.webp" },
-    { "name": "politics", "color": "#eff92d9f", "img": "5527725.png" },
-    { "name": "art", "color": "#ff24959f", "img": "2352352135675843.png" },
-    { "name": "health", "color": "#f92d2d9f", "img": "35236216.webp" }
+    {
+      "name": "culture",
+      "color": "#3cc4ff9f",
+      "img": "2134234234252.jpg",
+      "background": "",
+      "description": "La comunidad de los monumentos y las comidas, de las costumbres y las bebidas."
+    },
+    {
+      "name": "nature",
+      "color": "#13AF0880",
+      "img": "339314301050201.webp",
+      "background": "",
+      "description": "Una comunidad donde puedas respirar a gusto y charlar de lo que nos otorga el mundo."
+    },
+    {
+      "name": "politics",
+      "color": "#eff92d9f",
+      "img": "5527725.png",
+      "background": "",
+      "description": "Debates, discusiones, todo lo que te puedes esperar de la política."
+    },
+    {
+      "name": "art",
+      "color": "#ff24959f",
+      "img": "2352352135675843.png",
+      "background": "",
+      "description": "Todas las noticias que puedes esperar con un toque 'pintoresco'."
+    },
+    {
+      "name": "health",
+      "color": "#f92d2d9f",
+      "img": "35236216.webp",
+      "background": "",
+      "description": "Aquí encontrarás todo lo relacionado con la salud."
+    }
   ]
 }
