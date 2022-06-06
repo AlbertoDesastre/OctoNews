@@ -6,6 +6,7 @@ import { Search } from "./pages/Search";
 
 import { UserCreate } from "./pages/UserCreate";
 import { LoginPage } from "./pages/UserLogin";
+import { Category } from "./pages/Category";
 // UserCreate UserLogin
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<Search />} />
           <Route path="/news/:id" element={<News />} />
-          <Route path="/category/:id" element={<p> category page</p>} />
+          <Route path="/category/:id" element={<Category />} />
           <Route path="/submit" element={<p> post/submit page</p>} />
         </Routes>
       </BrowserRouter>
