@@ -68,7 +68,7 @@ p.author-news {
   font-size: 11px;
 }
 
-div.actions-news {
+div.action-news{
   position: relative;
   padding: 1rem 0;
   display: flex;
@@ -76,12 +76,12 @@ div.actions-news {
   gap: 1.5rem;
 }
 
-div.actions-news button:first-child {
+div.action-news button:first-child {
   margin-right: auto;
   margin-left: 1rem;
 }
 
-div.actions-news button:last-child {
+div.action-news button:last-child {
   margin-right: 0.7rem;
 }
 

@@ -1,28 +1,26 @@
 import { useGetFilters } from "../hooks/useGetFilters";
 import { useGetNewsFiltered } from "../hooks/useGetNewsFiltered";
+import { Error } from "./Error";
+import { Loading } from "./Loading";
 import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
-export const NewsFeedList = ({ categories }) => {
+export const NewsFeedList = ({ categories, category }) => {
   const [filterAction, filterDate, sortFilter] = useGetFilters();
 
   const [newsList, , isLoading, error] = useGetNewsFiltered([
     filterAction,
     filterDate,
     sortFilter,
-    categories,
+    category,
   ]);
 
   return (
     <section className="feed">
       {isLoading ? (
-        <img
-          className="home-page loading feed"
-          src="/three-dots.svg"
-          alt="loading"
-        />
+        <Loading className="home-page loading feed" />
       ) : error ? (
-        <p className="home-page error">{error}</p>
+        <Error className="home-page error" error={error} />
       ) : newsList.length === 0 ? (
         <p className="home-page error"> Your query is incorrect </p>
       ) : (
@@ -41,8 +39,9 @@ export const NewsFeedList = ({ categories }) => {
                   votes={news.votes}
                   comments={news.comments}
                   category={
-                    categories &&
-                    categories.find((e) => e.id === news.id_category)
+                    categories
+                      ? categories.find((e) => e.id === news.id_category)
+                      : category
                   }
                 />
               </li>

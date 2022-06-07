@@ -34,7 +34,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<Search />} />
           <Route path="/news/:id" element={<News />} />
-          <Route path="/category/:categoryName" element={<Category />} />
+          <Route path="/category/:id" element={<Category />} />
           <Route path="/submit" element={<Submit />} />
           <Route path="/users/validate/:code" element={<UserValidation />} />
         </Routes>
