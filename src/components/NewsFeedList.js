@@ -6,11 +6,12 @@ import "./NewsFeedList.css";
 export const NewsFeedList = ({ categories }) => {
   const [filterAction, filterDate, sortFilter] = useGetFilters();
 
-  const [newsList, setNewsList, isLoading, error] = useGetNewsFiltered(
+  const [newsList, , isLoading, error] = useGetNewsFiltered([
     filterAction,
     filterDate,
-    sortFilter
-  );
+    sortFilter,
+    categories,
+  ]);
 
   return (
     <section className="feed">
@@ -39,7 +40,10 @@ export const NewsFeedList = ({ categories }) => {
                   text={news.news_text}
                   votes={news.votes}
                   comments={news.comments}
-                  category={categories.find((e) => e.id === news.id_category)}
+                  category={
+                    categories &&
+                    categories.find((e) => e.id === news.id_category)
+                  }
                 />
               </li>
             );

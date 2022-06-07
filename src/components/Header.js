@@ -40,7 +40,7 @@ export const Header = () => {
   };
 
   return (
-    <header>
+    <header className="front-header">
       <img
         src="/octopus.png"
         alt="icon octonews"

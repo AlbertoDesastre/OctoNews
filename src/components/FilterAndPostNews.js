@@ -28,9 +28,7 @@ export const FilterAndPostNews = ({ className }) => {
   }, [dateFilter]);
 
   const handleFilterNewsOnChange = (e) => {
-    if (pathname !== "/search") {
-      navigate(`/${e.target.value}`);
-    } else {
+    if (pathname === "/search") {
       setSelectedFilterNews(e.target.value);
       let { q } = searchParamsToObject(searchParams);
 
@@ -39,18 +37,26 @@ export const FilterAndPostNews = ({ className }) => {
         sort: e.target.value,
       };
       setSearchParams(createSearchParams(params));
+    } else if (pathname.includes("category")) {
+      setSelectedFilterNews(e.target.value);
+      const params = {
+        sort: e.target.value,
+      };
+      setSearchParams(createSearchParams(params));
+    } else {
+      navigate(`/${e.target.value}`);
     }
   };
 
   const handleFilterDateOnChange = (e) => {
     setSelectedFilterDate(e.target.value);
-    if (pathname !== "/search") {
-      setSelectedFilterDate(e.target.value);
-      setSearchParams({ t: e.target.value });
-    } else {
+    if (pathname === "/search" || pathname.includes("category")) {
       let params = searchParamsToObject(searchParams);
       params.t = e.target.value;
       setSearchParams(createSearchParams(params));
+    } else {
+      setSelectedFilterDate(e.target.value);
+      setSearchParams({ t: e.target.value });
     }
   };
 
