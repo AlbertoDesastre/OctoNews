@@ -19,7 +19,8 @@ export const NewsCards = ({
   category,
 }) => {
   const navigate = useNavigate();
-  const [color] = getStylesForCategory(category?.name);
+
+  const [color] = getStylesForCategory(category);
   //test variable for like button when news not voted
   let [likeTest, setLikeTest] = useState(false);
   let [dislikeTest, setDisLikeTest] = useState(false);
@@ -58,18 +59,54 @@ export const NewsCards = ({
       {image ? (
         <img
           className="img-news"
-          src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
+          /* src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`} */
+          src={`/octopus.png`}
           alt="news img"
           onClick={() => navigate(`/news/${newsId}`)}
         />
       ) : (
         ""
       )}
-      <p className="title-news" onClick={() => navigate(`/news/${newsId}`)}>
+
+      <p
+        className={className ? className : "title-news"}
+        onClick={() => navigate(`/news/${newsId}`)}
+        id={(className = "news-page" ? "news-page-title" : undefined)}
+      >
         {title}
       </p>
-      <p className="desc-news">{className ? text : description}</p>
-      <div className="actions-news">
+      <p
+        className="desc-news"
+        id={(className = "news-page" ? "news-page-text" : undefined)}
+      >
+        {className ? text : description}
+      </p>
+
+      {/* Esto deberái renderizar el html solo si
+       tiene la clase news-page. No funciona. Revisar */}
+      {
+        (className === "news-page" ? (
+          <footer className="news-page news-page-footer">
+            <ul className="news-page news-page-ul-for-buttons-edit-delete">
+              <li className="news-page  news-page-button-li-of-footer">
+                <button className="news-page delete-new-button">
+                  Eliminar noticia
+                </button>
+              </li>
+              <li className="news-page  news-page-button-li-of-footer">
+                <button className="news-page edit-new-button">
+                  Editar noticia
+                </button>
+              </li>
+            </ul>
+          </footer>
+        ) : undefined)
+      }
+
+      <div
+        className={className ? "news-page" : "action-news"}
+        id={className ? "action-from-news" : undefined}
+      >
         <button className="share" type="button" onClick={handleDropdown} />
         <DropdownMenu isDropdown={isDropdownShare} />
         <button className="comments" type="button">
