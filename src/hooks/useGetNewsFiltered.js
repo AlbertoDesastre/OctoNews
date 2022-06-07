@@ -82,16 +82,13 @@ export const useGetNewsFiltered = ([
         break;
 
       case "category":
-        //If we are in category. First we take current category we are in. Since to get the current category
-        // we need to do a fetch before it may take a bit to set it into a variable so we use short-circuit conditionals
-        // to prevent get undefined errors.
-        const currentCategoryName =
-          currentCategoryPage[0] && currentCategoryPage[0].name;
+        //If we are in category. First we take current category name
+        const currentCategoryName = currentCategoryPage.name;
         //We check sortFilter if it's Top and then check the dateFilter.
         if (sortFilter === "top") {
           const [currentDate, yesterdayDate] = getCurrentAndPreviousDay(1);
           if (filterDate === "today") {
-            //Here we do again some short-circuit conditionals to prevent errors from the fetch.
+            //Here we do some short-circuit conditionals to prevent errors from the fetch.
             //This statement is like if currentCategory is not undefined it will do the fetch.
             currentCategoryName &&
               getNewsData(

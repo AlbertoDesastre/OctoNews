@@ -1,28 +1,45 @@
 import { capitalize } from "../utils/capitalizeString";
-import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./CategoryHeader.css";
+import { Error } from "./Error";
+import { Loading } from "./Loading";
 
-export const CategoryHeader = ({ categoryName }) => {
-  const [color, img, background, description] =
-    getStylesForCategory(categoryName);
-
+export const CategoryHeader = ({
+  category,
+  categoryIsLoading,
+  categoryError,
+}) => {
   return (
     <section className="category-page-header">
-      <header className="category-page-header">
-        <img src={`/categoryIcons/${img}`} alt={`${categoryName} header`} />
-      </header>
-      <article
-        style={{ borderTop: `4px solid ${color}` }}
-        className="category-page"
-      >
-        <img
-          style={{ border: `3px solid ${color}` }}
-          src={`/categoryIcons/${img}`}
-          alt={`${categoryName}`}
-        />
-        <h2>{capitalize(categoryName)}</h2>
-        <p>{description}</p>
-      </article>
+      {categoryIsLoading ? (
+        <Loading className="home-page loading carousel" />
+      ) : categoryError ? (
+        <Error className="category-page error" error={categoryError} />
+      ) : (
+        <>
+          <header className="category-page-header">
+            {category.background_image && (
+              <img
+                src={`${process.env.REACT_APP_BACKEND}/uploads/categories/background/${category.background_image}`}
+                alt={`${category.name} header`}
+              />
+            )}
+          </header>
+          <article
+            style={{ borderTop: `4px solid ${category.color}` }}
+            className="category-page"
+          >
+            {category.icon_image && (
+              <img
+                style={{ border: `3px solid ${category.color}` }}
+                src={`${process.env.REACT_APP_BACKEND}/uploads/categories/icons/${category.icon_image}`}
+                alt={`${category.name}`}
+              />
+            )}
+            <h2>{capitalize(category.name)}</h2>
+            <p>{category.description}</p>
+          </article>
+        </>
+      )}
     </section>
   );
 };

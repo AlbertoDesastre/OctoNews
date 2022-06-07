@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { capitalize } from "../utils/capitalizeString";
-import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./Carousel.css";
+import { Error } from "./Error";
+import { Loading } from "./Loading";
 
 export const CarouselList = ({
   categories,
@@ -13,11 +14,9 @@ export const CarouselList = ({
   return (
     <section className="carousel">
       {categoryIsLoading ? (
-        <img
-          className="home-page loading carousel"
-          src="/three-dots.svg"
-          alt="loading"
-        />
+        <Loading className="home-page loading carousel" />
+      ) : categoryError ? (
+        <Error className="home-page error" error={categoryError} />
       ) : (
         <ul>
           {categories.map((category) => {
@@ -27,7 +26,11 @@ export const CarouselList = ({
                 className="categories-list"
                 onClick={() => navigate(`/category/${category.id}`)}
               >
-                <CarouselItems categoryName={category.name} />
+                <CarouselItems
+                  categoryName={category.name}
+                  categoryColor={category.color}
+                  categoryIcon={category.icon_image}
+                />
               </li>
             );
           })}
@@ -37,13 +40,16 @@ export const CarouselList = ({
   );
 };
 
-const CarouselItems = ({ categoryName }) => {
-  const [color, img] = getStylesForCategory(categoryName);
-
+const CarouselItems = ({ categoryName, categoryColor, categoryIcon }) => {
   return (
     <article className="carousel-items">
-      <p style={{ backgroundColor: color }}>{capitalize(categoryName)}</p>
-      <img src={`/categoryIcons/${img}`} alt={`category ${categoryName}`} />
+      <p style={{ backgroundColor: categoryColor }}>
+        {capitalize(categoryName)}
+      </p>
+      <img
+        src={`/categoryIcons/${categoryIcon}`}
+        alt={`category ${categoryName}`}
+      />
     </article>
   );
 };

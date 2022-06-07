@@ -58,8 +58,4 @@ article.carousel-items > p {
 .carousel::-webkit-scrollbar {
     display: none;
 }
-.home-page.loading.carousel {
-    display: block;
-    margin: 0 auto;
-    margin-top: 2rem;
-}
+
