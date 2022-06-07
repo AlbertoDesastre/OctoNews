@@ -8,6 +8,11 @@ section.filterAndPost {
 
 }
 
+section.filterAndPost button:hover,
+section.filterAndPost>select:hover {
+    cursor: pointer;
+}
+
 
 select.filter,
 select.filter-date,

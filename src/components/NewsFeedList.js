@@ -6,11 +6,12 @@ import "./NewsFeedList.css";
 export const NewsFeedList = ({ categories }) => {
   const [filterAction, filterDate, sortFilter] = useGetFilters();
 
-  const [newsList, setNewsList, isLoading, error] = useGetNewsFiltered(
+  const [newsList, , isLoading, error] = useGetNewsFiltered([
     filterAction,
     filterDate,
-    sortFilter
-  );
+    sortFilter,
+    categories,
+  ]);
 
   return (
     <section className="feed">
@@ -30,6 +31,7 @@ export const NewsFeedList = ({ categories }) => {
             return (
               <li key={news.id} className="news">
                 <NewsCards
+                  newsId={news.id}
                   username={news.user_name}
                   date={news.creation_date}
                   title={news.title}
@@ -37,7 +39,11 @@ export const NewsFeedList = ({ categories }) => {
                   description={news.introduction_text}
                   text={news.news_text}
                   votes={news.votes}
-                  category={categories.find((e) => e.id === news.id_category)}
+                  comments={news.comments}
+                  category={
+                    categories &&
+                    categories.find((e) => e.id === news.id_category)
+                  }
                 />
               </li>
             );

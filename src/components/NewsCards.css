@@ -17,6 +17,7 @@ img.img-news {
   margin-top: 0.5rem;
 }
 
+
 p.title-news {
   margin-left: 0.7rem;
   font-size: 21px;
@@ -28,6 +29,11 @@ p.title-news {
 p.title-news:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+p.title-news:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 p.category-news,
@@ -78,6 +84,7 @@ div.actions-news button:first-child {
 div.actions-news button:last-child {
   margin-right: 0.7rem;
 }
+
 button.share {
   min-width: 25px;
   background: url("/public/share-icon.svg") no-repeat left;
@@ -114,6 +121,7 @@ button.dislike {
 }
 
 button.no-dislike {
+
   min-width: 25px;
   background: url("/public/dislike-hollow-icon.svg") no-repeat left;
   background-size: 20px;
@@ -126,39 +134,39 @@ button.like:hover,
 button.no-like:hover,
 button.dislike:hover,
 button.no-dislike:hover {
-  cursor: pointer;
+
+    cursor: pointer;
 }
 
 .dropdown-newscard {
-  height: 0px;
-  overflow: hidden;
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  width: 88px;
-  background-color: white;
-  border-radius: 20px;
-  border: none;
+    height: 0px;
+    overflow: hidden;
+    position: absolute;
+    left: 10px;
+    top: 15px; 
+    width: 88px;
+    background-color: white;
+    border-radius: 20px;
+
 }
 
 .dropdown-content-newscard {
-  height: 30px;
-  background-color: white;
-  width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.298);
-  border-bottom-left-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    height: 30px;
+    background-color: rgb(197, 71, 71);
+    width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.298);
+    border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.dropdown-newscard button:first-child {
-  background-color: white;
-  border: none;
-}
-
-.dropdown-content-newscard button:hover {
-  background-color: #ddd;
+.dropdown-newscard button:first-child{
+    background-color: white;
+    border: none;
+    background-color: rgb(197, 71, 71);
+    font-weight: bold;
+    font-size: 0.8rem;
 }
 
 /* Here goes the version of news-page CSS */

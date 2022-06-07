@@ -1,20 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { createSearchParams, Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "./Header.css";
 
 export const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
   const [inputValue, setInputValue] = useState("");
-  const [isDropdown, setIsDropdown] = useState(false);
+  const [isDropdownNavMenu, setIsDropdownNavMenu] = useState(false);
   const navigate = useNavigate();
   const node = useRef();
 
   const handleDropdown = (e) => {
-    setIsDropdown(!isDropdown);
+    setIsDropdownNavMenu(!isDropdownNavMenu);
   };
 
   const clickOutsideDropdown = (e) => {
-    if (!node.current.contains(e.target)) {
-      setIsDropdown(false);
+    if (node.current && !node.current.contains(e.target)) {
+      setIsDropdownNavMenu(false);
     }
   };
 
@@ -25,7 +28,7 @@ export const Header = () => {
       document.removeEventListener("touchmove", clickOutsideDropdown);
       document.removeEventListener("mousedown", clickOutsideDropdown);
     };
-  }, [isDropdown]);
+  }, [isDropdownNavMenu]);
 
   const handleKeyPress = async (e) => {
     if (e.keyCode === 13) {
@@ -37,7 +40,7 @@ export const Header = () => {
   };
 
   return (
-    <header>
+    <header className="front-header">
       <img
         src="/octopus.png"
         alt="icon octonews"
@@ -52,28 +55,42 @@ export const Header = () => {
         }}
         onKeyDown={handleKeyPress}
       />
-      <button
-        ref={node}
-        className="settings"
-        type="button"
-        onClick={handleDropdown}
-      >
-        <img
-          src={isDropdown ? "/users-arrow-down.svg" : "/users-arrow-left.svg"}
-          alt="user-settings"
-        />
-      </button>
-      <DropdownMenu isDropdown={isDropdown} />
+
+      {user ? (
+        <p>
+          {/* Aquí tengo disponible todo user, cambiar por un menú de usuario */}
+          User: {user.name} <button onClick={() => logout()}>Logout</button>
+        </p>
+      ) : (
+        <>
+          <button
+            ref={node}
+            className="settings"
+            type="button"
+            onClick={handleDropdown}
+          >
+            <img
+              src={
+                isDropdownNavMenu
+                  ? "/users-arrow-down.svg"
+                  : "/users-arrow-left.svg"
+              }
+              alt="user-settings"
+            />
+          </button>
+          <DropdownNavMenu isDropdown={isDropdownNavMenu} />
+        </>
+      )}
     </header>
   );
 };
 
-const DropdownMenu = ({ isDropdown }) => {
+const DropdownNavMenu = ({ isDropdown }) => {
   return (
     <nav className={isDropdown ? "dropdown-content" : ""}>
-      <Link to="/News">Register</Link>
+      <Link to="/register">Register</Link>
       <hr />
-      <Link to="/News">Login</Link>
+      <Link to="/login">Login</Link>
     </nav>
   );
 };

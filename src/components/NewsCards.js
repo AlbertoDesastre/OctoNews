@@ -19,6 +19,7 @@ export const NewsCards = ({
   category,
 }) => {
   const navigate = useNavigate();
+
   const [color] = getStylesForCategory(category);
   //test variable for like button when news not voted
   let [likeTest, setLikeTest] = useState(false);
@@ -43,8 +44,6 @@ export const NewsCards = ({
     };
   }, [isDropdownShare]);
 
-  console.log(category);
-
   return (
     <article
       className={className ? className : undefined}
@@ -68,6 +67,7 @@ export const NewsCards = ({
       ) : (
         ""
       )}
+
       <p
         className={className ? className : "title-news"}
         onClick={() => navigate(`/news/${newsId}`)}
@@ -85,7 +85,7 @@ export const NewsCards = ({
       {/* Esto deberái renderizar el html solo si
        tiene la clase news-page. No funciona. Revisar */}
       {
-        (className = "news-page" ? (
+        (className === "news-page" ? (
           <footer className="news-page news-page-footer">
             <ul className="news-page news-page-ul-for-buttons-edit-delete">
               <li className="news-page  news-page-button-li-of-footer">
