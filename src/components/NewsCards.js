@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { capitalize } from "../utils/capitalizeString";
+import { copyNewsLinkToClipBoard } from "../utils/copyNewsLinkToClipBoard";
 import { getStylesForCategory } from "../utils/getStylesForCategory";
 import "./NewsCards.css";
 
 export const NewsCards = ({
+  newsId,
   username,
   date,
   title,
@@ -11,13 +14,36 @@ export const NewsCards = ({
   text,
   image,
   votes,
+  comments,
   className,
   category,
 }) => {
-  const [color] = getStylesForCategory(category?.name);
+  const navigate = useNavigate();
+  const [color] = getStylesForCategory(category);
   //test variable for like button when news not voted
   let [likeTest, setLikeTest] = useState(false);
   let [dislikeTest, setDisLikeTest] = useState(false);
+  const [isDropdownShare, setIsDropdownShare] = useState(false);
+
+  const handleDropdown = (e) => {
+    setIsDropdownShare(!isDropdownShare);
+    copyNewsLinkToClipBoard(newsId);
+  };
+
+  useEffect(() => {
+    let countdownToHide;
+    if (isDropdownShare) {
+      countdownToHide = setTimeout(() => {
+        setIsDropdownShare(false);
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(countdownToHide);
+    };
+  }, [isDropdownShare]);
+
+  console.log(category);
 
   return (
     <article
@@ -34,18 +60,57 @@ export const NewsCards = ({
       {image ? (
         <img
           className="img-news"
-          src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
+          /* src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`} */
+          src={`/octopus.png`}
           alt="news img"
+          onClick={() => navigate(`/news/${newsId}`)}
         />
       ) : (
         ""
       )}
-      <p className="title-news">{title}</p>
-      <p className="desc-news">{className ? text : description}</p>
-      <div className="actions-news">
-        <button className="share" type="button" />
+      <p
+        className={className ? className : "title-news"}
+        onClick={() => navigate(`/news/${newsId}`)}
+        id={(className = "news-page" ? "news-page-title" : undefined)}
+      >
+        {title}
+      </p>
+      <p
+        className="desc-news"
+        id={(className = "news-page" ? "news-page-text" : undefined)}
+      >
+        {className ? text : description}
+      </p>
+
+      {/* Esto deberái renderizar el html solo si
+       tiene la clase news-page. No funciona. Revisar */}
+      {
+        (className = "news-page" ? (
+          <footer className="news-page news-page-footer">
+            <ul className="news-page news-page-ul-for-buttons-edit-delete">
+              <li className="news-page  news-page-button-li-of-footer">
+                <button className="news-page delete-new-button">
+                  Eliminar noticia
+                </button>
+              </li>
+              <li className="news-page  news-page-button-li-of-footer">
+                <button className="news-page edit-new-button">
+                  Editar noticia
+                </button>
+              </li>
+            </ul>
+          </footer>
+        ) : undefined)
+      }
+
+      <div
+        className={className ? "news-page" : "action-news"}
+        id={className ? "action-from-news" : undefined}
+      >
+        <button className="share" type="button" onClick={handleDropdown} />
+        <DropdownMenu isDropdown={isDropdownShare} />
         <button className="comments" type="button">
-          154
+          {comments}
         </button>
         <button
           className={likeTest ? "like" : "no-like"}
@@ -64,5 +129,19 @@ export const NewsCards = ({
         />
       </div>
     </article>
+  );
+};
+
+const DropdownMenu = ({ isDropdown }) => {
+  return (
+    <div
+      className={
+        isDropdown
+          ? "dropdown-content-newscard dropdown-newscard"
+          : "dropdown-newscard"
+      }
+    >
+      <button>Link copied!</button>
+    </div>
   );
 };

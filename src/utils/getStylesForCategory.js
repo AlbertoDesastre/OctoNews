@@ -1,9 +1,9 @@
-export const getStylesForCategory = (categoryName) => {
-  if (categoryName) {
+export const getStylesForCategory = (categoryId) => {
+  if (categoryId) {
     const Colors = require("./categoryColors.json");
 
     const { color, img } = Colors.categoryColors.find(
-      (category) => category.name == categoryName.toLowerCase()
+      (category) => category.id == categoryId
     );
 
     return [color, img];

@@ -1,116 +1,210 @@
-li.news > article{
-    border-radius: 10px;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.298);
+li.news > article {
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.298);
 }
 
-hr{
-    height: 2px;
-    background-color: rgb(186, 183, 183);
+hr {
+  height: 2px;
+  background-color: rgb(186, 183, 183);
 }
 
 img.img-news {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    float: right;
-    margin-right: 1rem;
-    margin-top: 0.5rem;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
 }
 
 p.title-news {
-    margin-left: 0.7rem;
-    font-size: 21px;
-    line-height: 25px;
-    letter-spacing: -.5px;
-    margin-bottom: 0.3rem;
+  margin-left: 0.7rem;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.3rem;
+}
+
+p.title-news:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 p.category-news,
 p.author-news,
 p.desc-news {
-    margin-left: 0.7rem;
+  margin-left: 0.7rem;
 }
 
 p.category-news,
 p.title-news {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-p.category-news, p.desc-news{
-    font-size: 12px;
+p.category-news,
+p.desc-news {
+  font-size: 12px;
 }
 p.desc-news {
-    line-height: 20px;
-    margin-right: 1rem;
+  line-height: 20px;
+  margin-right: 1rem;
 }
 
 p.category-news {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: inline-block;
-    border-radius: 10px;
-    padding: 1px;
-
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 1px;
 }
 
 p.author-news {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 div.actions-news {
-    padding: 1rem 0;
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.5rem;
-
+  position: relative;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
 }
 
 div.actions-news button:first-child {
-    margin-right: auto;
-    margin-left: 1rem;
+  margin-right: auto;
+  margin-left: 1rem;
 }
 
 div.actions-news button:last-child {
-    margin-right: 0.7rem;
+  margin-right: 0.7rem;
 }
-button.share{
-    min-width: 25px;
-    background: url("/public/share-icon.svg") no-repeat left;
-    background-size: 20px;
-    border: none;
+button.share {
+  min-width: 25px;
+  background: url("/public/share-icon.svg") no-repeat left;
+  background-size: 20px;
+  border: none;
 }
 
 button.comments {
-    min-width: 50px;
-    background: url("/public/comment-icon.svg") no-repeat left;
-    background-size: 20px;
-    padding-left: 1.5rem;
-    border: none;
+  min-width: 50px;
+  background: url("/public/comment-icon.svg") no-repeat left;
+  background-size: 20px;
+  padding-left: 1.5rem;
+  border: none;
 }
 
 button.like {
-    min-width: 25px;
-    background: url("/public/like-icon.svg") no-repeat left;
-    background-size: 20px;
-    border: none;
+  min-width: 25px;
+  background: url("/public/like-icon.svg") no-repeat left;
+  background-size: 20px;
+  border: none;
 }
 button.no-like {
-    min-width: 25px;
-    background: url("/public/like-hollow-icon.svg") no-repeat left;
-    background-size: 20px;
-    border: none;
+  min-width: 25px;
+  background: url("/public/like-hollow-icon.svg") no-repeat left;
+  background-size: 20px;
+  border: none;
 }
 
 button.dislike {
-    min-width: 25px;
-    background: url("/public/dislike-icon.svg") no-repeat left;
-    background-size: 20px;
-    border: none;
+  min-width: 25px;
+  background: url("/public/dislike-icon.svg") no-repeat left;
+  background-size: 20px;
+  border: none;
 }
 
 button.no-dislike {
-    min-width: 25px;
-    background: url("/public/dislike-hollow-icon.svg") no-repeat left;
-    background-size: 20px;
-    border: none;
+  min-width: 25px;
+  background: url("/public/dislike-hollow-icon.svg") no-repeat left;
+  background-size: 20px;
+  border: none;
 }
+
+img.img-news:hover,
+button.share:hover,
+button.like:hover,
+button.no-like:hover,
+button.dislike:hover,
+button.no-dislike:hover {
+  cursor: pointer;
+}
+
+.dropdown-newscard {
+  height: 0px;
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  width: 88px;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+}
+
+.dropdown-content-newscard {
+  height: 30px;
+  background-color: white;
+  width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.298);
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dropdown-newscard button:first-child {
+  background-color: white;
+  border: none;
+}
+
+.dropdown-content-newscard button:hover {
+  background-color: #ddd;
+}
+
+/* Here goes the version of news-page CSS */
+
+article.news-page {
+  margin-top: -7px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(97, 94, 94, 0.298);
+  background-color: white;
+}
+
+#news-page-title {
+  margin-left: 0.7rem;
+  font-size: 31px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.3rem;
+}
+
+#news-page-text {
+  margin-left: 0.7rem;
+  font-size: 15px;
+  line-height: 20px;
+  margin-right: 1rem;
+}
+
+.news-page-ul-for-buttons-edit-delete {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding-left: 0.6rem;
+}
+.edit-new-button,
+.delete-new-button {
+  border-style: none;
+  background-color: white;
+  font-size: 0.7rem;
+  color: darkred;
+  cursor: pointer;
+}
+
+#action-from-news {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+/* Pendiente de encontrar solución para este div */
