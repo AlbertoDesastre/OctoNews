@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Header } from "../components/Header";
+import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../utils/api";
+import { Navigate } from "react-router-dom";
+
 export const LoginPage = () => {
+  const { token, login } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -13,9 +18,13 @@ export const LoginPage = () => {
     try {
       console.log(email, password);
       const data = await loginUserService({ email, password });
-      console.log(data);
-    } catch (error) {}
+      login(data);
+    } catch (error) {
+      setError(error.message);
+    }
   };
+
+  if (token) return <Navigate to={"/"} />;
 
   return (
     <>
@@ -49,7 +58,7 @@ export const LoginPage = () => {
             <button type="submit" onClick={handleForm}>
               Login
             </button>
-            {error ? <p>(error)</p> : null}
+            {error ? <p>{error}</p> : null}
           </form>
         </section>
       </main>
