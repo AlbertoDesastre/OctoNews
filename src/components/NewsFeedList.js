@@ -6,10 +6,10 @@ import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({ categories, category }) => {
-  const [filterAction, filterDate, sortFilter] = useGetFilters();
+  const [currentLocation, filterDate, sortFilter] = useGetFilters();
 
   const [newsList, , isLoading, error] = useGetNewsFiltered([
-    filterAction,
+    currentLocation,
     filterDate,
     sortFilter,
     category,
