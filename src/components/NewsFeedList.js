@@ -22,7 +22,7 @@ export const NewsFeedList = ({ categories, category }) => {
       ) : error ? (
         <Error className="home-page error" error={error} />
       ) : newsList.length === 0 ? (
-        <p className="home-page error"> Your query is incorrect </p>
+        <p className="home-page error"> There is no news. </p>
       ) : (
         <ul>
           {newsList.map((news) => {

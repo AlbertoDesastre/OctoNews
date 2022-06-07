@@ -86,11 +86,22 @@ export const Header = () => {
 };
 
 const DropdownNavMenu = ({ isDropdown }) => {
+  const { user, logout } = useContext(AuthContext);
   return (
     <nav className={isDropdown ? "dropdown-content" : ""}>
-      <Link to="/register">Register</Link>
-      <hr />
-      <Link to="/login">Login</Link>
+      {user ? (
+        <>
+          <Link to="/usersettings">Settings</Link>
+          <hr />
+          <button onClick={logout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <Link to="/register">Register</Link>
+          <hr />
+          <Link to="/login">Login</Link>
+        </>
+      )}
     </nav>
   );
 };
