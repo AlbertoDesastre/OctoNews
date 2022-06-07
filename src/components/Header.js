@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { createSearchParams, Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "./Header.css";
 
 export const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
   const [inputValue, setInputValue] = useState("");
   const [isDropdownNavMenu, setIsDropdownNavMenu] = useState(false);
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ export const Header = () => {
   };
 
   const clickOutsideDropdown = (e) => {
-    if (!node.current.contains(e.target)) {
+    if (node.current && !node.current.contains(e.target)) {
       setIsDropdownNavMenu(false);
     }
   };
@@ -52,22 +55,32 @@ export const Header = () => {
         }}
         onKeyDown={handleKeyPress}
       />
-      <button
-        ref={node}
-        className="settings"
-        type="button"
-        onClick={handleDropdown}
-      >
-        <img
-          src={
-            isDropdownNavMenu
-              ? "/users-arrow-down.svg"
-              : "/users-arrow-left.svg"
-          }
-          alt="user-settings"
-        />
-      </button>
-      <DropdownNavMenu isDropdown={isDropdownNavMenu} />
+
+      {user ? (
+        <p>
+          {/* Aquí tengo disponible todo user, cambiar por un menú de usuario */}
+          User: {user.name} <button onClick={() => logout()}>Logout</button>
+        </p>
+      ) : (
+        <>
+          <button
+            ref={node}
+            className="settings"
+            type="button"
+            onClick={handleDropdown}
+          >
+            <img
+              src={
+                isDropdownNavMenu
+                  ? "/users-arrow-down.svg"
+                  : "/users-arrow-left.svg"
+              }
+              alt="user-settings"
+            />
+          </button>
+          <DropdownNavMenu isDropdown={isDropdownNavMenu} />
+        </>
+      )}
     </header>
   );
 };
@@ -75,9 +88,9 @@ export const Header = () => {
 const DropdownNavMenu = ({ isDropdown }) => {
   return (
     <nav className={isDropdown ? "dropdown-content" : ""}>
-      <Link to="/News">Register</Link>
+      <Link to="/register">Register</Link>
       <hr />
-      <Link to="/News">Login</Link>
+      <Link to="/login">Login</Link>
     </nav>
   );
 };

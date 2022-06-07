@@ -73,7 +73,23 @@ export const loginUserService = async ({ email, password }) => {
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json.message);
+    throw new Error(json.data);
+  }
+
+  return json.data;
+};
+
+export const getMyData = async (token) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user`, {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.data);
   }
 
   return json.data;

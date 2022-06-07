@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   createSearchParams,
   useLocation,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { useGetFilters } from "../hooks/useGetFilters";
 import { searchParamsToObject } from "../utils/searchParamsToObject";
 import "./FilterAndPostNews.css";
 
 export const FilterAndPostNews = ({ className }) => {
+  const { token } = useContext(AuthContext);
   const [, dateFilter, sortFilter] = useGetFilters();
   const [selectedFilterNews, setSelectedFilterNews] = useState(sortFilter);
   const [selectedFilterDate, setSelectedFilterDate] = useState(dateFilter);
@@ -94,7 +96,7 @@ export const FilterAndPostNews = ({ className }) => {
           <button
             className="post-button"
             type="button"
-            onClick={() => navigate("/submit")}
+            onClick={() => navigate(token ? "/submit" : "/login")}
           />
         </>
       )}
