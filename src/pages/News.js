@@ -20,6 +20,7 @@ export const News = () => {
     isLoadingForComments,
     errorForComments,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
+  /* Meter gestión de errores */
 
   console.log(commentsArray);
 
@@ -45,7 +46,9 @@ export const News = () => {
         {/* Cambiar esto por un filter de id categoria e id noticia. */}
         <LoginOrRegisterBox />
         <CreateComment />
-        <CommentsBanner props={commentsArray} />
+        {commentsArray.result ? (
+          <CommentsBanner comments={commentsArray.result} />
+        ) : null}
       </div>
     </main>
   );
