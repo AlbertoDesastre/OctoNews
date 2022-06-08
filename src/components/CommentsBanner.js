@@ -1,8 +1,8 @@
 import "./CommentsBanner.css";
 import { Comment } from "./Comment.js";
 
-export const CommentsBanner = (/* { props } */) => {
-  // console.log(props.result);
+export const CommentsBanner = ({ comments }) => {
+  console.log(comments);
   return (
     <section className="news-page-sectionOfCommentsBanner">
       <div className="news-page-divCommentsBanner">
@@ -16,13 +16,13 @@ export const CommentsBanner = (/* { props } */) => {
         </select>
       </div>
       <ul>
-        {/* {props.result.map((comment) => {
+        {comments.map((comment) => {
           return (
-            <li key={comment} className="news-page-comment">
-              <Comment props={comment} />
+            <li key={comment.id} className="news-page-comment">
+              <Comment comment={comment} />
             </li>
           );
-        })} */}
+        })}
         <Comment />
         <Comment />
         <Comment />

@@ -1,6 +1,6 @@
 import "./Comment.css";
 
-export const Comment = (/* { props } */) => {
+export const Comment = ({ comment }) => {
   return (
     <>
       <li className=" news-page-comment">
