@@ -4,7 +4,6 @@ import { FormNews } from "../components/FormNews";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
-import "./Submit.css";
 
 export const Submit = () => {
   const [categories, , isLoading, error] = useGetRemoteData(
@@ -25,7 +24,7 @@ export const Submit = () => {
           </header>
           <FormNews
             mode={mode}
-            categoryData={categories}
+            categoriesData={categories}
             categoryLoading={isLoading}
             categoryError={error}
           />

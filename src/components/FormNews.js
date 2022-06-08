@@ -1,24 +1,54 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Error } from "./Error";
 import { capitalize } from "../utils/capitalizeString";
 import "./FormNews.css";
 import { AuthContext } from "../context/AuthContext";
-import { post } from "../utils/api";
+import { post, put } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export const FormNews = ({
   mode,
-  categoryData,
+  categoriesData,
   categoryLoading,
   categoryError,
+  newsData,
+  newsError,
 }) => {
   const [titleInput, setTitleInput] = useState("");
   const [textInput, setTextInput] = useState("");
   const [selectedCategory, setSelectedCategory] = useState({ name: "" });
-  const [image, setImage] = useState();
+  const [imageUpload, setImageUpload] = useState();
+  const [imageNews, setImageNews] = useState();
   const [error, setError] = useState();
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  let labelImageStyles = {
+    background: `url("http://localhost:3000/image-upload-icon.svg") 0px center / contain no-repeat `,
+  };
+
+  if (imageUpload) {
+    labelImageStyles = {
+      background: `url(${URL.createObjectURL(
+        imageUpload
+      )}) 0px center / contain no-repeat `,
+      border: "2px solid gray",
+    };
+  } else if (imageNews) {
+    labelImageStyles = {
+      background: `url(${imageNews}) 0px center / contain no-repeat `,
+      border: "2px solid gray",
+    };
+  }
+
+  useEffect(() => {
+    setTitleInput(newsData && newsData.title);
+    setTextInput(newsData && newsData.news_text);
+    setImageNews(
+      newsData &&
+        newsData.image &&
+        `${process.env.REACT_APP_BACKEND}/uploads/news/${newsData.image}`
+    );
+  }, [newsData]);
 
   const handleOnSubmitPost = async (e) => {
     e.preventDefault();
@@ -26,7 +56,7 @@ export const FormNews = ({
     const news = new FormData(e.target);
     news.append("title", titleInput);
     news.append("introduction", textInput.slice(0, 50) + "...");
-    if (image) news.append("image", image);
+    if (imageUpload) news.append("image", imageUpload);
 
     try {
       const response = await post(
@@ -40,12 +70,35 @@ export const FormNews = ({
     }
   };
 
+  const handleOnSubmitEdit = async (e) => {
+    e.preventDefault();
+    setError("");
+    const newsEdited = new FormData(e.target);
+    newsEdited.append("introduction", textInput.slice(0, 50) + "...");
+    if (imageUpload) newsEdited.append("image", imageUpload);
+
+    try {
+      await put(
+        `${process.env.REACT_APP_BACKEND}/news/${newsData.id}`,
+        newsEdited,
+        token
+      );
+      navigate(`/news/${newsData.id}`);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
-    <form className="submit-page" onSubmit={handleOnSubmitPost}>
+    <form
+      className="submit-page"
+      onSubmit={mode === "edit" ? handleOnSubmitEdit : handleOnSubmitPost}
+    >
       {categoryError ? (
         <Error className="submit-page error" error={categoryError} />
       ) : (
-        !categoryLoading && (
+        !categoryLoading &&
+        categoriesData && (
           <fieldset className="submit-category">
             <select
               name="category"
@@ -56,7 +109,8 @@ export const FormNews = ({
               <option disabled value="">
                 Choose a category
               </option>
-              {categoryData.map((category) => (
+
+              {categoriesData.map((category) => (
                 <option key={category.id} value={category.name}>
                   {capitalize(category.name)}
                 </option>
@@ -65,48 +119,42 @@ export const FormNews = ({
           </fieldset>
         )
       )}
-      <fieldset className="submit-title">
-        <span
-          role="textbox"
-          value={titleInput}
-          onInput={(e) => setTitleInput(e.target.textContent)}
-          contentEditable
-        />
-      </fieldset>
-      <fieldset className="submit-text">
-        <textarea
-          name="text"
-          id="text"
-          placeholder="Text"
-          value={textInput}
-          onChange={(e) => setTextInput(e.target.value)}
-          onFocus={(e) => e.preventDefault()}
-        />
-        <div>
-          <label
-            htmlFor="image-upload"
-            style={
-              image && {
-                background: `url(${URL.createObjectURL(
-                  image
-                )}) 0px center / contain no-repeat `,
-              }
-            }
-          />
-          <input
-            type="file"
-            id="image-upload"
-            name="image-upload"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        </div>
-      </fieldset>
-      {error && <Error className="submit-page error" error={error} />}
-      {mode === "edit" ? (
-        <button type="submit">Edit</button>
+      {newsError ? (
+        <Error className="edit-page error" error={newsError} />
       ) : (
-        <button type="submit">Post</button>
+        <>
+          <fieldset className="submit-title">
+            <input
+              type="text"
+              value={titleInput}
+              placeholder="Title"
+              onChange={(e) => setTitleInput(e.target.value)}
+              disabled={mode === "edit" && true}
+            />
+          </fieldset>
+          <fieldset className="submit-text">
+            <textarea
+              name="text"
+              id="text"
+              placeholder="Text"
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+              onFocus={(e) => e.preventDefault()}
+            />
+            <div>
+              <label htmlFor="image-upload" style={labelImageStyles} />
+              <input
+                type="file"
+                id="image-upload"
+                name="image-upload"
+                accept="image/*"
+                onChange={(e) => setImageUpload(e.target.files[0])}
+              />
+            </div>
+          </fieldset>
+          {error && <Error className="submit-page error" error={error} />}
+          <button type="submit">{capitalize(mode)}</button>
+        </>
       )}
     </form>
   );

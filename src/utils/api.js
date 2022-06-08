@@ -28,12 +28,26 @@ export const getOrderByAsc = async (url, callback, headers = {}) => {
 };
 
 export const post = async (url, body, token) => {
-  console.log(body);
-  for (const value of body.entries()) {
-    console.log(value);
-  }
   const response = await fetch(url, {
     method: "POST",
+    headers: {
+      Authorization: token,
+    },
+    body: body,
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.data);
+  }
+
+  return json.data;
+};
+
+export const put = async (url, body, token) => {
+  const response = await fetch(url, {
+    method: "PUT",
     headers: {
       Authorization: token,
     },

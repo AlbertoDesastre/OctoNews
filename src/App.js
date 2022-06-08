@@ -9,10 +9,11 @@ import { useEffect } from "react";
 import { UserValidation } from "./pages/UserValidation";
 import { Submit } from "./pages/Submit";
 import { Category } from "./pages/Category";
+import { Edit } from "./pages/Edit";
 
 // UserCreate UserLogin
 
-function CambiaMiNombre() {
+function GoUpWhenChangeLocation() {
   const location = useLocation();
 
   useEffect(() => {
@@ -36,10 +37,11 @@ function App() {
           <Route path="/news/:id" element={<News />} />
           <Route path="/category/:id" element={<Category />} />
           <Route path="/submit" element={<Submit />} />
+          <Route path="/edit/:id" element={<Edit />} />
           <Route path="/users/validate/:code" element={<UserValidation />} />
           <Route path="/*" element={<p>Wrong link</p>} />
         </Routes>
-        <CambiaMiNombre />
+        <GoUpWhenChangeLocation />
       </BrowserRouter>
     </>
   );
