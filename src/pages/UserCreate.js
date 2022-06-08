@@ -24,7 +24,6 @@ export const UserCreate = () => {
     }
 
     try {
-      console.log(email, username, pass1);
       await registerUserService({ email, name: username, password: pass1 });
 
       setRegistrationFinished(true);

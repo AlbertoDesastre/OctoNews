@@ -6,4 +6,11 @@
 .category-page.error {
   margin-top: 1rem;
   font-size: 1.5rem;
+  color: red;
+}
+.submit-page.error {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: red;
 }
