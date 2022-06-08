@@ -16,7 +16,6 @@ export const LoginPage = () => {
     setError("");
 
     try {
-      console.log(email, password);
       const data = await loginUserService({ email, password });
       login(data);
     } catch (error) {

@@ -41,30 +41,30 @@ fieldset.submit-title span:empty::before {
   color: gray;
 }
 
-fieldset.submit-text {
+form.submit-page fieldset.submit-text {
   width: 90%;
   margin: 0 auto;
   border-radius: 4px;
+  background-color: white;
+  flex-direction: row;
 }
 
 fieldset.submit-text div {
   padding: 0.2rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
   gap: 0.2rem;
-  border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   background-color: rgb(177, 204, 224);
 }
 
-fieldset.submit-text div button {
-  margin-right: 1rem;
-  padding: 0.2rem;
-  height: 30px;
-  width: 100px;
-  text-align: right;
-  border: none;
+fieldset.submit-text div input {
+  display: none;
+}
+
+fieldset.submit-text div label {
+  height: 50px;
+  width: 50px;
   background: url("../../public/octopus.png") no-repeat 0px;
   background-size: contain;
   border: 2px solid gray;
@@ -76,7 +76,9 @@ fieldset.submit-text textarea {
   border: none;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  border-top: 1px solid black;
+  flex-grow: 1;
+  resize: none;
+  outline: none;
 }
 
 fieldset.submit-text textarea::-webkit-input-placeholder {

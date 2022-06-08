@@ -27,11 +27,15 @@ export const getOrderByAsc = async (url, callback, headers = {}) => {
   callback(json.data);
 };
 
-export const post = async (url, body, callback) => {
+export const post = async (url, body, token) => {
+  console.log(body);
+  for (const value of body.entries()) {
+    console.log(value);
+  }
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      Authorization: token,
     },
     body: body,
   });
@@ -42,7 +46,7 @@ export const post = async (url, body, callback) => {
     throw new Error(json.data);
   }
 
-  callback(json.data);
+  return json.data;
 };
 
 export const registerUserService = async ({ email, name, password }) => {
@@ -57,7 +61,7 @@ export const registerUserService = async ({ email, name, password }) => {
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json.message);
+    throw new Error(json.data);
   }
 };
 
