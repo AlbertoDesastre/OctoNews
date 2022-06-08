@@ -86,20 +86,19 @@ export const FilterAndPostNews = ({ className }) => {
       ) : (
         ""
       )}
-      {className === "search-page" ? (
-        ""
-      ) : (
-        <>
-          <svg id="verticalLine">
-            <line x1="6" y1="0" x2="6" y2="40"></line>
-          </svg>
-          <button
-            className="post-button"
-            type="button"
-            onClick={() => navigate(token ? "/submit" : "/login")}
-          />
-        </>
-      )}
+      {!className === "search-page" ||
+        (token && (
+          <>
+            <svg id="verticalLine">
+              <line x1="6" y1="0" x2="6" y2="40"></line>
+            </svg>
+            <button
+              className="post-button"
+              type="button"
+              onClick={() => navigate("/submit")}
+            />
+          </>
+        ))}
     </section>
   );
 };

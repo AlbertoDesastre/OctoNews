@@ -6,10 +6,10 @@ import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({ categories, category }) => {
-  const [filterAction, filterDate, sortFilter] = useGetFilters();
+  const [currentLocation, filterDate, sortFilter] = useGetFilters();
 
   const [newsList, , isLoading, error] = useGetNewsFiltered([
-    filterAction,
+    currentLocation,
     filterDate,
     sortFilter,
     category,
@@ -22,7 +22,7 @@ export const NewsFeedList = ({ categories, category }) => {
       ) : error ? (
         <Error className="home-page error" error={error} />
       ) : newsList.length === 0 ? (
-        <p className="home-page error"> Your query is incorrect </p>
+        <p className="home-page error"> There is no news. </p>
       ) : (
         <ul>
           {newsList.map((news) => {
