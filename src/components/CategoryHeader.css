@@ -45,3 +45,12 @@ article.category-page img {
   border-radius: 100%;
   object-fit: cover;
 }
+
+/* DESKTOP */
+
+@media (min-width: 1000px) {
+  header.category-page-header > img,
+  header.category-page-header {
+    height: 300px;
+  }
+}

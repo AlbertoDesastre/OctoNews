@@ -17,7 +17,6 @@ img.img-news {
   margin-top: 0.5rem;
 }
 
-
 p.title-news {
   margin-left: 0.7rem;
   font-size: 21px;
@@ -31,9 +30,9 @@ p.title-news:hover {
   text-decoration: underline;
 }
 
-p.title-news:hover{
-    cursor: pointer;
-    text-decoration: underline;
+p.title-news:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 p.category-news,
@@ -68,7 +67,7 @@ p.author-news {
   font-size: 11px;
 }
 
-div.action-news{
+div.action-news {
   position: relative;
   padding: 1rem 0;
   display: flex;
@@ -121,7 +120,6 @@ button.dislike {
 }
 
 button.no-dislike {
-
   min-width: 25px;
   background: url("/public/dislike-hollow-icon.svg") no-repeat left;
   background-size: 20px;
@@ -134,39 +132,37 @@ button.like:hover,
 button.no-like:hover,
 button.dislike:hover,
 button.no-dislike:hover {
-
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .dropdown-newscard {
-    height: 0px;
-    overflow: hidden;
-    position: absolute;
-    left: 10px;
-    top: 15px; 
-    width: 88px;
-    background-color: white;
-    border-radius: 20px;
-
+  height: 0px;
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  width: 88px;
+  background-color: white;
+  border-radius: 20px;
 }
 
 .dropdown-content-newscard {
-    height: 30px;
-    background-color: rgb(197, 71, 71);
-    width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.298);
-    border-bottom-left-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  height: 30px;
+  background-color: rgb(197, 71, 71);
+  width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.298);
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.dropdown-newscard button:first-child{
-    background-color: white;
-    border: none;
-    background-color: rgb(197, 71, 71);
-    font-weight: bold;
-    font-size: 0.8rem;
+.dropdown-newscard button:first-child {
+  background-color: white;
+  border: none;
+  background-color: rgb(197, 71, 71);
+  font-weight: bold;
+  font-size: 0.8rem;
 }
 
 /* Here goes the version of news-page CSS */
@@ -216,3 +212,14 @@ article.news-page {
   justify-content: center;
 }
 /* Pendiente de encontrar solución para este div */
+
+/* DESKTOP */
+
+@media (min-width: 1000px) {
+  img.img-news {
+    margin-right: 5rem;
+  }
+  div.action-news button:last-child {
+    margin-right: 2.5rem;
+  }
+}

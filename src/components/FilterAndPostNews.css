@@ -1,78 +1,93 @@
 section.filterAndPost {
-    justify-self: normal;
-    display: flex;
-    justify-content: space-evenly;
-    margin: 2rem 0.5rem 0.5rem 0.5rem;
-    grid-column: span 12;
-    gap: 0.5rem;
-
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2rem 0.5rem 0.5rem 0.5rem;
+  grid-column: span 12;
+  gap: 0.5rem;
+  width: 95%;
+  max-width: 700px;
 }
 
 section.filterAndPost button:hover,
-section.filterAndPost>select:hover {
-    cursor: pointer;
+section.filterAndPost > select:hover {
+  cursor: pointer;
 }
-
 
 select.filter,
 select.filter-date,
 button.post-button,
 svg#verticalLine {
-    height: 40px;
-    
+  height: 40px;
 }
 select.filter,
 select.filter-date,
-button.post-button{
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.298);
+button.post-button {
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.298);
 }
 select.filter,
-select.filter-date{
-    border-radius: 25px;
-    width:40%;
-    max-width: 200px;
-    font-weight: bold;
-    color:rgb(214, 6, 6);
-    background-color: white;
-    border: 3px solid rgb(214, 6, 6);
+select.filter-date {
+  border-radius: 25px;
+  width: 40%;
+  max-width: 160px;
+  font-weight: bold;
+  color: rgb(214, 6, 6);
+  background-color: white;
+  border: 3px solid rgb(214, 6, 6);
 }
 
-select.filter-date{
-    font-size: 1rem;
-    padding-left: 0.5rem;
+select.filter-date {
+  font-size: 1rem;
+  padding-left: 0.5rem;
 }
 
-select.filter{
-    font-size: 1.2rem;
-    padding-left: 2.7rem;
+select.filter {
+  font-size: 1.2rem;
+  padding-left: 2.7rem;
 }
 
-.new{
-    background: url("/public/new-icon.svg") no-repeat 10px;
-    background-size: 25px;
+.new {
+  background: url("/public/new-icon.svg") no-repeat 10px;
+  background-size: 25px;
 }
 
-.top{
-    background: url("/public/top-icon.svg") no-repeat 10px;
-    background-size: 25px;
+.top {
+  background: url("/public/top-icon.svg") no-repeat 10px;
+  background-size: 25px;
 }
 
-button.post-button{
-    min-width: 40px;
-    width: 10%;
-    border-radius: 10px;
-    color: rgb(24, 0, 122);
-    border: 3px solid rgb(24, 0, 122);
-    background: url("/public/post-icon.svg") no-repeat center white;
-    background-size: 30px;
+button.post-button {
+  min-width: 40px;
+  width: 10%;
+  border-radius: 10px;
+  color: rgb(24, 0, 122);
+  border: 3px solid rgb(24, 0, 122);
+  background: url("/public/post-icon.svg") no-repeat center white;
+  background-size: 30px;
 }
 
 svg#verticalLine {
-    width: 15px;
-    }
+  width: 15px;
+}
 
 #verticalLine line {
-    display: block;
-    stroke: #000000;
-    stroke-width: 2;
-    }
+  display: block;
+  stroke: #000000;
+  stroke-width: 2;
+}
+
+/* DESKTOP */
+
+@media (min-width: 1000px) {
+  section.filterAndPost {
+    justify-self: flex-end;
+    grid-column: 2/8;
+    margin-right: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  section.filterAndPost.no-aside {
+    justify-self: center;
+    grid-column: span 12;
+    margin-top: 4rem;
+  }
+}

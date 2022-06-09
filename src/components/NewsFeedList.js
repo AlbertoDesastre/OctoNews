@@ -1,31 +1,44 @@
-import { useGetFilters } from "../hooks/useGetFilters";
-import { useGetNewsFiltered } from "../hooks/useGetNewsFiltered";
+import { useEffect, useState } from "react";
+import { useLocationParams } from "../hooks/useLocationParams";
+import { sortNewsWithParams } from "../utils/sortNewsWithParams";
 import { Error } from "./Error";
 import { Loading } from "./Loading";
 import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
-export const NewsFeedList = ({ categories, category }) => {
-  const [currentLocation, filterDate, sortFilter] = useGetFilters();
+export const NewsFeedList = ({
+  className,
+  categories,
+  category,
+  newsList,
+  isLoading,
+  error,
+}) => {
+  const [currentLocation, sortParam, dateParam, queryParam] =
+    useLocationParams();
+  const [sortList, setSortList] = useState([]);
 
-  const [newsList, , isLoading, error] = useGetNewsFiltered([
-    currentLocation,
-    filterDate,
-    sortFilter,
-    category,
-  ]);
+  useEffect(() => {
+    sortNewsWithParams([
+      newsList,
+      setSortList,
+      currentLocation,
+      sortParam,
+      dateParam,
+    ]);
+  }, [currentLocation, dateParam, sortParam, newsList, queryParam]);
 
   return (
-    <section className="feed">
+    <section className={`feed ${className}`}>
       {isLoading ? (
         <Loading className="home-page loading feed" />
       ) : error ? (
         <Error className="home-page error" error={error} />
-      ) : newsList.length === 0 ? (
+      ) : sortList.length === 0 ? (
         <p className="home-page error"> There is no news. </p>
       ) : (
         <ul>
-          {newsList.map((news) => {
+          {sortList.map((news) => {
             return (
               <li key={news.id} className="news">
                 <NewsCards

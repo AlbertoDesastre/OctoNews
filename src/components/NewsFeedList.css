@@ -1,21 +1,32 @@
 section.feed {
-    display: flex;
-    grid-column: span 12;
-    width: 95%;
+  display: flex;
+  grid-column: span 12;
+  width: 95%;
+  max-width: 700px;
 }
 
-
-section.feed > ul{
-    width: 100%;
+section.feed > ul {
+  width: 100%;
 }
 
 li.news {
-    background-color: rgb(255, 255, 255);
-    margin: 1rem 0;
-    border-radius: 10px;
-    width: 100%;
-    list-style: none;
-
+  background-color: rgb(255, 255, 255);
+  margin: 1rem 0;
+  border-radius: 10px;
+  width: 100%;
+  list-style: none;
 }
 
+/* DESKTOP */
 
+@media (min-width: 1000px) {
+  section.feed {
+    grid-column: 2/8;
+    justify-self: flex-end;
+    margin-right: 2.5rem;
+  }
+  section.feed.no-aside {
+    grid-column: span 12;
+    justify-self: center;
+  }
+}

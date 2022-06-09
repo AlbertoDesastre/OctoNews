@@ -33,6 +33,7 @@ section.submit-page,
 section.edit-page {
   grid-column: span 12;
   width: 100%;
+  max-width: 800px;
 }
 
 header.submit-page-header,

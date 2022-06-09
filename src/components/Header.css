@@ -4,7 +4,7 @@ header.front-header {
   top: 0;
   left: 0;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   gap: 1rem;
   padding: 0 1rem;
@@ -15,7 +15,7 @@ header.front-header {
 }
 
 header.front-header > img {
-  width: 65px;
+  width: 60px;
 }
 header.front-header > img:hover {
   cursor: pointer;
@@ -25,6 +25,7 @@ header.front-header > input {
   padding: 0 0.5rem 0 2.3rem;
   height: 40px;
   width: 55%;
+  max-width: 500px;
   border-radius: 20px;
   border: 3px solid rgb(24, 0, 122);
   background: url("/public/search-icon.svg") no-repeat 10px;
@@ -42,7 +43,8 @@ header.front-header > input {
 button.settings {
   background: none;
   border: none;
-  width: 40px;
+  width: 45px;
+  border-radius: 10px;
 }
 
 button.settings:hover {
@@ -50,17 +52,19 @@ button.settings:hover {
 }
 
 button.settings > img {
-  padding-top: 10px;
-  width: 40px;
+  margin-top: 0.5rem;
+  width: 45px;
+  border-radius: 20px;
 }
 
-header.front-header > nav {
+header.front-header > nav.dropdown {
   height: 0px;
   overflow: hidden;
   position: absolute;
   right: 0;
   top: 4.2rem;
-  width: 120px;
+  min-width: 120px;
+  width: 20%;
   background-color: #f1f1f1;
   border-bottom: 2px solid rgb(24, 0, 122);
   border-left: 3px solid rgb(24, 0, 122);
@@ -71,21 +75,22 @@ header.front-header > nav {
 header.front-header nav.dropdown-content {
   height: 100px;
   background-color: #f1f1f1;
-  width: 120px;
+  min-width: 120px;
+  width: 20%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.298);
   border-bottom: 2px solid rgb(24, 0, 122);
   border-left: 3px solid rgb(24, 0, 122);
   border-bottom-left-radius: 20px;
 }
 
-nav > a {
+nav.dropdown > a {
   color: black;
   padding: 12px 20px;
   text-decoration: none;
   display: block;
 }
 
-nav > button {
+nav.dropdown > button {
   width: 100%;
   border: none;
   display: block;
@@ -101,4 +106,49 @@ header.front-header nav.dropdown-content hr {
 
 header.front-header nav.dropdown-content a:hover {
   background-color: #ddd;
+}
+
+/* DESKTOP */
+
+header.front-header img.desktop-user-img {
+  border-radius: 30px;
+  width: 60px;
+}
+
+nav.desktop-navmenu {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: bold;
+}
+nav.desktop-navmenu > button {
+  background-color: rgb(200, 222, 246);
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  color: rgb(219, 26, 26);
+}
+
+nav.desktop-navmenu > a {
+  text-decoration: none;
+  color: rgb(24, 0, 122);
+}
+div.desktop-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-right: 0.5rem;
+  background-color: rgb(200, 222, 246);
+}
+
+@media (min-width: 1000px) {
+  header.front-header > input {
+    margin-left: 10rem;
+    max-width: 700px;
+  }
 }
