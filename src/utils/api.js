@@ -130,6 +130,7 @@ export const getMyData = async (token) => {
   return json.data;
 };
 
+
 export const voteNewsService = async ({ vote, token, idNews }) => {
   const response = await postJson(
     `${process.env.REACT_APP_BACKEND}/news/${idNews}/votes`,
@@ -139,3 +140,23 @@ export const voteNewsService = async ({ vote, token, idNews }) => {
 
   return response;
 };
+
+/* Esto está hardcoded ahora, cuando vaya por la parte del uso del contexto se cambiará */
+export const postJson = async (url, body, token) => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+    },
+    body: body,
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.data);
+  }
+
+  return json.data;
+};
+

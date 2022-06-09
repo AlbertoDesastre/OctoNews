@@ -22,7 +22,7 @@ export const News = () => {
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
   /* Meter gestión de errores */
 
-  console.log(commentsArray);
+  /* console.log(commentsArray); */
 
   return (
     /* Este div me hace falta para poder separar las 
@@ -36,7 +36,7 @@ export const News = () => {
           date={value.creation_date}
           title={value.title}
           /* BORRAR ESTO DE TRU AL TERMINAR Y PONER value.image */
-          image={true}
+          image={value.image}
           description={value.introduction_text}
           text={value.news_text}
           votes={value.votes}
@@ -45,9 +45,12 @@ export const News = () => {
         />
         {/* Cambiar esto por un filter de id categoria e id noticia. */}
         <LoginOrRegisterBox />
-        <CreateComment />
+        <CreateComment submitLabel="Comment" />
         {commentsArray.result ? (
-          <CommentsBanner comments={commentsArray.result} />
+          <CommentsBanner
+            allComments={commentsArray.result}
+            setComments={setCommentsArray}
+          />
         ) : null}
       </div>
     </main>
