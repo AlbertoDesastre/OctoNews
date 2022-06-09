@@ -15,7 +15,7 @@ header.front-header {
 }
 
 header.front-header > img {
-  width: 65px;
+  width: 60px;
 }
 header.front-header > img:hover {
   cursor: pointer;
@@ -42,7 +42,8 @@ header.front-header > input {
 button.settings {
   background: none;
   border: none;
-  width: 40px;
+  width: 45px;
+  border-radius: 10px;
 }
 
 button.settings:hover {
@@ -50,8 +51,9 @@ button.settings:hover {
 }
 
 button.settings > img {
-  padding-top: 10px;
-  width: 40px;
+  margin-top: 0.5rem;
+  width: 45px;
+  border-radius: 20px;
 }
 
 header.front-header > nav {

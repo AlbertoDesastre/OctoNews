@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import "./Header.css";
 
 export const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, isLoadingUser } = useContext(AuthContext);
 
   const [inputValue, setInputValue] = useState("");
   const [isDropdownNavMenu, setIsDropdownNavMenu] = useState(false);
@@ -55,30 +55,50 @@ export const Header = () => {
         }}
         onKeyDown={handleKeyPress}
       />
-
-      {user ? (
-        <p>
-          {/* Aquí tengo disponible todo user, cambiar por un menú de usuario */}
-          User: {user.name} <button onClick={() => logout()}>Logout</button>
-        </p>
-      ) : (
+      {!isLoadingUser && (
         <>
-          <button
-            ref={node}
-            className="settings"
-            type="button"
-            onClick={handleDropdown}
-          >
-            <img
-              src={
-                isDropdownNavMenu
-                  ? "/users-arrow-down.svg"
-                  : "/users-arrow-left.svg"
-              }
-              alt="user-settings"
-            />
-          </button>
-          <DropdownNavMenu isDropdown={isDropdownNavMenu} />
+          {user ? (
+            <>
+              <button
+                ref={node}
+                className="settings"
+                type="button"
+                onClick={handleDropdown}
+              >
+                {user.avatar ? (
+                  <img
+                    src={`${process.env.REACT_APP_BACKEND}/uploads/users/${user.avatar}`}
+                    alt="user-settings"
+                  />
+                ) : (
+                  <img
+                    src={`/user-login-default-icon.svg`}
+                    alt="user-settings"
+                  />
+                )}
+              </button>
+              <DropdownNavMenu isDropdown={isDropdownNavMenu} />
+            </>
+          ) : (
+            <>
+              <button
+                ref={node}
+                className="settings"
+                type="button"
+                onClick={handleDropdown}
+              >
+                <img
+                  src={
+                    isDropdownNavMenu
+                      ? "/users-arrow-down.svg"
+                      : "/users-arrow-left.svg"
+                  }
+                  alt="user-settings"
+                />
+              </button>
+              <DropdownNavMenu isDropdown={isDropdownNavMenu} />
+            </>
+          )}
         </>
       )}
     </header>
@@ -91,7 +111,7 @@ const DropdownNavMenu = ({ isDropdown }) => {
     <nav className={isDropdown ? "dropdown-content" : ""}>
       {user ? (
         <>
-          <Link to="/usersettings">Settings</Link>
+          <Link to={`/users/${user.name}/settings`}>Settings</Link>
           <hr />
           <button onClick={logout}>Logout</button>
         </>
