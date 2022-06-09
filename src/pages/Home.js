@@ -8,6 +8,9 @@ export const Home = () => {
   const [categories, , isLoading, error] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/categories`
   );
+  const [newsList, , newsIsLoading, newsError] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/news`
+  );
 
   return (
     <>
@@ -19,7 +22,12 @@ export const Home = () => {
           categoryError={error}
         />
         <FilterAndPostNews />
-        <NewsFeedList categories={categories} />
+        <NewsFeedList
+          categories={categories}
+          newsList={newsList}
+          isLoading={newsIsLoading}
+          error={newsError}
+        />
       </main>
     </>
   );

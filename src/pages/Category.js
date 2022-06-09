@@ -11,6 +11,9 @@ export const Category = () => {
   const [currentCategory, , isLoading, error] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/categories/${id}`
   );
+  const [newsList, , newsIsLoading, newsError] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/news`
+  );
 
   return (
     <>
@@ -22,7 +25,12 @@ export const Category = () => {
           categoryError={error}
         />
         <FilterAndPostNews />
-        <NewsFeedList category={currentCategory} />
+        <NewsFeedList
+          category={currentCategory}
+          newsList={newsList}
+          isLoading={newsIsLoading}
+          error={newsError}
+        />
       </main>
     </>
   );

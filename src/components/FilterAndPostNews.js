@@ -6,39 +6,41 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { useGetFilters } from "../hooks/useGetFilters";
-import { searchParamsToObject } from "../utils/searchParamsToObject";
+import { useLocationParams } from "../hooks/useLocationParams";
+import { convertSearchParamsToObject } from "../utils/ConvertSearchParamsToObject";
 import "./FilterAndPostNews.css";
 
 export const FilterAndPostNews = ({ className }) => {
   const { token } = useContext(AuthContext);
-  const [, dateFilter, sortFilter] = useGetFilters();
-  const [selectedFilterNews, setSelectedFilterNews] = useState(sortFilter);
-  const [selectedFilterDate, setSelectedFilterDate] = useState(dateFilter);
+  const [currentLocation, sortParam, dateParam] = useLocationParams();
+  const [selectedSortNews, setSelectedSortNews] = useState(sortParam);
+  const [selectedSortDate, setSelectedSortDate] = useState(dateParam);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   useEffect(() => {
-    setSelectedFilterNews(sortFilter);
-  }, [sortFilter]);
+    setSelectedSortNews(sortParam);
+  }, [sortParam]);
 
   useEffect(() => {
-    setSelectedFilterDate(dateFilter);
-  }, [dateFilter]);
+    setSelectedSortDate(dateParam);
+  }, [dateParam]);
 
-  const handleFilterNewsOnChange = (e) => {
-    if (pathname === "/search") {
-      setSelectedFilterNews(e.target.value);
-      let { q } = searchParamsToObject(searchParams);
-
+  const handleSortNewsOnChange = (e) => {
+    if (currentLocation === "search") {
+      setSelectedSortNews(e.target.value);
+      //If location is search we get the queryparam "q" and convert it to object
+      let { q } = convertSearchParamsToObject(searchParams);
+      //Then we make a new object  with q and sort params which is the actual value of <select>
       const params = {
         q,
         sort: e.target.value,
       };
+      //we assign "params" object to search params with "createSearchParams"
       setSearchParams(createSearchParams(params));
-    } else if (pathname.includes("category")) {
-      setSelectedFilterNews(e.target.value);
+    } else if (currentLocation === "category") {
+      setSelectedSortNews(e.target.value);
+      //if location is category we only need to do an object with sort param from value of <select>
       const params = {
         sort: e.target.value,
       };
@@ -48,14 +50,17 @@ export const FilterAndPostNews = ({ className }) => {
     }
   };
 
-  const handleFilterDateOnChange = (e) => {
-    setSelectedFilterDate(e.target.value);
-    if (pathname === "/search" || pathname.includes("category")) {
-      let params = searchParamsToObject(searchParams);
+  const handleSortDateOnChange = (e) => {
+    setSelectedSortDate(e.target.value);
+    if (currentLocation === "search" || currentLocation === "category") {
+      //if it's search or category we make a new date param with the value of <select>
+      let params = convertSearchParamsToObject(searchParams);
+      //If we change the date <select> means we are always on "?sort=top" so we
+      //convert all params we have in our URL into an object and replace the new date param
       params.t = e.target.value;
       setSearchParams(createSearchParams(params));
     } else {
-      setSelectedFilterDate(e.target.value);
+      setSelectedSortDate(e.target.value);
       setSearchParams({ t: e.target.value });
     }
   };
@@ -63,25 +68,28 @@ export const FilterAndPostNews = ({ className }) => {
   return (
     <section className={`filterAndPost ${className ? className : ""}`}>
       <select
-        className={`filter ${selectedFilterNews}`}
+        className={`filter ${selectedSortNews}`}
         name="filter"
         id="filter"
-        value={selectedFilterNews}
-        onChange={handleFilterNewsOnChange}
+        value={selectedSortNews}
+        onChange={handleSortNewsOnChange}
       >
         <option value="new">New</option>
         <option value="top">Top</option>
       </select>
-      {selectedFilterNews === "top" ? (
+      {selectedSortNews === "top" ? (
         <select
           className="filter-date"
           name="filter-date"
           id="filter-date"
-          value={selectedFilterDate}
-          onChange={handleFilterDateOnChange}
+          value={selectedSortDate}
+          onChange={handleSortDateOnChange}
         >
+          <option value="all">All time</option>
           <option value="today">Today</option>
-          <option value="yesterday">Yesterday</option>
+          <option value="week">Week</option>
+          <option value="month">Month</option>
+          <option value="year">Year</option>
         </select>
       ) : (
         ""
