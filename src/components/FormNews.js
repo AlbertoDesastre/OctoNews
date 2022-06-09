@@ -3,7 +3,7 @@ import { Error } from "./Error";
 import { capitalize } from "../utils/capitalizeString";
 import "./FormNews.css";
 import { AuthContext } from "../context/AuthContext";
-import { post, put } from "../utils/api";
+import { postFormData, put } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export const FormNews = ({
@@ -59,7 +59,7 @@ export const FormNews = ({
     if (imageUpload) news.append("image", imageUpload);
 
     try {
-      const response = await post(
+      const response = await postFormData(
         `${process.env.REACT_APP_BACKEND}/news`,
         news,
         token
@@ -128,6 +128,8 @@ export const FormNews = ({
               type="text"
               value={titleInput}
               placeholder="Title"
+              minLength="5"
+              maxLength="300"
               onChange={(e) => setTitleInput(e.target.value)}
               disabled={mode === "edit" && true}
             />
@@ -138,6 +140,8 @@ export const FormNews = ({
               id="text"
               placeholder="Text"
               value={textInput}
+              minLength="10"
+              maxLength="5000"
               onChange={(e) => setTextInput(e.target.value)}
               onFocus={(e) => e.preventDefault()}
             />

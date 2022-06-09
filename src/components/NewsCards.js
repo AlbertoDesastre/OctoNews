@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useGetRemoteData } from "../hooks/useGetRemoteData";
+import { voteNewsService } from "../utils/api";
 import { capitalize } from "../utils/capitalizeString";
 import { copyNewsLinkToClipBoard } from "../utils/copyNewsLinkToClipBoard";
 
@@ -19,10 +22,8 @@ export const NewsCards = ({
   category,
 }) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
-  //test variable for like button when news not voted
-  let [likeTest, setLikeTest] = useState(false);
-  let [dislikeTest, setDisLikeTest] = useState(false);
   const [isDropdownShare, setIsDropdownShare] = useState(false);
 
   const handleDropdown = (e) => {
@@ -113,23 +114,98 @@ export const NewsCards = ({
         <button className="comments" type="button">
           {comments}
         </button>
-        <button
-          className={likeTest ? "like" : "no-like"}
-          type="button"
-          onClick={(e) => {
-            setLikeTest(!likeTest);
-          }}
-        />
-        <p className="votes">{votes}</p>
-        <button
-          className={dislikeTest ? "dislike" : "no-dislike"}
-          type="button"
-          onClick={(e) => {
-            setDisLikeTest(!dislikeTest);
-          }}
-        />
+        <LikeDislikeButtons votes={votes} idNews={newsId} />
       </div>
     </article>
+  );
+};
+
+const LikeDislikeButtons = ({ votes, idNews }) => {
+  const [userVote, setUserVote] = useState();
+  const navigate = useNavigate();
+  const [votesQuantity, setVotesQuantity] = useState(Number(votes));
+  const [error, setError] = useState();
+  const { user, token } = useContext(AuthContext);
+  const [newsVotes, setNewsVotes] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/news/${idNews}/votes`
+  );
+
+  useEffect(() => {
+    if (user) {
+      const voteData = newsVotes.find((votes) => {
+        return votes.id_user === user.id;
+      });
+      if (voteData) setUserVote(voteData.vote);
+    }
+  }, [newsVotes, user]);
+
+  const handleOnClickDislike = async () => {
+    try {
+      if (token) {
+        let vote;
+        if (userVote !== -1) {
+          vote = { vote: -1 };
+          await voteNewsService({ vote, token, idNews });
+          setUserVote(-1);
+          if (userVote === 1) {
+            setVotesQuantity(votesQuantity - 2);
+          } else {
+            setVotesQuantity(votesQuantity - 1);
+          }
+        } else {
+          vote = { vote: 0 };
+          await voteNewsService({ vote, token, idNews });
+          setUserVote(0);
+          setVotesQuantity(votesQuantity + 1);
+        }
+      } else {
+        navigate(`/login`);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  const handleOnClickLike = async () => {
+    try {
+      if (token) {
+        let vote;
+        if (userVote !== 1) {
+          vote = { vote: 1 };
+          await voteNewsService({ vote, token, idNews });
+          setUserVote(1);
+          if (userVote === -1) {
+            setVotesQuantity(votesQuantity + 2);
+          } else {
+            setVotesQuantity(votesQuantity + 1);
+          }
+        } else {
+          vote = { vote: 0 };
+          await voteNewsService({ vote, token, idNews });
+          setUserVote(0);
+          setVotesQuantity(votesQuantity - 1);
+        }
+      } else {
+        navigate(`/login`);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  return (
+    <>
+      <button
+        className={userVote === 1 ? "like" : "no-like"}
+        type="button"
+        onClick={handleOnClickLike}
+      />
+      <p className="votes">{votesQuantity}</p>
+      <button
+        className={userVote === -1 ? "dislike" : "no-dislike"}
+        type="button"
+        onClick={handleOnClickDislike}
+      />
+    </>
   );
 };
 

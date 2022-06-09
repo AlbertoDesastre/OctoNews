@@ -40,7 +40,10 @@ function App() {
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/users/:name/settings" element={<p>settings</p>} />
           <Route path="/users/validate/:code" element={<UserValidation />} />
-          <Route path="/*" element={<p>Wrong link</p>} />
+          <Route
+            path="/*"
+            element={<p className="home-page error">Wrong link</p>}
+          />
         </Routes>
         <GoUpWhenChangeLocation />
       </BrowserRouter>
