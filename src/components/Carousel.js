@@ -5,6 +5,7 @@ import { Error } from "./Error";
 import { Loading } from "./Loading";
 
 export const CarouselList = ({
+  className,
   categories,
   categoryIsLoading,
   categoryError,
@@ -12,7 +13,7 @@ export const CarouselList = ({
   const navigate = useNavigate();
 
   return (
-    <section className="carousel">
+    <section className={className}>
       {categoryIsLoading ? (
         <Loading className="home-page loading carousel" />
       ) : categoryError ? (
@@ -42,7 +43,7 @@ export const CarouselList = ({
 
 const CarouselItems = ({ categoryName, categoryColor, categoryIcon }) => {
   return (
-    <article className="carousel-items">
+    <article className="category-items">
       <p style={{ backgroundColor: categoryColor }}>
         {capitalize(categoryName)}
       </p>
