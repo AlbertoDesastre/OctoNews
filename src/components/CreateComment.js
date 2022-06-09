@@ -1,8 +1,16 @@
+import { useState } from "react";
 import "./CreateComment.css";
 
-export const CreateComment = () => {
+export const CreateComment = ({ submitLabel, handleSubmit }) => {
+  /* submitLabel es para que en el boton ponga lo que pone submitLabel, como reply or edit */
+
+  const [textValue, setTextValue] = useState("");
+  const isThereAnyText = textValue.length === 0;
+
   const handleOnChange = (e) => {
     e.preventDefault();
+    handleSubmit(textValue);
+    setTextValue("");
   };
 
   return (
@@ -15,14 +23,17 @@ export const CreateComment = () => {
       >
         <img src="/octopus.png" alt="Avatar user" className="news-page"></img>
         <label htmlFor="leaveACommentInput">
-          <input
-            type="text"
+          <textarea
+            value={textValue}
+            onChange={(e) => setTextValue(e.target.value)}
             maxLength="2000"
             placeholder="Leave a comment..."
             id="leaveACommentInput"
-          ></input>
+          ></textarea>
         </label>
-        <button type="submit">Enviar</button>
+        <button type="submit" disabled={isThereAnyText}>
+          {submitLabel}
+        </button>
       </form>
     </>
   );

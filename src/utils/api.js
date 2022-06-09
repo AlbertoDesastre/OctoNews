@@ -94,3 +94,40 @@ export const getMyData = async (token) => {
 
   return json.data;
 };
+
+/* Esto está hardcoded ahora, cuando vaya por la parte del uso del contexto se cambiará */
+export const postJson = async (url, body, token) => {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+    },
+    body: body,
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.data);
+  }
+
+  return json.data;
+};
+
+export const createNewCommentAPI = async (
+  newsId,
+  text,
+  commentParentId = null,
+  token
+) => {
+  postJson(
+    `${process.env.REACT_APP_BACKEND}/news/${newsId}`,
+    {
+      comment: text,
+      id_user: 1,
+      id_reply_message: commentParentId,
+      creation_date: new Date().toUTCString(),
+    },
+    token
+  );
+};
