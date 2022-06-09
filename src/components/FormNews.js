@@ -23,7 +23,7 @@ export const FormNews = ({
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   let labelImageStyles = {
-    background: `url("http://localhost:3000/image-upload-icon.svg") 0px center / contain no-repeat `,
+    background: `url("http://localhost:3000/image-upload-icon.svg") 0px center / cover no-repeat `,
   };
 
   if (imageUpload) {
@@ -35,7 +35,7 @@ export const FormNews = ({
     };
   } else if (imageNews) {
     labelImageStyles = {
-      background: `url(${imageNews}) 0px center / contain no-repeat `,
+      background: `url(${imageNews}) 0px center / cover no-repeat `,
       border: "2px solid gray",
     };
   }

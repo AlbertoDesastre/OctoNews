@@ -7,6 +7,7 @@ import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 
 export const NewsFeedList = ({
+  className,
   categories,
   category,
   newsList,
@@ -28,7 +29,7 @@ export const NewsFeedList = ({
   }, [currentLocation, dateParam, sortParam, newsList, queryParam]);
 
   return (
-    <section className="feed">
+    <section className={`feed ${className}`}>
       {isLoading ? (
         <Loading className="home-page loading feed" />
       ) : error ? (

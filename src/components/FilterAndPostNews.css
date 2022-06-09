@@ -75,12 +75,19 @@ svg#verticalLine {
   stroke-width: 2;
 }
 
+/* DESKTOP */
+
 @media (min-width: 1000px) {
   section.filterAndPost {
     justify-self: flex-end;
     grid-column: 2/8;
-    grid-row: 1;
     margin-right: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  section.filterAndPost.no-aside {
+    justify-self: center;
+    grid-column: span 12;
     margin-top: 4rem;
   }
 }

@@ -19,8 +19,9 @@ export const Search = () => {
     <>
       <Header />
       <main>
-        <FilterAndPostNews className="search-page" />
+        <FilterAndPostNews className="search-page no-aside" />
         <NewsFeedList
+          className="no-aside"
           categories={categories}
           newsList={newsList}
           isLoading={newsIsLoading}

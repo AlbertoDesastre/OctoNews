@@ -24,8 +24,9 @@ export const Category = () => {
           categoryIsLoading={isLoading}
           categoryError={error}
         />
-        <FilterAndPostNews />
+        <FilterAndPostNews className="no-aside" />
         <NewsFeedList
+          className="no-aside"
           category={currentCategory}
           newsList={newsList}
           isLoading={newsIsLoading}

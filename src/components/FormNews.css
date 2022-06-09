@@ -5,6 +5,7 @@ form.submit-page {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: 0px 15px 16px 0px rgba(0, 0, 0, 0.298);
+  border: 1px solid black;
 }
 
 form.submit-page fieldset {
@@ -26,6 +27,7 @@ fieldset.submit-title {
   margin: 0 auto;
   margin-bottom: 0.3rem;
   border-radius: 4px;
+  max-width: 700px;
 }
 fieldset.submit-title input {
   background-color: white;
@@ -50,15 +52,18 @@ form.submit-page fieldset.submit-text {
   border-radius: 4px;
   background-color: white;
   flex-direction: row;
+  max-width: 700px;
 }
 
 fieldset.submit-text div {
+  min-width: 50px;
+  height: 60px;
   padding: 0.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   border-top-right-radius: 2px;
-  background-color: rgb(177, 204, 224);
+  background-color: rgb(236, 246, 255);
 }
 
 fieldset.submit-text div input {
@@ -101,4 +106,24 @@ form.submit-page > button {
   color: white;
   font-size: 1.3rem;
   margin-bottom: 1rem;
+}
+
+/* DESKTOP */
+
+@media (min-width: 800px) {
+  fieldset.submit-text div {
+    width: 150px;
+    height: 150px;
+    padding: 0;
+  }
+  fieldset.submit-text div input {
+    width: 150px;
+    height: 150px;
+  }
+
+  fieldset.submit-text div label {
+    width: 150px;
+    height: 150px;
+    justify-self: flex-end;
+  }
 }

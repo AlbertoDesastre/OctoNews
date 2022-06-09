@@ -145,3 +145,10 @@ div.desktop-user {
   padding-right: 0.5rem;
   background-color: rgb(200, 222, 246);
 }
+
+@media (min-width: 1000px) {
+  header.front-header > input {
+    margin-left: 10rem;
+    max-width: 700px;
+  }
+}

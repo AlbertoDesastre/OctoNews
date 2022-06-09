@@ -17,10 +17,16 @@ li.news {
   list-style: none;
 }
 
+/* DESKTOP */
+
 @media (min-width: 1000px) {
   section.feed {
     grid-column: 2/8;
     justify-self: flex-end;
     margin-right: 2.5rem;
+  }
+  section.feed.no-aside {
+    grid-column: span 12;
+    justify-self: center;
   }
 }
