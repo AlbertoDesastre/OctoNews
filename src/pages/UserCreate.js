@@ -91,7 +91,7 @@ export const UserCreate = () => {
               </fieldset>
 
               <button>Register</button>
-              {error ? <p>(error)</p> : null}
+              {error ? <p>{error}</p> : null}
             </form>
           </section>
         ) : (
