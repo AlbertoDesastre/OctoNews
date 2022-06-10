@@ -62,7 +62,7 @@ export const postJson = async (url, body, token) => {
   return json.data;
 };
 
-export const put = async (url, body, token) => {
+export const putFormData = async (url, body, token) => {
   const response = await fetch(url, {
     method: "PUT",
     headers: {
