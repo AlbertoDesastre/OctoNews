@@ -10,6 +10,7 @@ section.usersettings-page {
   border-radius: 10px;
   box-shadow: 0px 15px 16px 0px rgba(0, 0, 0, 0.298);
   padding: 1rem;
+  max-width: 800px;
 }
 article.usersettings-page h1 {
   font-size: 1.8rem;
@@ -49,6 +50,7 @@ form.usersettings-page fieldset.avatar label {
   background-color: rgb(233, 78, 78);
   border: 3px solid rgb(147, 48, 48);
   color: white;
+  text-align: center;
 }
 
 fieldset.avatar input {
@@ -98,4 +100,26 @@ form.usersettings-page > div button {
 
 p.result {
   padding-bottom: 1rem;
+}
+
+/* DESKTOP */
+
+@media (min-width: 500px) {
+  section.usersettings-page {
+    flex-direction: row;
+  }
+
+  article.usersettings-page {
+    margin-left: 1rem;
+    flex-grow: 1;
+    max-width: 374px;
+  }
+
+  article.usersettings-page.password {
+    margin-right: 1rem;
+    max-width: 330px;
+  }
+  article.usersettings-page button {
+    min-width: 100px;
+  }
 }

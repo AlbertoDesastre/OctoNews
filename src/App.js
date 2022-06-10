@@ -38,7 +38,7 @@ function App() {
         <Route path="/category/:id" element={<Category />} />
         <Route path="/submit" element={<Submit />} />
         <Route path="/edit/:id" element={<Edit />} />
-        <Route path="/users/:name/settings" element={<UserSettings />} />
+        <Route path="/users/:id/settings" element={<UserSettings />} />
         <Route path="/users/validate/:code" element={<UserValidation />} />
         <Route
           path="/*"

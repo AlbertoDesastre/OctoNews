@@ -114,7 +114,7 @@ const DropdownNavMenu = ({ isDropdown }) => {
     <nav className={isDropdown ? "dropdown dropdown-content" : "dropdown"}>
       {user ? (
         <>
-          <Link to={`/users/${user.name}/settings`}>Settings</Link>
+          <Link to={`/users/${user.id}/settings`}>Settings</Link>
           <hr />
           <button onClick={logout}>Logout</button>
         </>
