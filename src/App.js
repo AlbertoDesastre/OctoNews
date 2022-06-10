@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { News } from "./pages/News";
 import { Search } from "./pages/Search";
@@ -27,27 +27,25 @@ function GoUpWhenChangeLocation() {
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route path="/:filter" element={<Home />} />
-          </Route>
-          <Route path="/register" element={<UserCreate />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/news/:id" element={<News />} />
-          <Route path="/category/:id" element={<Category />} />
-          <Route path="/submit" element={<Submit />} />
-          <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/users/:name/settings" element={<UserSettings />} />
-          <Route path="/users/validate/:code" element={<UserValidation />} />
-          <Route
-            path="/*"
-            element={<p className="home-page error">Wrong link</p>}
-          />
-        </Routes>
-        <GoUpWhenChangeLocation />
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route path="/:filter" element={<Home />} />
+        </Route>
+        <Route path="/register" element={<UserCreate />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/news/:id" element={<News />} />
+        <Route path="/category/:id" element={<Category />} />
+        <Route path="/submit" element={<Submit />} />
+        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/users/:name/settings" element={<UserSettings />} />
+        <Route path="/users/validate/:code" element={<UserValidation />} />
+        <Route
+          path="/*"
+          element={<p className="home-page error">Wrong link</p>}
+        />
+      </Routes>
+      <GoUpWhenChangeLocation />
     </>
   );
 }
