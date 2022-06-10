@@ -10,7 +10,7 @@ export const News = () => {
   const idFromParamsThatComesAsObject = useParams();
   const { id } = idFromParamsThatComesAsObject;
 
-  const [value, setValue, isLoading, error] = useGetRemoteData(
+  const [news, setNews, isLoading, error] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/news/${id}`
   );
 
@@ -30,19 +30,21 @@ export const News = () => {
     <main>
       <div className="news-page">
         <Header />
-        <NewsCards
-          newsId={value.id}
-          username={value.id_user}
-          date={value.creation_date}
-          title={value.title}
-          /* BORRAR ESTO DE TRU AL TERMINAR Y PONER value.image */
-          image={value.image}
-          description={value.introduction_text}
-          text={value.news_text}
-          votes={value.votes}
-          category={value.id_category}
-          className="news-page"
-        />
+        {!isLoading && (
+          <NewsCards
+            newsId={news.id}
+            username={news.id_user}
+            date={news.creation_date}
+            title={news.title}
+            /* BORRAR ESTO DE TRU AL TERMINAR Y PONER value.image */
+            image={news.image}
+            description={news.introduction_text}
+            text={news.news_text}
+            votes={news.votes}
+            category={news.id_category}
+            className="news-page"
+          />
+        )}
         {/* Cambiar esto por un filter de id categoria e id noticia. */}
         <LoginOrRegisterBox />
         <CreateComment submitLabel="Comment" />
