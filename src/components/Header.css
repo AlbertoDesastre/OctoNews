@@ -54,6 +54,7 @@ button.settings:hover {
 button.settings > img {
   margin-top: 0.5rem;
   width: 45px;
+  height: 45px;
   border-radius: 20px;
 }
 

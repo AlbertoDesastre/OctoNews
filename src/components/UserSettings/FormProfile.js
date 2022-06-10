@@ -1,7 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { putFormData } from "../../utils/api";
+import { Error } from "../Error";
 
 export const FormProfile = () => {
+  const [userUpdated, setUserUpdated] = useState();
   const { user, token } = useContext(AuthContext);
   const [imageUpload, setImageUpload] = useState();
   const [biographyInput, setBiographyInput] = useState("");
@@ -17,7 +20,23 @@ export const FormProfile = () => {
     }
   }, [user]);
 
-  const handleOnSubmitUserSettings = (e) => {};
+  const handleOnSubmitUserSettings = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const userData = new FormData(e.target);
+    if (imageUpload) userData.append("avatar", imageUpload);
+    try {
+      const response = await putFormData(
+        `${process.env.REACT_APP_BACKEND}/users/${user.id}`,
+        userData,
+        token
+      );
+
+      setUserUpdated(response);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <article className="usersettings-page profile">
@@ -37,6 +56,8 @@ export const FormProfile = () => {
                   alt="user-avatar"
                 />
               )
+            ) : imageUpload ? (
+              <img src={URL.createObjectURL(imageUpload)} alt="user-avatar" />
             ) : (
               <img src={`/user-login-default-icon.svg`} alt="user-avatar" />
             )}
@@ -84,8 +105,17 @@ export const FormProfile = () => {
             onChange={(e) => setEmailInput(e.target.value)}
           />
         </fieldset>
-        <button type="submit">SAVE</button>
-        {error ? <p>{error}</p> : null}
+        <div>
+          <button type="submit">SAVE</button>
+          {error ? (
+            <Error className="result error" error={error}></Error>
+          ) : null}
+          {userUpdated ? (
+            <p className="result" style={{ color: "green" }}>
+              {userUpdated}
+            </p>
+          ) : null}
+        </div>
       </form>
     </article>
   );

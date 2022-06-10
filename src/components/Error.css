@@ -14,3 +14,7 @@
   font-size: 1.5rem;
   color: red;
 }
+.result.error {
+  width: 100%;
+  color: red;
+}

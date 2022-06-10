@@ -9,8 +9,6 @@ import "./UserSettings.css";
 export const UserSettings = () => {
   const { user } = useContext(AuthContext);
 
-  if (!user) return <Navigate to={"/"} />;
-
   return (
     <>
       <Header />
