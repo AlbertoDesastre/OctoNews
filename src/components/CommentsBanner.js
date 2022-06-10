@@ -31,10 +31,6 @@ export const CommentsBanner = ({ allComments, setComments }) => {
   };
 
   /* This will add comments. Unfinished. */
-  const addComment = (text, parentId) => {
-    console.log("addComment", text, parentId);
-    createNewCommentAPI(text, parentId);
-  };
 
   return (
     <section className="news-page-sectionOfCommentsBanner">
@@ -56,7 +52,7 @@ export const CommentsBanner = ({ allComments, setComments }) => {
                 parentComment={parentComment}
                 replies={getRepliesComments(parentComment.id)}
                 userId={1}
-                isSelected={isSelected}
+                /* isSelected={isSelected} */
               ></Comment>
               {/*  <CreateComment submitLabel="Reply" handleSubmit={addComment} /> */}
             </li>

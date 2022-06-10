@@ -93,14 +93,18 @@ export const NewsCards = ({
         <footer className="news-page news-page-footer">
           <ul className="news-page news-page-ul-for-buttons-edit-delete">
             <li className="news-page  news-page-button-li-of-footer">
-              <button className="news-page delete-new-button">
-                Eliminar noticia
-              </button>
+              {user && user.id === username ? (
+                <button className="news-page-edit news-page-button news-page-inside-new-delete">
+                  Delete new
+                </button>
+              ) : null}
             </li>
             <li className="news-page  news-page-button-li-of-footer">
-              <button className="news-page edit-new-button">
-                Editar noticia
-              </button>
+              {user && user.id === username ? (
+                <button className="news-page-edit news-page-button news-page-inside-new-edit">
+                  Edit new
+                </button>
+              ) : null}
             </li>
           </ul>
         </footer>

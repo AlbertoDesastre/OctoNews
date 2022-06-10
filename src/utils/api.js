@@ -140,21 +140,20 @@ export const voteNewsService = async ({ vote, token, idNews }) => {
   return response;
 };
 
-/* Esto está hardcoded ahora, cuando vaya por la parte del uso del contexto se cambiará */
-export const createNewCommentAPI = async (
-  newsId,
-  text,
-  commentParentId = null,
-  token
-) => {
-  postJson(
-    `${process.env.REACT_APP_BACKEND}/news/${newsId}`,
-    JSON.stringify({
-      comment: text,
-      id_user: 1,
-      id_reply_message: commentParentId,
-      creation_date: new Date().toUTCString(),
-    }),
-    token
-  );
+export const deleteSomeSortOfPostWithoutBody = async (url, token) => {
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.data);
+  }
+
+  console.log("Console que hay que borrar en api.", json.data);
+  return json.data;
 };
