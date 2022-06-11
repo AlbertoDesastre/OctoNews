@@ -10,6 +10,7 @@ export const Comment = ({
   parentComment,
   replies,
   userId /* , isSelected */,
+  deleteSomeCommentAndRefreshIt,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -27,6 +28,7 @@ export const Comment = ({
         `${process.env.REACT_APP_BACKEND}/news/${id}/${parentComment.id}`,
         token
       );
+      deleteSomeCommentAndRefreshIt(parentComment.id);
     } catch (error) {
       setError(error.message);
     }
@@ -42,10 +44,6 @@ export const Comment = ({
     const formattedDate = format(dateInObject, "Pp");
     return formattedDate;
   };
-  /* const addComment = (text, parentId) => {
-    console.log("addComment", text, parentId);
-    createNewCommentAPI(text, parentId);
-  }; */
 
   return (
     <>
@@ -80,17 +78,26 @@ export const Comment = ({
             See replies
           </button>
         ) : null}
-        <button className="news-page-button" onClick={handleOnReply}>
-          Responder
-        </button>
+        {/* Recordar que más tarde cuandot tengamos tiempo en vez de hacer este renderizado condicional,
+hacer que te de un aviso de que tienes que estar registrado para poder contestar,
+y que si le da que "si" a un alert lo redirija a la página de registro */}
+        {user ? (
+          <button className="news-page-button" onClick={handleOnReply}>
+            Responder
+          </button>
+        ) : null}
         <button className="news-page-button">Compartir</button>
       </footer>
+      {error ? <p>{error.message}</p> : null}
+
       {/* If clicked in reply CreateComment renders the form to create a component  */}
       {isClicked ? (
         <CreateComment
           submitLabel="Reply"
           /* handleSubmit={createNewCommentAPI} */
           color="whitesmoke"
+          id_reply_message={parentComment.id}
+          idName="news-page-formToSubmitACommentInReplyMode"
         />
       ) : null}
       {/* If this comment gets any replays it will be rendered here, if replies doesn't

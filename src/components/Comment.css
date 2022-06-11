@@ -23,6 +23,7 @@ div.news-page-divCommentsBanner {
 
 img.news-page {
   align-self: center;
+  justify-self: center;
 }
 
 .news-page-comment > article,

@@ -7,9 +7,11 @@ import "./CreateComment.css";
 export const CreateComment = ({
   submitLabel,
   addAdditionaComment /* , handleSubmit */,
+  id_reply_message,
+  idName,
 }) => {
   /* submitLabel es para que en el boton ponga lo que pone submitLabel, como reply or edit */
-  const { token } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const [textValue, setTextValue] = useState("");
   /* Pendiente de usar esto para cargar animaciónes de enviando comentario, un <p> con error, etc... */
   const [error, setError] = useState("");
@@ -24,18 +26,43 @@ export const CreateComment = ({
     const { id } = idFromParamsThatComesAsObject;
     const url = `${process.env.REACT_APP_BACKEND}/news/${id}/comment`;
 
-    try {
-      setSendingComment(true);
+    /* Esto del submit con reply no funciona, me dice que id user no es válido */
+    if (submitLabel === "Reply") {
+      try {
+        setSendingComment(true);
+        const data = {
+          comment: textValue,
+          id_user: user.id,
+          id_reply_message: id_reply_message,
+          creation_date: new Date(),
+        };
 
-      const data = new FormData(e.target);
-      const newComment = await postFormData(url, data, token);
-      addAdditionaComment(newComment);
+        const dataStringified = JSON.stringify(data);
 
-      setTextValue("");
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setSendingComment(false);
+        const newComment = await postJson(url, dataStringified, token);
+        addAdditionaComment(newComment);
+
+        setTextValue("");
+      } catch (error) {
+        setError(error.message);
+        console.log(error);
+      } finally {
+        setSendingComment(false);
+      }
+    } else {
+      try {
+        setSendingComment(true);
+
+        const data = new FormData(e.target);
+        const newComment = await postFormData(url, data, token);
+        addAdditionaComment(newComment);
+
+        setTextValue("");
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setSendingComment(false);
+      }
     }
   };
 
@@ -44,7 +71,7 @@ export const CreateComment = ({
       <form
         method="POST"
         className="news-page-formToSubmitAComment"
-        id="news-page-formToSubmitAComment"
+        id={idName ? idName : null}
         onSubmit={handleOnSubmit}
       >
         <img src="/octopus.png" alt="Avatar user" className="news-page"></img>
@@ -62,6 +89,8 @@ export const CreateComment = ({
           {submitLabel}
         </button>
       </form>
+      {sendingComment ? <p>Sending comment</p> : null}
+      {error ? <p>{error.message}</p> : null}
     </>
   );
 };

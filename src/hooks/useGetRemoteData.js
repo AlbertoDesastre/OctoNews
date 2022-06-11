@@ -11,7 +11,7 @@ export const useGetRemoteData = (url) => {
       try {
         setIsLoading(true);
         await get(url, setValue);
-      } catch (error) {
+
         setError(error.message);
       } finally {
         setIsLoading(false);
@@ -26,5 +26,18 @@ export const useGetRemoteData = (url) => {
     setValue([someValue, ...value]);
   };
 
-  return [value, setValue, isLoading, error, addAdditionalValue];
+  const deleteSomeValueAndRefreshIt = (idOfSomethingBeingDeleted) => {
+    setValue(
+      value.filter((someValue) => someValue.id !== idOfSomethingBeingDeleted)
+    );
+  };
+
+  return [
+    value,
+    setValue,
+    isLoading,
+    error,
+    addAdditionalValue,
+    deleteSomeValueAndRefreshIt,
+  ];
 };

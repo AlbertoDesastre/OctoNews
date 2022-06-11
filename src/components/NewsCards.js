@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
-import { voteNewsService } from "../utils/api";
+import { deleteSomeSortOfPostWithoutBody, voteNewsService } from "../utils/api";
 import { capitalize } from "../utils/capitalizeString";
 import { copyNewsLinkToClipBoard } from "../utils/copyNewsLinkToClipBoard";
 
@@ -20,11 +20,40 @@ export const NewsCards = ({
   comments,
   className,
   category,
+  deleteSomeNewAndRefreshIt,
 }) => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
+  const idFromParamsThatComesAsObject = useParams();
+  const { id } = idFromParamsThatComesAsObject;
 
   const [isDropdownShare, setIsDropdownShare] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleOnDelete = async (e) => {
+    /* Falta meter la parte de la función que refresca automáticamente cuando se elimina.
+   Hacer un filtro para setear nuevos comments */
+
+    if (window.confirm("Are you sure you want to delete this new?")) {
+      try {
+        await deleteSomeSortOfPostWithoutBody(
+          `${process.env.REACT_APP_BACKEND}/news/${id}`,
+          token
+        );
+        deleteSomeNewAndRefreshIt(newsId);
+
+        /* La página tampoco redirige */
+        navigate("/");
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
+
+  /* No funciona */
+  const handleOnEdit = () => {
+    navigate(`/edit/${id}`);
+  };
 
   const handleDropdown = (e) => {
     setIsDropdownShare(!isDropdownShare);
@@ -94,14 +123,20 @@ export const NewsCards = ({
           <ul className="news-page news-page-ul-for-buttons-edit-delete">
             <li className="news-page  news-page-button-li-of-footer">
               {user && user.id === username ? (
-                <button className="news-page-edit news-page-button news-page-inside-new-delete">
+                <button
+                  className="news-page-edit news-page-button news-page-inside-new-delete"
+                  onClick={handleOnDelete}
+                >
                   Delete new
                 </button>
               ) : null}
             </li>
             <li className="news-page  news-page-button-li-of-footer">
               {user && user.id === username ? (
-                <button className="news-page-edit news-page-button news-page-inside-new-edit">
+                <button
+                  className="news-page-edit news-page-button news-page-inside-new-edit"
+                  onClick={handleOnEdit}
+                >
                   Edit new
                 </button>
               ) : null}
@@ -109,6 +144,7 @@ export const NewsCards = ({
           </ul>
         </footer>
       ) : undefined}
+
       <div
         className={className ? "news-page" : "action-news"}
         id={className ? "action-from-news" : undefined}
