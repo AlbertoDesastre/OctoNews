@@ -10,9 +10,8 @@ export const News = () => {
   const idFromParamsThatComesAsObject = useParams();
   const { id } = idFromParamsThatComesAsObject;
 
-  const [news, setNews, isLoading, error] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/news/${id}`
-  );
+  const [news, setNews, isLoading, error, addAdditionalValue] =
+    useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
   const [
     commentsArray,
@@ -22,7 +21,7 @@ export const News = () => {
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
   /* Meter gestión de errores */
 
-  /* console.log(commentsArray); */
+  console.log(commentsArray);
 
   return (
     /* Este div me hace falta para poder separar las 
@@ -47,7 +46,11 @@ export const News = () => {
         )}
         {/* Cambiar esto por un filter de id categoria e id noticia. */}
         <LoginOrRegisterBox />
-        <CreateComment submitLabel="Comment" />
+        <CreateComment
+          submitLabel="Comment"
+          addAdditionalComment={addAdditionalValue}
+        />
+
         {commentsArray.result ? (
           <CommentsBanner
             allComments={commentsArray.result}

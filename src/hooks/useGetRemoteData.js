@@ -5,6 +5,7 @@ export const useGetRemoteData = (url) => {
   const [value, setValue] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+
   useEffect(() => {
     const getRemoteData = async (url) => {
       try {
@@ -20,5 +21,10 @@ export const useGetRemoteData = (url) => {
     getRemoteData(url);
   }, [url]);
 
-  return [value, setValue, isLoading, error];
+  /* Por algún motivo los comentarios no se renderizan automáticamente */
+  const addAdditionalValue = (someValue) => {
+    setValue([someValue, ...value]);
+  };
+
+  return [value, setValue, isLoading, error, addAdditionalValue];
 };

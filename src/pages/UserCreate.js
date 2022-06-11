@@ -25,7 +25,7 @@ export const UserCreate = () => {
 
     try {
       await registerUserService({ email, name: username, password: pass1 });
-
+      
       setRegistrationFinished(true);
     } catch (error) {
       setError(error.message);
