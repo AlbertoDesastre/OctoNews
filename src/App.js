@@ -11,6 +11,7 @@ import { Submit } from "./pages/Submit";
 import { Category } from "./pages/Category";
 import { Edit } from "./pages/Edit";
 import { UserSettings } from "./pages/UserSettings";
+import { NotFound } from "./pages/NotFound";
 
 // UserCreate UserLogin
 
@@ -40,10 +41,7 @@ function App() {
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/users/:id/settings" element={<UserSettings />} />
         <Route path="/users/validate/:code" element={<UserValidation />} />
-        <Route
-          path="/*"
-          element={<p className="home-page error">Wrong link</p>}
-        />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <GoUpWhenChangeLocation />
     </>

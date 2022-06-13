@@ -1,0 +1,33 @@
+body {
+  background-color: rgb(255, 253, 202);
+  display: flex;
+  justify-content: center;
+}
+
+h2.h2-not-found {
+  text-align: center;
+  font-size: 3.5rem;
+  color: red;
+}
+
+ul.ul-not-found {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+img.img-not-found {
+  object-fit: cover;
+}
+
+li.li-not-found {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+p.go-back-home {
+  font-size: 2rem;
+}
