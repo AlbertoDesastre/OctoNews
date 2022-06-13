@@ -11,6 +11,8 @@ div.news-page {
   flex-direction: column;
   grid-column: span 12;
   gap: 0.5rem;
+  width: 95%;
+  max-width: 800px;
 }
 
 /* Tengo el mismo problema que con otro botón.

@@ -17,6 +17,7 @@ ul.ul-not-found {
 
 img.img-not-found {
   object-fit: cover;
+  border-radius: 10px;
 }
 
 li.li-not-found {
