@@ -152,4 +152,7 @@ div.desktop-user {
     margin-left: 10rem;
     max-width: 700px;
   }
+  header.front-header nav a.register-header {
+    padding-left: 0.5rem;
+  }
 }

@@ -44,7 +44,7 @@ export const postFormData = async (url, body, token) => {
   return json.data;
 };
 
-export const postJson = async (url, body, token) => {
+export const postJson = async (url, body, token = "") => {
   const response = await fetch(url, {
     method: "POST",
     headers: {
