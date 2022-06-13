@@ -12,7 +12,7 @@ export const Category = () => {
     `${process.env.REACT_APP_BACKEND}/categories/${id}`
   );
   const [newsList, , newsIsLoading, newsError] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/news`
+    `${process.env.REACT_APP_BACKEND}/news?category=${currentCategory.name}`
   );
 
   return (

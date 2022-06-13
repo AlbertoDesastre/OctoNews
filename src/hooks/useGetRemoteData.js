@@ -11,7 +11,7 @@ export const useGetRemoteData = (url) => {
       try {
         setIsLoading(true);
         await get(url, setValue);
-
+      } catch {
         setError(error.message);
       } finally {
         setIsLoading(false);

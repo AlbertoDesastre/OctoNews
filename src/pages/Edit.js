@@ -14,10 +14,9 @@ export const Edit = () => {
     `${process.env.REACT_APP_BACKEND}/news/${id}`
   );
 
-  console.log(news, user);
-
   if (!token) return <Navigate to={"/login"} />;
-  if (news && user && news.id_user !== user?.id) return <Navigate to={"/"} />;
+  if (news && user && news.id_user && user.id && news.id_user !== user.id)
+    return <Navigate to={"/"} />;
   return (
     <>
       <Header />

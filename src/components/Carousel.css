@@ -46,7 +46,7 @@ article.category-items > img {
   height: 70px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  box-shadow: 0px 0px 15px rgb(96, 95, 95);
+  box-shadow: 0px 0px 9px rgb(96, 95, 95);
 }
 
 article.category-items > p {

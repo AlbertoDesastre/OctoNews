@@ -12,6 +12,7 @@ import { Category } from "./pages/Category";
 import { Edit } from "./pages/Edit";
 import { UserSettings } from "./pages/UserSettings";
 import { NotFound } from "./pages/NotFound";
+import { RecoverPage } from "./pages/RecoverPage";
 
 // UserCreate UserLogin
 
@@ -34,6 +35,7 @@ function App() {
         </Route>
         <Route path="/register" element={<UserCreate />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/recover-password" element={<RecoverPage />} />
         <Route path="/search" element={<Search />} />
         <Route path="/news/:id" element={<News />} />
         <Route path="/category/:id" element={<Category />} />
