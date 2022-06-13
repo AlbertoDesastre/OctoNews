@@ -172,6 +172,19 @@ article.news-page {
   border-radius: 10px;
   box-shadow: 0px 5px 10px 0px rgba(97, 94, 94, 0.298);
   background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+article.news-page > p.news-page-category {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.7rem;
+  display: inline-block;
+  font-size: 12px;
+  padding: 0.3rem;
+  font-weight: bold;
+  border-radius: 10px;
+  align-self: flex-start;
 }
 
 #news-page-title {
@@ -213,13 +226,18 @@ article.news-page {
   justify-content: space-around;
 }
 
-.dropdown-newscard {
+#drop-down-on-news-page {
   position: unset;
 }
 
-.dropdown-content-newscard {
-  height: 22px;
-  width: 95px;
+#drop-down-on-news-page.dropdown-newscard {
+  height: 0px;
+  width: 0px;
+}
+
+#drop-down-on-news-page.dropdown-newscard.dropdown-content-newscard {
+  height: 23px;
+  width: 80px;
 }
 
 /* DESKTOP */

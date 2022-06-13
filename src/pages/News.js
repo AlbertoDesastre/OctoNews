@@ -13,8 +13,17 @@ export const News = () => {
   const { id } = idFromParamsThatComesAsObject;
   const { token } = useContext(AuthContext);
 
-  const [news, setNews, isLoading, error, , deleteSomeNewAndRefreshIt] =
-    useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
+  const [
+    news,
+    setNews,
+    isLoadingNews,
+    errorOnNews,
+    ,
+    deleteSomeNewAndRefreshIt,
+  ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
+
+  const [categories, , isLoadingCategories, errorOnCategories] =
+    useGetRemoteData(`${process.env.REACT_APP_BACKEND}/categories`);
 
   const [
     commentsArray,
@@ -32,7 +41,7 @@ export const News = () => {
     <main>
       <div className="news-page">
         <Header />
-        {!isLoading && (
+        {!isLoadingNews && (
           <NewsCards
             newsId={news.id}
             username={news.id_user}
@@ -42,7 +51,11 @@ export const News = () => {
             description={news.introduction_text}
             text={news.news_text}
             votes={news.votes}
-            category={news.id_category}
+            category={
+              categories
+                ? categories.find((e) => e.id === news.id_category)
+                : null
+            }
             className="news-page"
             deleteSomeNewAndRefreshIt={deleteSomeNewAndRefreshIt}
           />

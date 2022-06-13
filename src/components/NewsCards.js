@@ -52,7 +52,7 @@ export const NewsCards = ({
 
   /* No funciona */
   const handleOnEdit = () => {
-    navigate(`/edit/${id}`);
+    navigate(`/edit/${newsId}`);
   };
 
   const handleDropdown = (e) => {
@@ -84,7 +84,7 @@ export const NewsCards = ({
       </p>
       {category && (
         <p
-          className="category-news"
+          className={className ? className + "-category" : "category-news"}
           style={{ border: `3px solid ${category.color}` }}
         >
           {capitalize(category.name)}
@@ -149,8 +149,17 @@ export const NewsCards = ({
         className={className ? "news-page" : "action-news"}
         id={className ? "action-from-news" : undefined}
       >
-        <button className="share" type="button" onClick={handleDropdown} />
-        <DropdownMenu isDropdown={isDropdownShare} />
+        <button
+          className={className ? className + " share" : "share"}
+          type="button"
+          onClick={handleDropdown}
+        />
+        <DropdownMenu
+          isDropdown={isDropdownShare}
+          idOfDropDown={
+            className === "news-page" ? "drop-down-on-news-page" : null
+          }
+        />
         <button className="comments" type="button">
           {comments}
         </button>
@@ -249,7 +258,7 @@ const LikeDislikeButtons = ({ votes, idNews }) => {
   );
 };
 
-const DropdownMenu = ({ isDropdown }) => {
+const DropdownMenu = ({ isDropdown, idOfDropDown }) => {
   return (
     <div
       className={
@@ -257,6 +266,7 @@ const DropdownMenu = ({ isDropdown }) => {
           ? "dropdown-content-newscard dropdown-newscard"
           : "dropdown-newscard"
       }
+      id={idOfDropDown}
     >
       <button>Link copied!</button>
     </div>

@@ -51,7 +51,7 @@ export const Comment = ({
         <img src="/octopus.png" alt="Avatar user" className="news-page"></img>
         <ul className="news-page-userData">
           <li className="news-page-liOfUserData">
-            <p>{parentComment.id_user}</p>
+            <p>{parentComment.name}</p>
           </li>
           <li className="news-page-liOfUserData">
             <p>{getFormattedDate(parentComment.creation_date)}</p>
