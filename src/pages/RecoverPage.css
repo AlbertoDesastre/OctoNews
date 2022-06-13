@@ -40,6 +40,7 @@ fieldset.recover-page input {
   border: 2px solid rgb(147, 48, 48);
   padding-left: 0.3rem;
   padding-right: 0.3rem;
+  font-size: 1rem;
 }
 form.recover-page button {
   align-self: flex-end;
