@@ -41,13 +41,14 @@ export const FormNews = ({
   }
 
   useEffect(() => {
-    setTitleInput(newsData && newsData.title);
-    setTextInput(newsData && newsData.news_text);
-    setImageNews(
-      newsData &&
+    if (newsData) {
+      setTitleInput(newsData.title);
+      setTextInput(newsData.news_text);
+      setImageNews(
         newsData.image &&
-        `${process.env.REACT_APP_BACKEND}/uploads/news/${newsData.image}`
-    );
+          `${process.env.REACT_APP_BACKEND}/uploads/news/${newsData.image}`
+      );
+    }
   }, [newsData]);
 
   const handleOnSubmitPost = async (e) => {

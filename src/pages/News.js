@@ -41,7 +41,7 @@ export const News = () => {
     <main>
       <div className="news-page">
         <Header />
-        {!isLoadingNews && (
+        {!isLoadingNews && news.id && (
           <NewsCards
             newsId={news.id}
             username={news.id_user}
