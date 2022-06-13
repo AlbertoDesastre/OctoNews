@@ -116,8 +116,6 @@ export const NewsCards = ({
         {className ? text : description}
       </p>
 
-      {/* Esto deberái renderizar el html solo si
-       tiene la clase news-page. No funciona. Revisar */}
       {className === "news-page" ? (
         <footer className="news-page news-page-footer">
           <ul className="news-page news-page-ul-for-buttons-edit-delete">
@@ -175,7 +173,7 @@ const LikeDislikeButtons = ({ votes, idNews }) => {
   const [votesQuantity, setVotesQuantity] = useState(Number(votes));
   const [error, setError] = useState();
   const { user, token } = useContext(AuthContext);
-  const [newsVotes, setNewsVotes] = useGetRemoteData(
+  const [newsVotes] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/news/${idNews}/votes`
   );
 

@@ -22,8 +22,9 @@ export const News = () => {
     deleteSomeNewAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
-  const [categories, , isLoadingCategories, errorOnCategories] =
-    useGetRemoteData(`${process.env.REACT_APP_BACKEND}/categories`);
+  const [category, , isLoadingCategory, errorOnCategory] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/categories/${news.id_category}`
+  );
 
   const [
     commentsArray,
@@ -34,28 +35,24 @@ export const News = () => {
     deleteSomeValueAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
   /* Meter gestión de errores */
-
   return (
     /* Este div me hace falta para poder separar las 
     secciones */
     <main>
       <div className="news-page">
         <Header />
-        {!isLoadingNews && (
+        {!isLoadingNews && news.id && (
           <NewsCards
             newsId={news.id}
             username={news.id_user}
             date={news.creation_date}
             title={news.title}
             image={news.image}
+            comments={news.comments}
             description={news.introduction_text}
             text={news.news_text}
             votes={news.votes}
-            category={
-              categories
-                ? categories.find((e) => e.id === news.id_category)
-                : null
-            }
+            category={category}
             className="news-page"
             deleteSomeNewAndRefreshIt={deleteSomeNewAndRefreshIt}
           />

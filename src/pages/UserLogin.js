@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../utils/api";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 export const LoginPage = () => {
   const { token, login } = useContext(AuthContext);
@@ -53,6 +53,9 @@ export const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </fieldset>
+            <Link className="forgot-password" to="/recover-password">
+              forgot password?
+            </Link>
 
             <button type="submit" onClick={handleForm}>
               Login

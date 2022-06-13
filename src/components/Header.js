@@ -153,12 +153,14 @@ const DesktopNavMenu = () => {
       <nav className="desktop-navmenu">
         {user ? (
           <>
-            <Link to={`/users/${user.name}/settings`}>Settings</Link>
+            <Link to={`/users/${user.id}/settings`}>Settings</Link>
             <button onClick={logout}>Logout</button>
           </>
         ) : (
           <>
-            <Link to="/register">Register</Link>
+            <Link className="register-header" to="/register">
+              Register
+            </Link>
             <Link to="/login">Login</Link>
           </>
         )}
