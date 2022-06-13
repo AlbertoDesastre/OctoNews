@@ -221,23 +221,22 @@ article.news-page > p.news-page-category {
 }
 
 #action-from-news {
-  display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  position: relative;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
 }
 
-#drop-down-on-news-page {
-  position: unset;
+button.news-page.share {
+  margin-right: auto;
+  margin-left: 1rem;
 }
 
 #drop-down-on-news-page.dropdown-newscard {
-  height: 0px;
-  width: 0px;
-}
-
-#drop-down-on-news-page.dropdown-newscard.dropdown-content-newscard {
-  height: 23px;
-  width: 80px;
+  left: 10px;
+  top: 15px;
 }
 
 /* DESKTOP */
