@@ -19,7 +19,7 @@ export const News = () => {
     isLoadingNews,
     errorOnNews,
     ,
-    deleteSomeNewAndRefreshIt,
+    deleteSomeNewsAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
   /*  console.log(news); */
@@ -59,7 +59,7 @@ export const News = () => {
             votes={news.votes}
             category={category}
             className="news-page"
-            deleteSomeNewAndRefreshIt={deleteSomeNewAndRefreshIt}
+            deleteSomeNewAndRefreshIt={deleteSomeNewsAndRefreshIt}
           />
         )}
         {/* Cambiar esto por un filter de id categoria e id noticia. */}

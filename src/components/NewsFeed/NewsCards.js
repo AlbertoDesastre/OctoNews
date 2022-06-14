@@ -23,65 +23,56 @@ export const NewsCards = ({
   comments,
   className,
   category,
-  deleteSomeNewAndRefreshIt,
+  deleteSomeNewsAndRefreshIt,
 }) => {
-  const navigate = useNavigate();
-  const { user, token } = useContext(AuthContext);
-  const idFromParamsThatComesAsObject = useParams();
-  const { id } = idFromParamsThatComesAsObject;
-
-  const [isDropdownShare, setIsDropdownShare] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleOnDelete = async (e) => {
-    /* Falta meter la parte de la función que refresca automáticamente cuando se elimina.
-   Hacer un filtro para setear nuevos comments */
-
-    if (window.confirm("Are you sure you want to delete this new?")) {
-      try {
-        await deleteSomeSortOfPostWithoutBody(
-          `${process.env.REACT_APP_BACKEND}/news/${id}`,
-          token
-        );
-        deleteSomeNewAndRefreshIt(newsId);
-
-        /* La página tampoco redirige */
-        navigate("/");
-      } catch (error) {
-        setError(error.message);
-      }
-    }
-  };
-
-  /* No funciona */
-  const handleOnEdit = () => {
-    navigate(`/edit/${newsId}`);
-  };
-
-  const handleDropdown = (e) => {
-    setIsDropdownShare(!isDropdownShare);
-    copyNewsLinkToClipBoard(newsId);
-  };
-
-  useEffect(() => {
-    let countdownToHide;
-    if (isDropdownShare) {
-      countdownToHide = setTimeout(() => {
-        setIsDropdownShare(false);
-      }, 1000);
-    }
-
-    return () => {
-      clearTimeout(countdownToHide);
-    };
-  }, [isDropdownShare]);
-
   return (
     <article
       className={className ? className : undefined}
       style={category && { borderTop: `10px solid ${category.color}` }}
     >
       <hr />
+      <NewsBody
+        className={className}
+        username={username}
+        date={date}
+        category={category}
+        image={image}
+        newsId={newsId}
+        title={title}
+        text={text}
+        description={description}
+      />
+      {className === "news-page" && (
+        <DeleteEditNewsButtons
+          newsId={newsId}
+          deleteSomeNewsAndRefreshIt={deleteSomeNewsAndRefreshIt}
+          username={username}
+        />
+      )}
+      <FooterNewsCard
+        className={className}
+        votes={votes}
+        comments={comments}
+        newsId={newsId}
+      />
+    </article>
+  );
+};
+
+const NewsBody = ({
+  className,
+  username,
+  date,
+  category,
+  image,
+  newsId,
+  title,
+  text,
+  description,
+}) => {
+  const navigate = useNavigate();
+  return (
+    <>
       <p className="author-news">
         Published by {username} {new Date(date).toLocaleString()} ago
       </p>
@@ -96,8 +87,7 @@ export const NewsCards = ({
       {image ? (
         <img
           className="img-news"
-          /* src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`} */
-          src={`/octopus.png`}
+          src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
           alt="news img"
           onClick={() => navigate(`/news/${newsId}`)}
         />
@@ -118,55 +108,116 @@ export const NewsCards = ({
       >
         {className ? text : description}
       </p>
+    </>
+  );
+};
 
-      {className === "news-page" ? (
-        <footer className="news-page news-page-footer">
-          <ul className="news-page news-page-ul-for-buttons-edit-delete">
-            <li className="news-page  news-page-button-li-of-footer">
-              {user && user.id === username ? (
-                <button
-                  className="news-page-edit news-page-button news-page-inside-new-delete"
-                  onClick={handleOnDelete}
-                >
-                  Delete new
-                </button>
-              ) : null}
-            </li>
-            <li className="news-page  news-page-button-li-of-footer">
-              {user && user.id === username ? (
-                <button
-                  className="news-page-edit news-page-button news-page-inside-new-edit"
-                  onClick={handleOnEdit}
-                >
-                  Edit new
-                </button>
-              ) : null}
-            </li>
-          </ul>
-        </footer>
-      ) : undefined}
+const DeleteEditNewsButtons = ({
+  newsId,
+  deleteSomeNewsAndRefreshIt,
+  username,
+}) => {
+  const { user, token } = useContext(AuthContext);
+  const idFromParamsThatComesAsObject = useParams();
+  const { id } = idFromParamsThatComesAsObject;
+  const navigate = useNavigate();
 
-      <div
-        className={className ? "news-page" : "action-news"}
-        id={className ? "action-from-news" : undefined}
-      >
-        <button
-          className={className ? className + " share" : "share"}
-          type="button"
-          onClick={handleDropdown}
-        />
-        <DropdownMenu
-          isDropdown={isDropdownShare}
-          idOfDropDown={
-            className === "news-page" ? "drop-down-on-news-page" : null
-          }
-        />
-        <button className="comments" type="button">
-          {comments}
-        </button>
-        <LikeDislikeButtons votes={votes} idNews={newsId} />
-      </div>
-    </article>
+  const [error, setError] = useState("");
+
+  const handleOnDelete = async (e) => {
+    /* Falta meter la parte de la función que refresca automáticamente cuando se elimina.
+   Hacer un filtro para setear nuevos comments */
+
+    if (window.confirm("Are you sure you want to delete this new?")) {
+      try {
+        await deleteSomeSortOfPostWithoutBody(
+          `${process.env.REACT_APP_BACKEND}/news/${id}`,
+          token
+        );
+
+        navigate("/");
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
+
+  const handleOnEdit = () => {
+    navigate(`/edit/${newsId}`);
+  };
+
+  return (
+    <section className="news-page news-page-deleteedit">
+      <ul className="news-page news-page-ul-for-buttons-edit-delete">
+        <li className="news-page  news-page-button-li-of-deleteedit">
+          {/* cambiar username por prop que tenga user id de la news */}
+          {user && user.id === username ? (
+            <button
+              className="news-page-edit news-page-button news-page-inside-new-delete"
+              onClick={handleOnDelete}
+            >
+              Delete news
+            </button>
+          ) : null}
+        </li>
+        <li className="news-page  news-page-button-li-of-deletedit">
+          {/* cambiar username por prop que tenga user id de la news */}
+          {user && user.id === username ? (
+            <button
+              className="news-page-edit news-page-button news-page-inside-new-edit"
+              onClick={handleOnEdit}
+            >
+              Edit news
+            </button>
+          ) : null}
+        </li>
+      </ul>
+    </section>
+  );
+};
+
+const FooterNewsCard = ({ className, votes, comments, newsId }) => {
+  const [isDropdownShare, setIsDropdownShare] = useState(false);
+
+  const handleDropdown = (e) => {
+    setIsDropdownShare(!isDropdownShare);
+    copyNewsLinkToClipBoard(newsId);
+  };
+
+  useEffect(() => {
+    let countdownToHide;
+    if (isDropdownShare) {
+      countdownToHide = setTimeout(() => {
+        setIsDropdownShare(false);
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(countdownToHide);
+    };
+  }, [isDropdownShare]);
+
+  return (
+    <div
+      className={className ? "news-page" : "action-news"}
+      id={className ? "action-from-news" : undefined}
+    >
+      <button
+        className={className ? className + " share" : "share"}
+        type="button"
+        onClick={handleDropdown}
+      />
+      <DropdownMenu
+        isDropdown={isDropdownShare}
+        idOfDropDown={
+          className === "news-page" ? "drop-down-on-news-page" : null
+        }
+      />
+      <button className="comments" type="button">
+        {comments}
+      </button>
+      <LikeDislikeButtons votes={votes} idNews={newsId} />
+    </div>
   );
 };
 

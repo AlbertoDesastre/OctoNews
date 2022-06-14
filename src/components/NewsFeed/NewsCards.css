@@ -161,6 +161,7 @@ button.no-dislike:hover {
   background-color: white;
   border: none;
   background-color: rgb(197, 71, 71);
+  color: white;
   font-weight: bold;
   font-size: 0.8rem;
 }

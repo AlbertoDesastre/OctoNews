@@ -171,7 +171,5 @@ export const deleteEveryCommentOfANew = async (url, token) => {
   if (!response.ok) {
     throw new Error(json.data);
   }
-
-  console.log("Console que hay que borrar en api.", json.data);
   return json.data;
 };
