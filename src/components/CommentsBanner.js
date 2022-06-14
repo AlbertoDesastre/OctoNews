@@ -1,16 +1,13 @@
 import "./CommentsBanner.css";
 import { Comment } from "./Comment.js";
 import { useEffect, useState } from "react";
-import { CreateComment } from "./CreateComment";
-import { createNewCommentAPI } from "../utils/api";
 
 export const CommentsBanner = ({
   allComments,
   setComments,
   deleteSomeCommentAndRefreshIt,
+  addAdditionalComment,
 }) => {
-  /* console.log(comments); */
-
   const [isPolemicSelected, setIsPolemicSelected] = useState(false);
 
   const parentComment = allComments
@@ -34,29 +31,23 @@ export const CommentsBanner = ({
       );
   };
 
-  /* Work in progress to show comments with more replies first */
+  const commentList = allComments.reduce((acc, curr) => {
+    if (curr.id_reply_message) {
+      const parent = acc.find((c) => c.id === curr.id_reply_message);
 
-  /*  if (isPolemicSelected) {
-    const parentComment = allComments
-      .filter((comment) => comment.id_reply_message !== null)
-      .sort((a, b) => b.id_reply_message - a.id_reply_message);
+      if (parent) {
+        parent.children.push(curr);
+      }
+    } else {
+      acc.push({ ...curr, children: [] });
+    }
 
-    const getRepliesComments = (commentId) => {
-      return allComments
-        .filter(
-          (commentsFromBackend) =>
-            commentsFromBackend.id_reply_message === commentId
-        )
-        .sort(
-          (a, b) =>
-            new Date(a.creation_date).getTime() -
-            new Date(b.creation_date).getTime()
-        );
-    };
-  } else {
-  } */
+    return acc;
+  }, []);
 
-  /* This will add comments. Unfinished. */
+  const comments = isPolemicSelected
+    ? commentList.sort((a, b) => b.children.length - a.children.length)
+    : commentList;
 
   return (
     <section className="news-page-sectionOfCommentsBanner">
@@ -65,25 +56,24 @@ export const CommentsBanner = ({
         <select
           className="news-page-buttonOrInputWithBorderRadius"
           defaultValue={"New"}
+          onChange={(e) => setIsPolemicSelected(e.target.value === "1")}
         >
-          <option onSelect={() => setIsPolemicSelected(false)}>New</option>
-          <option onSelect={() => setIsPolemicSelected(true)}>
-            Controversial
-          </option>
+          <option value="0">New</option>
+          <option value="1">Controversial</option>
         </select>
       </div>
       <ul>
-        {parentComment.map((parentComment) => {
+        {comments.map((parentComment) => {
           return (
             <li key={parentComment.id} className="news-page-comment">
               <Comment
                 parentComment={parentComment}
+                parentCommentID={parentComment.id}
                 replies={getRepliesComments(parentComment.id)}
                 userId={1}
                 deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
-                /* isSelected={isSelected} */
+                addAdditionalComment={addAdditionalComment}
               ></Comment>
-              {/*  <CreateComment submitLabel="Reply" handleSubmit={addComment} /> */}
             </li>
           );
         })}

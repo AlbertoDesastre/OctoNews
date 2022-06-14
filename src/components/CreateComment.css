@@ -4,6 +4,8 @@ form.news-page-formToSubmitAComment {
   grid-template-rows: auto 1fr;
   align-items: center;
   column-gap: 10px;
+  padding: 0.3rem;
+  border-radius: 5px;
   background-color: white;
 }
 
@@ -26,7 +28,7 @@ form.news-page-formToSubmitAComment > button {
   justify-self: end;
   margin-right: 0.2rem;
   font-size: 0.8rem;
-  width: 25%;
+  min-width: 30%;
 }
 
 form.news-page-formToSubmitAComment > button:enabled {

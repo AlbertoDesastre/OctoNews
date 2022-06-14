@@ -6,8 +6,8 @@ import "./CreateComment.css";
 
 export const CreateComment = ({
   submitLabel,
-  addAdditionaComment /* , handleSubmit */,
-  id_reply_message,
+  addAdditionalComment,
+  parentCommentID,
   idName,
 }) => {
   /* submitLabel es para que en el boton ponga lo que pone submitLabel, como reply or edit */
@@ -26,21 +26,20 @@ export const CreateComment = ({
     const { id } = idFromParamsThatComesAsObject;
     const url = `${process.env.REACT_APP_BACKEND}/news/${id}/comment`;
 
-    /* Esto del submit con reply no funciona, me dice que id user no es válido */
     if (submitLabel === "Reply") {
       try {
         setSendingComment(true);
+
+        const thisDate = new Date().toUTCString();
         const data = {
           comment: textValue,
-          id_user: user.id,
-          id_reply_message: id_reply_message,
-          creation_date: new Date(),
+          id_reply_message: Number(parentCommentID),
+          creation_date: thisDate,
         };
 
         const dataStringified = JSON.stringify(data);
-
         const newComment = await postJson(url, dataStringified, token);
-        addAdditionaComment(newComment);
+        addAdditionalComment(newComment);
 
         setTextValue("");
       } catch (error) {
@@ -54,8 +53,10 @@ export const CreateComment = ({
         setSendingComment(true);
 
         const data = new FormData(e.target);
+
         const newComment = await postFormData(url, data, token);
-        addAdditionaComment(newComment);
+
+        addAdditionalComment(newComment);
 
         setTextValue("");
       } catch (error) {

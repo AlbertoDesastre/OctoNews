@@ -21,15 +21,24 @@ export const useGetRemoteData = (url) => {
     getRemoteData(url);
   }, [url]);
 
-  /* Por algún motivo los comentarios no se renderizan automáticamente */
   const addAdditionalValue = (someValue) => {
-    setValue([someValue, ...value]);
+    console.log(value);
+    console.log("hook", someValue);
+    setValue({
+      ...value,
+      result: [...value.result, someValue],
+    });
   };
 
   const deleteSomeValueAndRefreshIt = (idOfSomethingBeingDeleted) => {
-    setValue(
-      value.filter((someValue) => someValue.id !== idOfSomethingBeingDeleted)
-    );
+    /* console.log(idOfSomethingBeingDeleted);
+    console.log(value); */
+    setValue({
+      ...value,
+      result: value.result.filter(
+        (someValue) => someValue.id !== idOfSomethingBeingDeleted
+      ),
+    });
   };
 
   return [

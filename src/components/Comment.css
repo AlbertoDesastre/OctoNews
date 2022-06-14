@@ -3,11 +3,21 @@ div.news-page-divCommentsBanner {
   border-bottom: 2px solid darkblue;
 }
 
+.news-page-comment-reply {
+  border-bottom: 2px solid rgb(129, 129, 129);
+}
+
 .news-page-comment {
   background-color: whitesmoke;
   display: grid;
   grid-template-rows: 1fr auto 0.5fr;
   gap: 0.3rem;
+}
+
+.news-page-comment,
+.news-page-comment-reply {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .news-page-articleWithUserInformation {
@@ -21,6 +31,10 @@ div.news-page-divCommentsBanner {
   align-self: end;
 }
 
+li.news-page-creation-date-comment {
+  font-size: 0.6rem;
+}
+
 img.news-page {
   align-self: center;
   justify-self: center;
@@ -32,12 +46,6 @@ img.news-page {
   margin-left: 0.5rem;
 }
 
-/* Convertir footer a grid. 
-Dejar una celda para see replies y otra para 
-responder y compartir.
-En la celda de responder y compartir
-hacer un flex, con flex wrap y space between */
-
 footer.news-page-footerOfComment {
   display: flex;
   justify-content: flex-end;
@@ -48,7 +56,7 @@ footer.news-page-footerOfComment {
 button.news-page-delete,
 button.news-page-edit {
   border-style: none;
-  background-color: whitesmoke;
+  background-color: inherit;
   font-size: 0.8rem;
   color: darkred;
   cursor: pointer;
@@ -60,12 +68,22 @@ button.news-page-inside-new-delete {
   background-color: white;
 }
 
-/* Pendiente de hacer que los botones se 
-pongan uno encima de otro para que se haga responsive.
-Pendiente de poner see replies a la izquierda */
+button.news-page-button-reply,
+button.replies-button {
+  margin-top: 0.2rem;
+}
+
+button.news-page-button-reply {
+  color: white;
+  background-color: rgb(48, 0, 161);
+  border-radius: 25px;
+  height: 24px;
+  width: 5rem;
+  margin-bottom: 0.1rem;
+}
 
 button.replies-button {
-  border: 2px solid white;
+  height: 24px;
   width: 5rem;
   border-radius: 25px;
   background-color: darkred;
@@ -75,10 +93,11 @@ button.replies-button {
 /* CSS of Comment reply */
 
 div.news-page-reply {
-  padding-left: 1rem;
+  padding-left: 0.5rem;
 }
 
 div.news-page-comment-reply {
   margin-bottom: 0.1rem;
   border-left: 1px solid black;
+  background-color: rgb(219, 219, 219);
 }
