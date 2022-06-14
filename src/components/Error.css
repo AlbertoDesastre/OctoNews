@@ -25,3 +25,7 @@
   margin-top: 1rem;
   margin-left: 0;
 }
+.userauth.error {
+  color: red;
+  font-size: 0.8rem;
+}

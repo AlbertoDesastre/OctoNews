@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { Error } from "../components/Error";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { registerUserService } from "../utils/api";
@@ -26,7 +27,7 @@ export const UserCreate = () => {
 
     try {
       await registerUserService({ email, name: username, password: pass1 });
-      
+
       setRegistrationFinished(true);
     } catch (error) {
       setError(error.message);
@@ -47,6 +48,7 @@ export const UserCreate = () => {
                 <label htmlFor="username">User Name</label>
                 <input
                   type="name"
+                  value={username}
                   id="username"
                   name="username"
                   required
@@ -59,6 +61,7 @@ export const UserCreate = () => {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
+                  value={email}
                   id="email"
                   name="email"
                   required
@@ -70,6 +73,7 @@ export const UserCreate = () => {
                 <label htmlFor="pass1">Password</label>
                 <input
                   type="password"
+                  value={pass1}
                   id="pass1"
                   name="pass1"
                   required
@@ -81,6 +85,7 @@ export const UserCreate = () => {
                 <label htmlFor="pass2">Verify Password</label>
                 <input
                   type="password"
+                  value={pass2}
                   id="pass2"
                   name="pass2"
                   required
@@ -94,7 +99,9 @@ export const UserCreate = () => {
               </label>
 
               <button>Register</button>
-              {error ? <p>{error}</p> : null}
+              {error ? (
+                <Error className="userauth error" error={error} />
+              ) : null}
             </form>
           </>
         ) : (
