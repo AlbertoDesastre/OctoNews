@@ -4,6 +4,12 @@ section.news-page-sectionOfCommentsBanner {
   background-color: white;
 }
 
+#comment {
+  height: 98%;
+  width: 99%;
+  box-sizing: border-box;
+}
+
 .news-page-buttonOrInputWithBorderRadius {
   border-radius: 10px;
   text-align: center;

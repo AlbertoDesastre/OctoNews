@@ -3,7 +3,7 @@ import { Error } from "./Error";
 import { capitalize } from "../utils/capitalizeString";
 import "./FormNews.css";
 import { AuthContext } from "../context/AuthContext";
-import { postFormData, put } from "../utils/api";
+import { postFormData, putFormData } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export const FormNews = ({
@@ -41,20 +41,20 @@ export const FormNews = ({
   }
 
   useEffect(() => {
-    setTitleInput(newsData && newsData.title);
-    setTextInput(newsData && newsData.news_text);
-    setImageNews(
-      newsData &&
+    if (newsData) {
+      setTitleInput(newsData.title);
+      setTextInput(newsData.news_text);
+      setImageNews(
         newsData.image &&
-        `${process.env.REACT_APP_BACKEND}/uploads/news/${newsData.image}`
-    );
+          `${process.env.REACT_APP_BACKEND}/uploads/news/${newsData.image}`
+      );
+    }
   }, [newsData]);
 
   const handleOnSubmitPost = async (e) => {
     e.preventDefault();
-    setError("");
+    setError(null);
     const news = new FormData(e.target);
-    news.append("title", titleInput);
     news.append("introduction", textInput.slice(0, 50) + "...");
     if (imageUpload) news.append("image", imageUpload);
 
@@ -78,7 +78,7 @@ export const FormNews = ({
     if (imageUpload) newsEdited.append("image", imageUpload);
 
     try {
-      await put(
+      await putFormData(
         `${process.env.REACT_APP_BACKEND}/news/${newsData.id}`,
         newsEdited,
         token
@@ -125,6 +125,8 @@ export const FormNews = ({
         <>
           <fieldset className="submit-title">
             <input
+              id="title"
+              name="title"
               type="text"
               value={titleInput}
               placeholder="Title"

@@ -4,17 +4,21 @@ import { useEffect, useState } from "react";
 import { CreateComment } from "./CreateComment";
 import { createNewCommentAPI } from "../utils/api";
 
-export const CommentsBanner = ({ allComments, setComments }) => {
+export const CommentsBanner = ({
+  allComments,
+  setComments,
+  deleteSomeCommentAndRefreshIt,
+}) => {
   /* console.log(comments); */
 
-  const [isSelected, setIsSelected] = useState(true);
+  const [isPolemicSelected, setIsPolemicSelected] = useState(false);
 
   const parentComment = allComments
     .filter((comment) => comment.id_reply_message === null)
     .sort(
       (a, b) =>
-        new Date(a.creation_date).getTime() -
-        new Date(b.creation_date).getTime()
+        new Date(b.creation_date).getTime() -
+        new Date(a.creation_date).getTime()
     );
 
   const getRepliesComments = (commentId) => {
@@ -30,11 +34,29 @@ export const CommentsBanner = ({ allComments, setComments }) => {
       );
   };
 
+  /* Work in progress to show comments with more replies first */
+
+  /*  if (isPolemicSelected) {
+    const parentComment = allComments
+      .filter((comment) => comment.id_reply_message !== null)
+      .sort((a, b) => b.id_reply_message - a.id_reply_message);
+
+    const getRepliesComments = (commentId) => {
+      return allComments
+        .filter(
+          (commentsFromBackend) =>
+            commentsFromBackend.id_reply_message === commentId
+        )
+        .sort(
+          (a, b) =>
+            new Date(a.creation_date).getTime() -
+            new Date(b.creation_date).getTime()
+        );
+    };
+  } else {
+  } */
+
   /* This will add comments. Unfinished. */
-  const addComment = (text, parentId) => {
-    console.log("addComment", text, parentId);
-    createNewCommentAPI(text, parentId);
-  };
 
   return (
     <section className="news-page-sectionOfCommentsBanner">
@@ -44,8 +66,10 @@ export const CommentsBanner = ({ allComments, setComments }) => {
           className="news-page-buttonOrInputWithBorderRadius"
           defaultValue={"New"}
         >
-          <option>New</option>
-          <option>Controversial</option>
+          <option onSelect={() => setIsPolemicSelected(false)}>New</option>
+          <option onSelect={() => setIsPolemicSelected(true)}>
+            Controversial
+          </option>
         </select>
       </div>
       <ul>
@@ -56,7 +80,8 @@ export const CommentsBanner = ({ allComments, setComments }) => {
                 parentComment={parentComment}
                 replies={getRepliesComments(parentComment.id)}
                 userId={1}
-                isSelected={isSelected}
+                deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
+                /* isSelected={isSelected} */
               ></Comment>
               {/*  <CreateComment submitLabel="Reply" handleSubmit={addComment} /> */}
             </li>

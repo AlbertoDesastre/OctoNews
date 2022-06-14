@@ -5,13 +5,25 @@ import { CreateComment } from "../components/CreateComment";
 import { CommentsBanner } from "../components/CommentsBanner";
 import { useParams } from "react-router-dom";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export const News = () => {
   const idFromParamsThatComesAsObject = useParams();
   const { id } = idFromParamsThatComesAsObject;
+  const { token } = useContext(AuthContext);
 
-  const [value, setValue, isLoading, error] = useGetRemoteData(
-    `${process.env.REACT_APP_BACKEND}/news/${id}`
+  const [
+    news,
+    setNews,
+    isLoadingNews,
+    errorOnNews,
+    ,
+    deleteSomeNewAndRefreshIt,
+  ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
+
+  const [category, , isLoadingCategory, errorOnCategory] = useGetRemoteData(
+    `${process.env.REACT_APP_BACKEND}/categories/${news.id_category}`
   );
 
   const [
@@ -19,37 +31,45 @@ export const News = () => {
     setCommentsArray,
     isLoadingForComments,
     errorForComments,
+    addAdditionalValue,
+    deleteSomeValueAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
   /* Meter gestión de errores */
-
-  /* console.log(commentsArray); */
-
   return (
     /* Este div me hace falta para poder separar las 
     secciones */
     <main>
       <div className="news-page">
         <Header />
-        <NewsCards
-          newsId={value.id}
-          username={value.id_user}
-          date={value.creation_date}
-          title={value.title}
-          /* BORRAR ESTO DE TRU AL TERMINAR Y PONER value.image */
-          image={value.image}
-          description={value.introduction_text}
-          text={value.news_text}
-          votes={value.votes}
-          category={value.id_category}
-          className="news-page"
-        />
+        {!isLoadingNews && news.id && (
+          <NewsCards
+            newsId={news.id}
+            username={news.id_user}
+            date={news.creation_date}
+            title={news.title}
+            image={news.image}
+            comments={news.comments}
+            description={news.introduction_text}
+            text={news.news_text}
+            votes={news.votes}
+            category={category}
+            className="news-page"
+            deleteSomeNewAndRefreshIt={deleteSomeNewAndRefreshIt}
+          />
+        )}
         {/* Cambiar esto por un filter de id categoria e id noticia. */}
-        <LoginOrRegisterBox />
-        <CreateComment submitLabel="Comment" />
+
+        {token === null ? <LoginOrRegisterBox /> : null}
+        <CreateComment
+          submitLabel="Comment"
+          addAdditionalComment={addAdditionalValue}
+        />
+
         {commentsArray.result ? (
           <CommentsBanner
             allComments={commentsArray.result}
             setComments={setCommentsArray}
+            deleteSomeCommentAndRefreshIt={deleteSomeValueAndRefreshIt}
           />
         ) : null}
       </div>

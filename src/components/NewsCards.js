@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
-import { voteNewsService } from "../utils/api";
+import { deleteSomeSortOfPostWithoutBody, voteNewsService } from "../utils/api";
 import { capitalize } from "../utils/capitalizeString";
 import { copyNewsLinkToClipBoard } from "../utils/copyNewsLinkToClipBoard";
 
@@ -20,11 +20,40 @@ export const NewsCards = ({
   comments,
   className,
   category,
+  deleteSomeNewAndRefreshIt,
 }) => {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
+  const idFromParamsThatComesAsObject = useParams();
+  const { id } = idFromParamsThatComesAsObject;
 
   const [isDropdownShare, setIsDropdownShare] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleOnDelete = async (e) => {
+    /* Falta meter la parte de la función que refresca automáticamente cuando se elimina.
+   Hacer un filtro para setear nuevos comments */
+
+    if (window.confirm("Are you sure you want to delete this new?")) {
+      try {
+        await deleteSomeSortOfPostWithoutBody(
+          `${process.env.REACT_APP_BACKEND}/news/${id}`,
+          token
+        );
+        deleteSomeNewAndRefreshIt(newsId);
+
+        /* La página tampoco redirige */
+        navigate("/");
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
+
+  /* No funciona */
+  const handleOnEdit = () => {
+    navigate(`/edit/${newsId}`);
+  };
 
   const handleDropdown = (e) => {
     setIsDropdownShare(!isDropdownShare);
@@ -55,7 +84,7 @@ export const NewsCards = ({
       </p>
       {category && (
         <p
-          className="category-news"
+          className={className ? className + "-category" : "category-news"}
           style={{ border: `3px solid ${category.color}` }}
         >
           {capitalize(category.name)}
@@ -87,30 +116,48 @@ export const NewsCards = ({
         {className ? text : description}
       </p>
 
-      {/* Esto deberái renderizar el html solo si
-       tiene la clase news-page. No funciona. Revisar */}
       {className === "news-page" ? (
         <footer className="news-page news-page-footer">
           <ul className="news-page news-page-ul-for-buttons-edit-delete">
             <li className="news-page  news-page-button-li-of-footer">
-              <button className="news-page delete-new-button">
-                Eliminar noticia
-              </button>
+              {user && user.id === username ? (
+                <button
+                  className="news-page-edit news-page-button news-page-inside-new-delete"
+                  onClick={handleOnDelete}
+                >
+                  Delete new
+                </button>
+              ) : null}
             </li>
             <li className="news-page  news-page-button-li-of-footer">
-              <button className="news-page edit-new-button">
-                Editar noticia
-              </button>
+              {user && user.id === username ? (
+                <button
+                  className="news-page-edit news-page-button news-page-inside-new-edit"
+                  onClick={handleOnEdit}
+                >
+                  Edit new
+                </button>
+              ) : null}
             </li>
           </ul>
         </footer>
       ) : undefined}
+
       <div
         className={className ? "news-page" : "action-news"}
         id={className ? "action-from-news" : undefined}
       >
-        <button className="share" type="button" onClick={handleDropdown} />
-        <DropdownMenu isDropdown={isDropdownShare} />
+        <button
+          className={className ? className + " share" : "share"}
+          type="button"
+          onClick={handleDropdown}
+        />
+        <DropdownMenu
+          isDropdown={isDropdownShare}
+          idOfDropDown={
+            className === "news-page" ? "drop-down-on-news-page" : null
+          }
+        />
         <button className="comments" type="button">
           {comments}
         </button>
@@ -126,7 +173,7 @@ const LikeDislikeButtons = ({ votes, idNews }) => {
   const [votesQuantity, setVotesQuantity] = useState(Number(votes));
   const [error, setError] = useState();
   const { user, token } = useContext(AuthContext);
-  const [newsVotes, setNewsVotes] = useGetRemoteData(
+  const [newsVotes] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/news/${idNews}/votes`
   );
 
@@ -209,7 +256,7 @@ const LikeDislikeButtons = ({ votes, idNews }) => {
   );
 };
 
-const DropdownMenu = ({ isDropdown }) => {
+const DropdownMenu = ({ isDropdown, idOfDropDown }) => {
   return (
     <div
       className={
@@ -217,6 +264,7 @@ const DropdownMenu = ({ isDropdown }) => {
           ? "dropdown-content-newscard dropdown-newscard"
           : "dropdown-newscard"
       }
+      id={idOfDropDown}
     >
       <button>Link copied!</button>
     </div>

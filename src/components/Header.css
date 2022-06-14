@@ -54,6 +54,7 @@ button.settings:hover {
 button.settings > img {
   margin-top: 0.5rem;
   width: 45px;
+  height: 45px;
   border-radius: 20px;
 }
 
@@ -150,5 +151,8 @@ div.desktop-user {
   header.front-header > input {
     margin-left: 10rem;
     max-width: 700px;
+  }
+  header.front-header nav a.register-header {
+    padding-left: 0.5rem;
   }
 }

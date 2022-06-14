@@ -23,6 +23,7 @@ div.news-page-divCommentsBanner {
 
 img.news-page {
   align-self: center;
+  justify-self: center;
 }
 
 .news-page-comment > article,
@@ -44,13 +45,19 @@ footer.news-page-footerOfComment {
 }
 
 .news-page-footerOfComment > button,
-button.news-page-delete {
+button.news-page-delete,
+button.news-page-edit {
   border-style: none;
   background-color: whitesmoke;
   font-size: 0.8rem;
   color: darkred;
   cursor: pointer;
   margin-right: 0.5rem;
+}
+
+button.news-page-inside-new-edit,
+button.news-page-inside-new-delete {
+  background-color: white;
 }
 
 /* Pendiente de hacer que los botones se 
@@ -63,4 +70,15 @@ button.replies-button {
   border-radius: 25px;
   background-color: darkred;
   color: white;
+}
+
+/* CSS of Comment reply */
+
+div.news-page-reply {
+  padding-left: 1rem;
+}
+
+div.news-page-comment-reply {
+  margin-bottom: 0.1rem;
+  border-left: 1px solid black;
 }

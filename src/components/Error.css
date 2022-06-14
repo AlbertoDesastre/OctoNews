@@ -14,3 +14,14 @@
   font-size: 1.5rem;
   color: red;
 }
+.result.error {
+  width: 100%;
+  color: red;
+}
+.recover-page.error {
+  color: red;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-left: 0;
+}

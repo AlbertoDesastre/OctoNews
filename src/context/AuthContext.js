@@ -1,10 +1,12 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getMyData } from "../utils/api";
 
 export const AuthContext = createContext(null);
 
 export const AuthContextProviderComponent = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isLoadingUser, setIsLoadingUser] = useState(false);
 
@@ -35,6 +37,7 @@ export const AuthContextProviderComponent = ({ children }) => {
   const logout = () => {
     setToken("");
     setUser(null);
+    navigate("/");
   };
 
   return (

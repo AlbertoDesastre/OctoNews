@@ -44,7 +44,7 @@ export const postFormData = async (url, body, token) => {
   return json.data;
 };
 
-export const postJson = async (url, body, token) => {
+export const postJson = async (url, body, token = "") => {
   const response = await fetch(url, {
     method: "POST",
     headers: {
@@ -62,7 +62,7 @@ export const postJson = async (url, body, token) => {
   return json.data;
 };
 
-export const put = async (url, body, token) => {
+export const putFormData = async (url, body, token) => {
   const response = await fetch(url, {
     method: "PUT",
     headers: {
@@ -130,7 +130,6 @@ export const getMyData = async (token) => {
   return json.data;
 };
 
-
 export const voteNewsService = async ({ vote, token, idNews }) => {
   const response = await postJson(
     `${process.env.REACT_APP_BACKEND}/news/${idNews}/votes`,
@@ -141,16 +140,15 @@ export const voteNewsService = async ({ vote, token, idNews }) => {
   return response;
 };
 
-/* Esto está hardcoded ahora, cuando vaya por la parte del uso del contexto se cambiará */
-export const postJson = async (url, body, token) => {
+/* No entiendo la diferencia entre poner en el async los {} y no ponerlos */
+export const deleteSomeSortOfPostWithoutBody = async (url, token) => {
   const response = await fetch(url, {
-    method: "POST",
+    method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       Authorization: token,
     },
-    body: body,
   });
-
   const json = await response.json();
 
   if (!response.ok) {
@@ -160,3 +158,20 @@ export const postJson = async (url, body, token) => {
   return json.data;
 };
 
+export const deleteEveryCommentOfANew = async (url, token) => {
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.data);
+  }
+
+  console.log("Console que hay que borrar en api.", json.data);
+  return json.data;
+};

@@ -43,16 +43,19 @@ export const LoginPage = () => {
             />
           </fieldset>
 
-          <fieldset className="password">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </fieldset>
+            <fieldset>
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </fieldset>
+            <Link className="forgot-password" to="/recover-password">
+              forgot password?
+            </Link>
 
           <button type="submit" onClick={handleForm}>
             Login
