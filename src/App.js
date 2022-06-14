@@ -7,9 +7,9 @@ import { UserCreate } from "./pages/UserCreate";
 import { LoginPage } from "./pages/UserLogin";
 import { useEffect } from "react";
 import { UserValidation } from "./pages/UserValidation";
-import { Submit } from "./pages/Submit";
+import { SubmitNews } from "./pages/SubmitNews";
 import { Category } from "./pages/Category";
-import { Edit } from "./pages/Edit";
+import { EditNews } from "./pages/EditNews";
 import { UserSettings } from "./pages/UserSettings";
 import { NotFound } from "./pages/NotFound";
 import { RecoverPage } from "./pages/RecoverPage";
@@ -39,8 +39,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/news/:id" element={<News />} />
         <Route path="/category/:id" element={<Category />} />
-        <Route path="/submit" element={<Submit />} />
-        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/submit" element={<SubmitNews />} />
+        <Route path="/edit/:id" element={<EditNews />} />
         <Route path="/users/:id/settings" element={<UserSettings />} />
         <Route path="/users/validate/:code" element={<UserValidation />} />
         <Route path="/*" element={<NotFound />} />

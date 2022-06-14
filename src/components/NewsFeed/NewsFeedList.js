@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocationParams } from "../hooks/useLocationParams";
-import { sortNewsWithParams } from "../utils/sortNewsWithParams";
-import { Error } from "./Error";
-import { Loading } from "./Loading";
+import { useLocationParams } from "../../hooks/useLocationParams";
+import { sortNewsWithParams } from "../../utils/sortNewsWithParams";
+import { Error } from "../Error";
+import { Loading } from "../Loading";
 import { NewsCards } from "./NewsCards";
 import "./NewsFeedList.css";
 

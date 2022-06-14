@@ -5,9 +5,9 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { useLocationParams } from "../hooks/useLocationParams";
-import { convertSearchParamsToObject } from "../utils/ConvertSearchParamsToObject";
+import { AuthContext } from "../../context/AuthContext";
+import { useLocationParams } from "../../hooks/useLocationParams";
+import { convertSearchParamsToObject } from "../../utils/ConvertSearchParamsToObject";
 import "./FilterAndPostNews.css";
 
 export const FilterAndPostNews = ({ className }) => {

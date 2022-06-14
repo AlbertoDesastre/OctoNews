@@ -2,8 +2,8 @@ import "./Comment.css";
 import { format, sub, add, getDate } from "date-fns";
 import { CreateComment } from "./CreateComment";
 import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { deleteSomeSortOfPostWithoutBody } from "../utils/api";
+import { AuthContext } from "../../../context/AuthContext";
+import { deleteSomeSortOfPostWithoutBody } from "../../../utils/api";
 import { useParams } from "react-router-dom";
 
 export const Comment = ({

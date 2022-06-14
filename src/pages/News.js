@@ -1,8 +1,8 @@
 import { Header } from "../components/Header";
-import { NewsCards } from "../components/NewsCards";
-import { LoginOrRegisterBox } from "../components/LoginOrRegisterBox";
-import { CreateComment } from "../components/CreateComment";
-import { CommentsBanner } from "../components/CommentsBanner";
+import { NewsCards } from "../components/NewsFeed/NewsCards";
+import { LoginOrRegisterBox } from "../components/NewsFeed/SingleNews/LoginOrRegisterBox";
+import { CreateComment } from "../components/NewsFeed/SingleNews/CreateComment";
+import { CommentsBanner } from "../components/NewsFeed/SingleNews/CommentsBanner";
 import { useParams } from "react-router-dom";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { useContext } from "react";

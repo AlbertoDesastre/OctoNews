@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { CategoryHeader } from "../components/CategoryHeader";
-import { FilterAndPostNews } from "../components/FilterAndPostNews";
+import { CategoryHeader } from "../components/NewsFeed/SingleCategory/CategoryHeader";
+import { FilterAndPostNews } from "../components/NewsFeed/FilterAndPostNews";
 import { Header } from "../components/Header";
-import { NewsFeedList } from "../components/NewsFeedList";
+import { NewsFeedList } from "../components/NewsFeed/NewsFeedList";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 
 export const Category = () => {

@@ -14,10 +14,6 @@ export const FormChangePassword = () => {
     e.preventDefault();
     setError(null);
     const passwordData = new FormData(e.target);
-
-    for (const user of passwordData) {
-      console.log(user);
-    }
     try {
       const response = await postFormData(
         `${process.env.REACT_APP_BACKEND}/users/${user.id}/password`,

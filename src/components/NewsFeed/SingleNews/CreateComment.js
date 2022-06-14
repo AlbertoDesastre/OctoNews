@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { postFormData, postJson } from "../utils/api";
+import { AuthContext } from "../../../context/AuthContext";
+import { postFormData, postJson } from "../../../utils/api";
 import "./CreateComment.css";
 
 export const CreateComment = ({

@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { useGetRemoteData } from "../hooks/useGetRemoteData";
-import { deleteSomeSortOfPostWithoutBody, voteNewsService } from "../utils/api";
-import { capitalize } from "../utils/capitalizeString";
-import { copyNewsLinkToClipBoard } from "../utils/copyNewsLinkToClipBoard";
+import { AuthContext } from "../../context/AuthContext";
+import { useGetRemoteData } from "../../hooks/useGetRemoteData";
+import {
+  deleteSomeSortOfPostWithoutBody,
+  voteNewsService,
+} from "../../utils/api";
+import { capitalize } from "../../utils/capitalizeString";
+import { copyNewsLinkToClipBoard } from "../../utils/copyNewsLinkToClipBoard";
 
 import "./NewsCards.css";
 

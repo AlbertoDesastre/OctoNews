@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { capitalize } from "../utils/capitalizeString";
+import { capitalize } from "../../utils/capitalizeString";
+import { Error } from "../Error";
+import { Loading } from "../Loading";
 import "./Carousel.css";
-import { Error } from "./Error";
-import { Loading } from "./Loading";
 
 export const CarouselList = ({
   className,

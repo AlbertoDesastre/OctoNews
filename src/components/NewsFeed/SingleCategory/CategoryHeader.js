@@ -1,7 +1,7 @@
-import { capitalize } from "../utils/capitalizeString";
+import { capitalize } from "../../../utils/capitalizeString";
 import "./CategoryHeader.css";
-import { Error } from "./Error";
-import { Loading } from "./Loading";
+import { Error } from "../../Error";
+import { Loading } from "../../Loading";
 
 export const CategoryHeader = ({
   category,
