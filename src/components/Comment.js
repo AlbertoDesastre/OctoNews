@@ -8,14 +8,29 @@ import { useParams } from "react-router-dom";
 
 export const Comment = ({
   parentComment,
+  parentCommentID = null,
   replies,
-  userId /* , isSelected */,
+  userId,
   deleteSomeCommentAndRefreshIt,
+  addAdditionalComment,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
+
+  /* const [isPoemicSelected, setIsPolemicSelected] = useState(false); */
+
   const [error, setError] = useState("");
   const { token, user } = useContext(AuthContext);
+
+  /* Setting the "parentCommentID" to null in props, in the lane 11 it's extremely important.
+  We only want one level of replied comments, we don't want the comments nested inside each other.
+  That's why our ROOT comment, the one that it's born with "id_reply_message=null" will
+  received his parentCommentID set to null by defect.
+  However, when a Reply Comment is beeing replied, this parentCommentID gets a value, and the value
+  we are giving to him it's the value of the Root Comment id. 
+  We can say that, in a Reply Comment that's beeing replied, the second reply it's actually getting borrowed his id_reply_message from 
+  the comment that it's now replying.*/
+  const parentId = parentCommentID ? parentCommentID : parentComment.id;
 
   const idFromParamsThatComesAsObject = useParams();
   const { id } = idFromParamsThatComesAsObject;
@@ -45,6 +60,8 @@ export const Comment = ({
     return formattedDate;
   };
 
+  /* console.log("DATE QUE ME LLEGA PA RENDERIZAR ", parentComment.creation_date); */
+
   return (
     <>
       <article className="news-page-articleWithUserInformation">
@@ -53,8 +70,10 @@ export const Comment = ({
           <li className="news-page-liOfUserData">
             <p>{parentComment.name}</p>
           </li>
-          <li className="news-page-liOfUserData">
-            <p>{getFormattedDate(parentComment.creation_date)}</p>
+          <li className="news-page-liOfUserData news-page-creation-date-comment">
+            {parentComment.creation_date ? (
+              <p>{getFormattedDate(parentComment.creation_date)}</p>
+            ) : null}
           </li>
         </ul>
         {user && user.id === parentComment.id_user ? (
@@ -62,7 +81,7 @@ export const Comment = ({
             className="news-page-delete news-page-button"
             onClick={handleOnDelete}
           >
-            Eliminar
+            Delete
           </button>
         ) : null}
       </article>
@@ -82,11 +101,10 @@ export const Comment = ({
 hacer que te de un aviso de que tienes que estar registrado para poder contestar,
 y que si le da que "si" a un alert lo redirija a la página de registro */}
         {user ? (
-          <button className="news-page-button" onClick={handleOnReply}>
-            Responder
+          <button className="news-page-button-reply" onClick={handleOnReply}>
+            Reply
           </button>
         ) : null}
-        <button className="news-page-button">Compartir</button>
       </footer>
       {error ? <p>{error.message}</p> : null}
 
@@ -94,15 +112,15 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
       {isClicked ? (
         <CreateComment
           submitLabel="Reply"
-          /* handleSubmit={createNewCommentAPI} */
           color="whitesmoke"
-          id_reply_message={parentComment.id}
+          addAdditionalComment={addAdditionalComment}
+          parentCommentID={parentId}
           idName="news-page-formToSubmitACommentInReplyMode"
         />
       ) : null}
+
       {/* If this comment gets any replays it will be rendered here, if replies doesn't
       exist, nothing will be rendered */}
-
       {replies.length > 0 && showReplies && (
         <div className="news-page-reply">
           {replies.map((reply) => {
@@ -111,9 +129,11 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
                 <Comment
                   key={reply.id}
                   parentComment={reply}
+                  parentCommentID={parentCommentID}
                   replies={[]}
                   userId={userId}
-                  /*  isSelected={isSelected} */
+                  addAdditionalComment={addAdditionalComment}
+                  deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
                 />
               </div>
             );

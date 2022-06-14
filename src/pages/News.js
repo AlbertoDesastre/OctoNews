@@ -22,6 +22,8 @@ export const News = () => {
     deleteSomeNewAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
+  /*  console.log(news); */
+
   const [category, , isLoadingCategory, errorOnCategory] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/categories/${news.id_category}`
   );
@@ -34,6 +36,9 @@ export const News = () => {
     addAdditionalValue,
     deleteSomeValueAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
+
+  console.log(news);
+
   /* Meter gestión de errores */
   return (
     /* Este div me hace falta para poder separar las 
@@ -58,18 +63,18 @@ export const News = () => {
           />
         )}
         {/* Cambiar esto por un filter de id categoria e id noticia. */}
-
         {token === null ? <LoginOrRegisterBox /> : null}
+
         <CreateComment
           submitLabel="Comment"
           addAdditionalComment={addAdditionalValue}
         />
-
         {commentsArray.result ? (
           <CommentsBanner
             allComments={commentsArray.result}
             setComments={setCommentsArray}
             deleteSomeCommentAndRefreshIt={deleteSomeValueAndRefreshIt}
+            addAdditionalComment={addAdditionalValue}
           />
         ) : null}
       </div>

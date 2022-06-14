@@ -2,6 +2,8 @@ section.news-page-sectionOfCommentsBanner {
   display: flex;
   flex-direction: column;
   background-color: white;
+  padding: 0.2rem;
+  border-radius: 5px;
 }
 
 #comment {
