@@ -48,7 +48,7 @@ const CarouselItems = ({ categoryName, categoryColor, categoryIcon }) => {
         {capitalize(categoryName)}
       </p>
       <img
-        src={`/categoryIcons/${categoryIcon}`}
+        src={`${process.env.REACT_APP_BACKEND}/uploads/categories/icons/${categoryIcon}`}
         alt={`category ${categoryName}`}
       />
     </article>

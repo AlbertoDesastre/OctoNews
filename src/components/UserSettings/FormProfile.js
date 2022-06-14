@@ -59,7 +59,10 @@ export const FormProfile = () => {
             ) : imageUpload ? (
               <img src={URL.createObjectURL(imageUpload)} alt="user-avatar" />
             ) : (
-              <img src={`/user-login-default-icon.svg`} alt="user-avatar" />
+              <img
+                src={`/svg-icons/user-login-default-icon.svg`}
+                alt="user-avatar"
+              />
             )}
           </figure>
           <label htmlFor="image-upload">Change avatar</label>

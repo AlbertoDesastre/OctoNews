@@ -75,7 +75,7 @@ export const Header = () => {
                   />
                 ) : (
                   <img
-                    src={`/user-login-default-icon.svg`}
+                    src={`/svg-icons/user-login-default-icon.svg`}
                     alt="user-settings"
                   />
                 )}
@@ -93,8 +93,8 @@ export const Header = () => {
                 <img
                   src={
                     isDropdownNavMenu
-                      ? "/users-arrow-down.svg"
-                      : "/users-arrow-left.svg"
+                      ? "/svg-icons/users-arrow-down.svg"
+                      : "/svg-icons/users-arrow-left.svg"
                   }
                   alt="user-settings"
                 />
@@ -144,7 +144,7 @@ const DesktopNavMenu = () => {
           ) : (
             <img
               className="desktop-user-img"
-              src={`/user-login-default-icon.svg`}
+              src={`/svg-icons/user-login-default-icon.svg`}
               alt="user-settings"
             />
           )}

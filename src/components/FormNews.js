@@ -23,7 +23,7 @@ export const FormNews = ({
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   let labelImageStyles = {
-    background: `url("http://localhost:3000/image-upload-icon.svg") 0px center / cover no-repeat `,
+    background: `url("http://localhost:3000/svg-icons/image-upload-icon.svg") 0px center / cover no-repeat `,
   };
 
   if (imageUpload) {
