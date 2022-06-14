@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { registerUserService } from "../utils/api";
+import "./userAuth.css";
 
 export const UserCreate = () => {
   const { token } = useContext(AuthContext);
@@ -37,11 +38,11 @@ export const UserCreate = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="auth">
         {!registrationFinished ? (
-          <section>
+          <>
             <h1>Register</h1>
-            <form onSubmit={handleForm}>
+            <form onSubmit={handleForm} className="auth">
               <fieldset>
                 <label htmlFor="username">User Name</label>
                 <input
@@ -64,7 +65,6 @@ export const UserCreate = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </fieldset>
-
               {/* password*/}
               <fieldset>
                 <label htmlFor="pass1">Password</label>
@@ -77,7 +77,6 @@ export const UserCreate = () => {
                   minLength="8"
                 />
               </fieldset>
-
               <fieldset>
                 <label htmlFor="pass2">Verify Password</label>
                 <input
@@ -89,11 +88,15 @@ export const UserCreate = () => {
                   minLength="8"
                 />
               </fieldset>
+              <label htmlFor="terms" className="check">
+                <input type="checkbox" required id="terms" />I have read and
+                accept the terms and conditions
+              </label>
 
               <button>Register</button>
               {error ? <p>{error}</p> : null}
             </form>
-          </section>
+          </>
         ) : (
           <p>Registration successful, check your email to continue</p>
         )}

@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { loginUserService } from "../utils/api";
-import { Navigate, Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import "./userAuth.css";
 
 export const LoginPage = () => {
   const { token, login } = useContext(AuthContext);
@@ -28,20 +29,19 @@ export const LoginPage = () => {
   return (
     <>
       <Header />
-      <main>
-        <section>
-          <h1>Login</h1>
-          <form>
-            <fieldset>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </fieldset>
+      <main className="auth">
+        <h1>Login</h1>
+        <form class="auth">
+          <fieldset className="email">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </fieldset>
 
             <fieldset>
               <label htmlFor="password">Password</label>
@@ -57,12 +57,14 @@ export const LoginPage = () => {
               forgot password?
             </Link>
 
-            <button type="submit" onClick={handleForm}>
-              Login
-            </button>
-            {error ? <p>{error}</p> : null}
-          </form>
-        </section>
+          <button type="submit" onClick={handleForm}>
+            Login
+          </button>
+          {error ? <p>{error}</p> : null}
+        </form>
+        <p>
+          Fist time on OctoNews? <Link to="/users/create"> Register </Link>
+        </p>
       </main>
     </>
   );

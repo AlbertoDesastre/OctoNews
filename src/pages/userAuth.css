@@ -1,0 +1,82 @@
+main.auth {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form.auth {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(237, 237, 237);
+  border-radius: 10px;
+  box-shadow: 0px 15px 16px 0px rgba(0, 0, 0, 0.298);
+  border: 3px solid rgb(0, 110, 255);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+input.auth .name {
+  border: 3px solid rgb(0, 110, 255);
+}
+
+form.auth fieldset {
+  border: 0;
+  margin-bottom: 1rem;
+}
+
+form.auth fieldset label {
+  display: block;
+}
+
+form.auth label.check {
+  font-size: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+form.auth label.check input {
+  display: block;
+}
+
+form.auth fieldset input {
+  width: 100%;
+}
+
+fieldset.submit-category {
+  align-self: flex-start;
+  margin: 1rem 0 0.5rem 0.5rem;
+  border-radius: 4px;
+}
+fieldset.submit-category select {
+  border-radius: 4px;
+}
+
+fieldset.submit-title {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 0.3rem;
+  border-radius: 4px;
+  max-width: 700px;
+}
+fieldset.submit-title input {
+  background-color: white;
+  height: auto;
+  overflow-wrap: anywhere;
+  padding: 0 0.4rem;
+  border-radius: 4px;
+  border: none;
+}
+
+form.auth > button {
+  align-items: center;
+  margin-right: 2rem;
+  margin-top: 1rem;
+  width: 130px;
+  border-radius: 10px;
+  background-color: rgb(24, 0, 122);
+  border: 3px solid rgb(0, 110, 255);
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
