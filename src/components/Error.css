@@ -29,3 +29,21 @@
   color: red;
   font-size: 0.8rem;
 }
+
+.comments-error {
+  color: rgb(243, 0, 0);
+  background-color: rgb(34, 0, 41);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.single-news-error {
+  margin-top: 10px;
+  color: rgb(255, 0, 0);
+  background-color: rgb(24, 0, 29);
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.2rem;
+  font-size: 1.5rem;
+}

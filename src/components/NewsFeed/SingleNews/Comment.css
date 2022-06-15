@@ -40,6 +40,10 @@ img.news-page {
   justify-self: center;
 }
 
+article.news-page-articleWithUserInformation > img.news-page {
+  margin-right: 0.3rem;
+}
+
 .news-page-comment > article,
 .news-page-comment > p {
   font-size: 1rem;

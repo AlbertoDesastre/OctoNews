@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
-import { postFormData, postJson } from "../../../utils/api";
+import { Loading } from "../../Loading";
+import { Error } from "../../Error";
+import { postJson } from "../../../utils/api";
 import "./CreateComment.css";
 
 export const CreateComment = ({
@@ -9,6 +11,7 @@ export const CreateComment = ({
   addAdditionalComment,
   parentCommentID,
   idName,
+  avatar,
 }) => {
   /* submitLabel es para que en el boton ponga lo que pone submitLabel, como reply or edit */
   const { user, token } = useContext(AuthContext);
@@ -25,13 +28,14 @@ export const CreateComment = ({
 
     const { id } = idFromParamsThatComesAsObject;
     const url = `${process.env.REACT_APP_BACKEND}/news/${id}/comment`;
+    const thisDate = new Date().toUTCString();
 
     if (submitLabel === "Reply") {
       try {
         setSendingComment(true);
 
-        const thisDate = new Date().toUTCString();
         const data = {
+          name: user.name,
           comment: textValue,
           id_reply_message: Number(parentCommentID),
           creation_date: thisDate,
@@ -44,7 +48,6 @@ export const CreateComment = ({
         setTextValue("");
       } catch (error) {
         setError(error.message);
-        console.log(error);
       } finally {
         setSendingComment(false);
       }
@@ -52,10 +55,16 @@ export const CreateComment = ({
       try {
         setSendingComment(true);
 
-        const data = new FormData(e.target);
+        const data = {
+          name: user.name,
+          comment: textValue,
+          id_reply_message: Number(parentCommentID),
+          creation_date: thisDate,
+        };
 
-        const newComment = await postFormData(url, data, token);
+        const dataStringified = JSON.stringify(data);
 
+        const newComment = await postJson(url, dataStringified, token);
         addAdditionalComment(newComment);
 
         setTextValue("");
@@ -75,7 +84,12 @@ export const CreateComment = ({
         id={idName ? idName : null}
         onSubmit={handleOnSubmit}
       >
-        <img src="/octopus.png" alt="Avatar user" className="news-page"></img>
+        <img
+          src={avatar ? avatar : "/svg-icons/user-login-default-icon.svg"}
+          alt="Avatar user"
+          className="news-page"
+        ></img>
+
         <label htmlFor="leaveACommentInput">
           <textarea
             value={textValue}
@@ -86,11 +100,13 @@ export const CreateComment = ({
             name="comment"
           ></textarea>
         </label>
+
         <button type="submit" disabled={isThereAnyText}>
           {submitLabel}
         </button>
       </form>
-      {sendingComment ? <p>Sending comment</p> : null}
+
+      {sendingComment ? <Loading className={"create-comment-loading"} /> : null}
       {error ? <p>{error.message}</p> : null}
     </>
   );

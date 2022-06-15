@@ -22,8 +22,6 @@ export const useGetRemoteData = (url) => {
   }, [url]);
 
   const addAdditionalValue = (someValue) => {
-    console.log(value);
-    console.log("hook", someValue);
     setValue({
       ...value,
       result: [...value.result, someValue],
@@ -31,8 +29,6 @@ export const useGetRemoteData = (url) => {
   };
 
   const deleteSomeValueAndRefreshIt = (idOfSomethingBeingDeleted) => {
-    /* console.log(idOfSomethingBeingDeleted);
-    console.log(value); */
     setValue({
       ...value,
       result: value.result.filter(

@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Error } from "../components/Error";
+import { Loading } from "../components/Loading";
 
 export const News = () => {
   const idFromParamsThatComesAsObject = useParams();
@@ -22,8 +24,6 @@ export const News = () => {
     deleteSomeNewsAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
-  /*  console.log(news); */
-
   const [category, , isLoadingCategory, errorOnCategory] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/categories/${news.id_category}`
   );
@@ -37,19 +37,23 @@ export const News = () => {
     deleteSomeValueAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
 
-  console.log(news);
-
-  /* Meter gestión de errores */
   return (
-    /* Este div me hace falta para poder separar las 
-    secciones */
     <main>
       <div className="news-page">
         <Header />
+        {errorOnNews ? (
+          <Error className={"single-news-error"} error={errorOnNews} />
+        ) : null}
+
+        {isLoadingNews ? (
+          <Loading className={"create-comment-loading"} />
+        ) : null}
+
         {!isLoadingNews && news.id && (
           <NewsCards
             newsId={news.id}
-            username={news.id_user}
+            username={news.name}
+            usernameId={news.id_user}
             date={news.creation_date}
             title={news.title}
             image={news.image}
@@ -62,13 +66,25 @@ export const News = () => {
             deleteSomeNewAndRefreshIt={deleteSomeNewsAndRefreshIt}
           />
         )}
-        {/* Cambiar esto por un filter de id categoria e id noticia. */}
-        {token === null ? <LoginOrRegisterBox /> : null}
 
-        <CreateComment
-          submitLabel="Comment"
-          addAdditionalComment={addAdditionalValue}
-        />
+        {!token ? <LoginOrRegisterBox /> : null}
+
+        {token ? (
+          <CreateComment
+            submitLabel="Comment"
+            addAdditionalComment={addAdditionalValue}
+            avatar={news.avatar}
+          />
+        ) : null}
+
+        {errorForComments ? (
+          <Error className={"single-news-error"} error={errorForComments} />
+        ) : null}
+
+        {isLoadingForComments ? (
+          <Loading className={"create-comment-loading"} />
+        ) : null}
+
         {commentsArray.result ? (
           <CommentsBanner
             allComments={commentsArray.result}

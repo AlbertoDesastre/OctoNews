@@ -9,3 +9,17 @@
   margin: 0 auto;
   margin-top: 5rem;
 }
+
+.create-comment-loading {
+  height: 2rem;
+  width: 100%;
+  justify-self: center;
+}
+
+.news-page-loading {
+  margin-top: 10px;
+  height: 3rem;
+  width: 100%;
+  justify-self: center;
+  align-self: center;
+}

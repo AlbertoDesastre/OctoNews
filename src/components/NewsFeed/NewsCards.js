@@ -14,6 +14,7 @@ import "./NewsCards.css";
 export const NewsCards = ({
   newsId,
   username,
+  usernameId,
   date,
   title,
   description,
@@ -46,7 +47,7 @@ export const NewsCards = ({
         <DeleteEditNewsButtons
           newsId={newsId}
           deleteSomeNewsAndRefreshIt={deleteSomeNewsAndRefreshIt}
-          username={username}
+          usernameId={usernameId}
         />
       )}
       <FooterNewsCard
@@ -115,7 +116,7 @@ const NewsBody = ({
 const DeleteEditNewsButtons = ({
   newsId,
   deleteSomeNewsAndRefreshIt,
-  username,
+  usernameId,
 }) => {
   const { user, token } = useContext(AuthContext);
   const idFromParamsThatComesAsObject = useParams();
@@ -125,9 +126,6 @@ const DeleteEditNewsButtons = ({
   const [error, setError] = useState("");
 
   const handleOnDelete = async (e) => {
-    /* Falta meter la parte de la función que refresca automáticamente cuando se elimina.
-   Hacer un filtro para setear nuevos comments */
-
     if (window.confirm("Are you sure you want to delete this new?")) {
       try {
         await deleteSomeSortOfPostWithoutBody(
@@ -151,7 +149,7 @@ const DeleteEditNewsButtons = ({
       <ul className="news-page news-page-ul-for-buttons-edit-delete">
         <li className="news-page  news-page-button-li-of-deleteedit">
           {/* cambiar username por prop que tenga user id de la news */}
-          {user && user.id === username ? (
+          {user && user.id === usernameId ? (
             <button
               className="news-page-edit news-page-button news-page-inside-new-delete"
               onClick={handleOnDelete}
@@ -162,7 +160,7 @@ const DeleteEditNewsButtons = ({
         </li>
         <li className="news-page  news-page-button-li-of-deletedit">
           {/* cambiar username por prop que tenga user id de la news */}
-          {user && user.id === username ? (
+          {user && user.id === usernameId ? (
             <button
               className="news-page-edit news-page-button news-page-inside-new-edit"
               onClick={handleOnEdit}
