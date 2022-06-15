@@ -1,12 +1,12 @@
 import "./CommentsBanner.css";
 import { Comment } from "./Comment.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const CommentsBanner = ({
   allComments,
-  setComments,
   deleteSomeCommentAndRefreshIt,
   addAdditionalComment,
+  avatar,
 }) => {
   const [isPolemicSelected, setIsPolemicSelected] = useState(false);
 
@@ -73,7 +73,8 @@ export const CommentsBanner = ({
                 userId={1}
                 deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
                 addAdditionalComment={addAdditionalComment}
-              ></Comment>
+                avatar={avatar}
+              />
             </li>
           );
         })}

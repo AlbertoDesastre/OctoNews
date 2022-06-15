@@ -14,8 +14,6 @@ import { UserSettings } from "./pages/UserSettings";
 import { NotFound } from "./pages/NotFound";
 import { RecoverPage } from "./pages/RecoverPage";
 
-// UserCreate UserLogin
-
 function GoUpWhenChangeLocation() {
   const location = useLocation();
 

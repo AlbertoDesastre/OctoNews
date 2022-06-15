@@ -14,7 +14,7 @@ export const LoginOrRegisterBox = () => {
     <article className="news-page-formToLoginOrRegister">
       <h3>Login or register to leave a comment.</h3>
       {/* I use this div to be able to put one button of top of the other one */}
-      <div className="news-page">
+      <div className="news-page-login-or-register">
         <button
           className="news-page-buttonWithBorderRadius news-page-loginButton"
           onClick={handleClickThatRedirectsToLogin}

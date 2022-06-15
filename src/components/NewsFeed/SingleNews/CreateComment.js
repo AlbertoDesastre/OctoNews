@@ -13,10 +13,9 @@ export const CreateComment = ({
   idName,
   avatar,
 }) => {
-  /* submitLabel es para que en el boton ponga lo que pone submitLabel, como reply or edit */
   const { user, token } = useContext(AuthContext);
   const [textValue, setTextValue] = useState("");
-  /* Pendiente de usar esto para cargar animaciónes de enviando comentario, un <p> con error, etc... */
+
   const [error, setError] = useState("");
   const [sendingComment, setSendingComment] = useState(false);
   const isThereAnyText = textValue.length === 0;
@@ -85,7 +84,11 @@ export const CreateComment = ({
         onSubmit={handleOnSubmit}
       >
         <img
-          src={avatar ? avatar : "/svg-icons/user-login-default-icon.svg"}
+          src={
+            avatar
+              ? `${process.env.REACT_APP_BACKEND}/uploads/users/${avatar}`
+              : "/svg-icons/user-login-default-icon.svg"
+          }
           alt="Avatar user"
           className="news-page"
         ></img>

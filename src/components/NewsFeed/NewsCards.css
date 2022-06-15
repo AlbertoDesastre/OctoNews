@@ -67,7 +67,7 @@ p.author-news {
   font-size: 11px;
 }
 
-div.action-news {
+footer.action-news {
   position: relative;
   padding: 1rem 0;
   display: flex;
@@ -75,12 +75,12 @@ div.action-news {
   gap: 1.5rem;
 }
 
-div.action-news button:first-child {
+footer.action-news button:first-child {
   margin-right: auto;
   margin-left: 1rem;
 }
 
-div.action-news button:last-child {
+footer.action-news button:last-child {
   margin-right: 0.7rem;
 }
 
@@ -141,7 +141,7 @@ button.no-dislike:hover {
   position: absolute;
   left: 10px;
   top: 15px;
-  width: 88px;
+  width: 100px;
   background-color: white;
   border-radius: 20px;
 }
@@ -169,12 +169,10 @@ button.no-dislike:hover {
 /* Here goes the version of news-page CSS */
 
 article.news-page {
-  margin-top: 1px;
+  margin-top: 0.5rem;
   border-radius: 10px;
   box-shadow: 0px 5px 10px 0px rgba(97, 94, 94, 0.298);
   background-color: white;
-  display: flex;
-  flex-direction: column;
 }
 article.news-page > p.news-page-category {
   margin-top: 0.5rem;
@@ -188,6 +186,11 @@ article.news-page > p.news-page-category {
   align-self: flex-start;
 }
 
+article.news-page img.img-news {
+  width: 100px;
+  height: 100px;
+}
+
 #news-page-title {
   margin-left: 0.7rem;
   font-size: 31px;
@@ -198,10 +201,13 @@ article.news-page > p.news-page-category {
 }
 
 #news-page-text {
+  margin-top: 0.5rem;
   margin-left: 0.7rem;
   font-size: 15px;
   line-height: 20px;
-  margin-right: 1rem;
+  margin-right: 0.7rem;
+  padding-right: 10.9rem;
+  margin-bottom: 0.7rem;
 }
 
 .news-page-ul-for-buttons-edit-delete {
@@ -222,9 +228,11 @@ article.news-page > p.news-page-category {
 }
 
 #action-from-news {
+  width: 100%;
   flex-direction: row;
   position: relative;
   padding: 1rem 0;
+  padding-right: 4rem;
   display: flex;
   justify-content: flex-end;
   gap: 1.5rem;
@@ -241,12 +249,40 @@ button.news-page.share {
 }
 
 /* DESKTOP */
+@media (min-width: 600px) {
+  article.news-page img.img-news {
+    width: 150px;
+    height: 150px;
+  }
+}
 
 @media (min-width: 1000px) {
+  article.news-page img.img-news {
+    width: 170px;
+    height: 170px;
+    margin-right: 0.5rem;
+  }
   img.img-news {
     margin-right: 5rem;
   }
-  div.action-news button:last-child {
+  footer.action-news button:last-child {
     margin-right: 2.5rem;
+  }
+
+  .dropdown-newscard {
+    width: 120px;
+  }
+
+  .dropdown-content-newscard {
+    width: 120px;
+  }
+
+  .dropdown-newscard button:first-child {
+    width: 120px;
+    text-align: left;
+    padding-left: 0.5rem;
+  }
+  #drop-down-on-news-page.dropdown-newscard button {
+    padding-left: 1.5rem;
   }
 }

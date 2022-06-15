@@ -7,7 +7,6 @@ export const UserValidation = () => {
   const [validationOK, setValidationOK] = useState(false);
   const [error, setError] = useState("");
 
-  //esto solo vale para el modo desarrollo (Strict mode)
   const mounted = useRef(false);
 
   useEffect(() => {

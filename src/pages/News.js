@@ -50,24 +50,25 @@ export const News = () => {
         ) : null}
 
         {!isLoadingNews && news.id && (
-          <NewsCards
-            newsId={news.id}
-            username={news.name}
-            usernameId={news.id_user}
-            date={news.creation_date}
-            title={news.title}
-            image={news.image}
-            comments={news.comments}
-            description={news.introduction_text}
-            text={news.news_text}
-            votes={news.votes}
-            category={category}
-            className="news-page"
-            deleteSomeNewAndRefreshIt={deleteSomeNewsAndRefreshIt}
-          />
+          <>
+            <NewsCards
+              newsId={news.id}
+              username={news.name}
+              usernameId={news.id_user}
+              date={news.creation_date}
+              title={news.title}
+              image={news.image}
+              comments={news.comments}
+              description={news.introduction_text}
+              text={news.news_text}
+              votes={news.votes}
+              category={category}
+              className="news-page"
+              deleteSomeNewAndRefreshIt={deleteSomeNewsAndRefreshIt}
+            />
+            {!token ? <LoginOrRegisterBox /> : null}
+          </>
         )}
-
-        {!token ? <LoginOrRegisterBox /> : null}
 
         {token ? (
           <CreateComment
@@ -91,6 +92,7 @@ export const News = () => {
             setComments={setCommentsArray}
             deleteSomeCommentAndRefreshIt={deleteSomeValueAndRefreshIt}
             addAdditionalComment={addAdditionalValue}
+            avatar={news.avatar}
           />
         ) : null}
       </div>
