@@ -1,6 +1,6 @@
 import "./Loading.css";
 
-export const Loading = (className) => {
+export const Loading = ({ className }) => {
   return (
     <img
       className={className}

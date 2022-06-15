@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import "./LoginOrRegisterBox.css";
 
 export const LoginOrRegisterBox = () => {
-  const handleClickThatRedirectsToAModal = (e) => {
-    alert("Comprobando que funciona todo");
-  };
+  const navigate = useNavigate();
 
+  const handleClickThatRedirectsToLogin = () => {
+    navigate("/login");
+  };
+  const handleClickThatRedirectsToRegister = () => {
+    navigate("/register");
+  };
   return (
     <article className="news-page-formToLoginOrRegister">
       <h3>Login or register to leave a comment.</h3>
@@ -12,13 +17,13 @@ export const LoginOrRegisterBox = () => {
       <div className="news-page">
         <button
           className="news-page-buttonWithBorderRadius news-page-loginButton"
-          onClick={handleClickThatRedirectsToAModal}
+          onClick={handleClickThatRedirectsToLogin}
         >
           Login
         </button>
         <button
           className="news-page-buttonWithBorderRadius news-page-registerButton"
-          onClick={handleClickThatRedirectsToAModal}
+          onClick={handleClickThatRedirectsToRegister}
         >
           Register
         </button>

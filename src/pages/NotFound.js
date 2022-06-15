@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import "./NotFound.css";
 
@@ -21,7 +22,7 @@ export const NotFound = () => {
             </li>
             <li className="li-not-found">
               <p className="go-back-home">
-                Would you like to go back <a href="/">home?</a>
+                Would you like to go back <Link to={`/`}>home?</Link>
               </p>
             </li>
           </ul>

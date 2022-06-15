@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { deleteSomeSortOfPostWithoutBody } from "../../../utils/api";
 import { useParams } from "react-router-dom";
+import { Error } from "../../Error";
 
 export const Comment = ({
   parentComment,
@@ -13,6 +14,7 @@ export const Comment = ({
   userId,
   deleteSomeCommentAndRefreshIt,
   addAdditionalComment,
+  avatar,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -45,6 +47,7 @@ export const Comment = ({
       );
       deleteSomeCommentAndRefreshIt(parentComment.id);
     } catch (error) {
+      error.id_of_error_comment = parentComment.id;
       setError(error.message);
     }
   };
@@ -60,12 +63,14 @@ export const Comment = ({
     return formattedDate;
   };
 
-  /* console.log("DATE QUE ME LLEGA PA RENDERIZAR ", parentComment.creation_date); */
-
   return (
     <>
       <article className="news-page-articleWithUserInformation">
-        <img src="/octopus.png" alt="Avatar user" className="news-page"></img>
+        <img
+          src={avatar ? avatar : "/svg-icons/user-login-default-icon.svg"}
+          alt="Avatar user"
+          className="news-page"
+        ></img>
         <ul className="news-page-userData">
           <li className="news-page-liOfUserData">
             <p>{parentComment.name}</p>
@@ -106,7 +111,10 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
           </button>
         ) : null}
       </footer>
-      {error ? <p>{error.message}</p> : null}
+
+      {error && parentComment.id === error.id_of_error_comment ? (
+        <Error className={"comments-error"} error={error} />
+      ) : null}
 
       {/* If clicked in reply CreateComment renders the form to create a component  */}
       {isClicked ? (
@@ -123,9 +131,12 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
       exist, nothing will be rendered */}
       {replies.length > 0 && showReplies && (
         <div className="news-page-reply">
-          {replies.map((reply) => {
+          {replies.map((reply, index) => {
             return (
-              <div className="news-page-comment news-page-comment-reply">
+              <div
+                key={index}
+                className="news-page-comment news-page-comment-reply"
+              >
                 <Comment
                   key={reply.id}
                   parentComment={reply}
@@ -134,6 +145,8 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
                   userId={userId}
                   addAdditionalComment={addAdditionalComment}
                   deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
+                  avatar={avatar}
+                  className="news-page-comment news-page-comment-reply"
                 />
               </div>
             );
