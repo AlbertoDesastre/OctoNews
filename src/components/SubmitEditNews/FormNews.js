@@ -30,7 +30,7 @@ export const FormNews = ({
     labelImageStyles = {
       background: `url(${URL.createObjectURL(
         imageUpload
-      )}) 0px center / contain no-repeat `,
+      )}) 0px center / cover no-repeat `,
       border: "2px solid gray",
     };
   } else if (imageNews) {

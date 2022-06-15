@@ -140,7 +140,6 @@ export const voteNewsService = async ({ vote, token, idNews }) => {
   return response;
 };
 
-/* No entiendo la diferencia entre poner en el async los {} y no ponerlos */
 export const deleteSomeSortOfPostWithoutBody = async (url, token) => {
   const response = await fetch(url, {
     method: "DELETE",

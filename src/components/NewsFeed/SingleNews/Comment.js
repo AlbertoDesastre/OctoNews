@@ -19,8 +19,6 @@ export const Comment = ({
   const [isClicked, setIsClicked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
 
-  /* const [isPoemicSelected, setIsPolemicSelected] = useState(false); */
-
   const [error, setError] = useState("");
   const { token, user } = useContext(AuthContext);
 
@@ -38,8 +36,6 @@ export const Comment = ({
   const { id } = idFromParamsThatComesAsObject;
 
   const handleOnDelete = async (e) => {
-    /* Falta meter la parte de la función que refresca automáticamente cuando se elimina.
-   Hacer un filtro para setear nuevos comments */
     try {
       await deleteSomeSortOfPostWithoutBody(
         `${process.env.REACT_APP_BACKEND}/news/${id}/${parentComment.id}`,
@@ -67,7 +63,11 @@ export const Comment = ({
     <>
       <article className="news-page-articleWithUserInformation">
         <img
-          src={avatar ? avatar : "/svg-icons/user-login-default-icon.svg"}
+          src={
+            avatar
+              ? `${process.env.REACT_APP_BACKEND}/uploads/users/${avatar}`
+              : "/svg-icons/user-login-default-icon.svg"
+          }
           alt="Avatar user"
           className="news-page"
         ></img>
@@ -102,9 +102,6 @@ export const Comment = ({
             See replies
           </button>
         ) : null}
-        {/* Recordar que más tarde cuandot tengamos tiempo en vez de hacer este renderizado condicional,
-hacer que te de un aviso de que tienes que estar registrado para poder contestar,
-y que si le da que "si" a un alert lo redirija a la página de registro */}
         {user ? (
           <button className="news-page-button-reply" onClick={handleOnReply}>
             Reply
@@ -124,6 +121,7 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
           addAdditionalComment={addAdditionalComment}
           parentCommentID={parentId}
           idName="news-page-formToSubmitACommentInReplyMode"
+          avatar={avatar}
         />
       ) : null}
 

@@ -19,6 +19,7 @@ section.carousel > ul {
 li.categories-list {
   margin-top: 1rem;
   list-style: none;
+  max-width: 285px;
 }
 li.categories-list:hover {
   cursor: pointer;

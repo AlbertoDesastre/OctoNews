@@ -8,6 +8,9 @@ main.auth {
 }
 
 form.auth {
+  min-height: 268px;
+  min-width: 200px;
+  width: 60%;
   display: flex;
   flex-direction: column;
   background-color: rgb(237, 237, 237);

@@ -89,6 +89,7 @@ nav.dropdown > a {
   padding: 12px 20px;
   text-decoration: none;
   display: block;
+  width: 100%;
 }
 
 nav.dropdown > button {
@@ -114,6 +115,7 @@ header.front-header nav.dropdown-content a:hover {
 header.front-header img.desktop-user-img {
   border-radius: 30px;
   width: 60px;
+  height: 60px;
 }
 
 nav.desktop-navmenu {

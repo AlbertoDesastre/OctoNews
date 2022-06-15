@@ -68,7 +68,6 @@ export const UserCreate = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </fieldset>
-              {/* password*/}
               <fieldset>
                 <label htmlFor="pass1">Password</label>
                 <input
@@ -111,5 +110,3 @@ export const UserCreate = () => {
     </>
   );
 };
-
-// http://localhost:3000/users/validate/449570d73b78cf7bb4cb90f3e961899ea14f7403
