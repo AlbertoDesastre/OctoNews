@@ -6,17 +6,8 @@ export const CommentsBanner = ({
   allComments,
   deleteSomeCommentAndRefreshIt,
   addAdditionalComment,
-  avatar,
 }) => {
   const [isPolemicSelected, setIsPolemicSelected] = useState(false);
-
-  const parentComment = allComments
-    .filter((comment) => comment.id_reply_message === null)
-    .sort(
-      (a, b) =>
-        new Date(b.creation_date).getTime() -
-        new Date(a.creation_date).getTime()
-    );
 
   const getRepliesComments = (commentId) => {
     return allComments
@@ -47,7 +38,11 @@ export const CommentsBanner = ({
 
   const comments = isPolemicSelected
     ? commentList.sort((a, b) => b.children.length - a.children.length)
-    : commentList;
+    : commentList.sort(
+        (a, b) =>
+          new Date(b.creation_date).getTime() -
+          new Date(a.creation_date).getTime()
+      );
 
   return (
     <section className="news-page-sectionOfCommentsBanner">
@@ -73,7 +68,7 @@ export const CommentsBanner = ({
                 userId={1}
                 deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
                 addAdditionalComment={addAdditionalComment}
-                avatar={avatar}
+                userAvatar={parentComment.avatar}
               />
             </li>
           );

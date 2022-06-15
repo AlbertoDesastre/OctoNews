@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import { postFormData, postJson } from "../../utils/api";
+import { useState } from "react";
+import { postJson } from "../../utils/api";
 import { Error } from "../Error";
 
 export const FormResetPassword = ({ setIsResetPassword }) => {

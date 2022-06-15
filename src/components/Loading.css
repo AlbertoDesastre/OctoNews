@@ -3,8 +3,12 @@
   display: block;
   margin: 0 auto;
   margin-top: 2rem;
+  width: 100px;
+  height: 100px;
 }
 .home-page.loading.feed {
+  width: 100px;
+  height: 100px;
   display: block;
   margin: 0 auto;
   margin-top: 5rem;

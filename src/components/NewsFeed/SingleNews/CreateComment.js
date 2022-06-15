@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { Loading } from "../../Loading";
-import { Error } from "../../Error";
 import { postJson } from "../../../utils/api";
 import "./CreateComment.css";
 

@@ -1,5 +1,5 @@
 import "./Comment.css";
-import { format, sub, add, getDate } from "date-fns";
+import { format } from "date-fns";
 import { CreateComment } from "./CreateComment";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
@@ -14,7 +14,7 @@ export const Comment = ({
   userId,
   deleteSomeCommentAndRefreshIt,
   addAdditionalComment,
-  avatar,
+  userAvatar,
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -64,8 +64,8 @@ export const Comment = ({
       <article className="news-page-articleWithUserInformation">
         <img
           src={
-            avatar
-              ? `${process.env.REACT_APP_BACKEND}/uploads/users/${avatar}`
+            userAvatar
+              ? `${process.env.REACT_APP_BACKEND}/uploads/users/${userAvatar}`
               : "/svg-icons/user-login-default-icon.svg"
           }
           alt="Avatar user"
@@ -121,7 +121,7 @@ export const Comment = ({
           addAdditionalComment={addAdditionalComment}
           parentCommentID={parentId}
           idName="news-page-formToSubmitACommentInReplyMode"
-          avatar={avatar}
+          userAvatar={userAvatar}
         />
       ) : null}
 
@@ -143,7 +143,7 @@ export const Comment = ({
                   userId={userId}
                   addAdditionalComment={addAdditionalComment}
                   deleteSomeCommentAndRefreshIt={deleteSomeCommentAndRefreshIt}
-                  avatar={avatar}
+                  userAvatar={reply.avatar}
                   className="news-page-comment news-page-comment-reply"
                 />
               </div>

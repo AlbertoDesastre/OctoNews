@@ -27,12 +27,23 @@ export const NewsBody = ({
         </p>
       )}
       {image ? (
-        <img
-          className="img-news"
-          src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
-          alt="news img"
-          onClick={() => navigate(`/news/${newsId}`)}
-        />
+        className ? (
+          <img
+            className="img-news"
+            src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
+            alt="news img"
+            onClick={() =>
+              (window.location.href = `${process.env.REACT_APP_BACKEND}/uploads/news/${image}`)
+            }
+          />
+        ) : (
+          <img
+            className="img-news"
+            src={`${process.env.REACT_APP_BACKEND}/uploads/news/${image}`}
+            alt="news img"
+            onClick={() => navigate(`/news/${newsId}`)}
+          />
+        )
       ) : (
         ""
       )}

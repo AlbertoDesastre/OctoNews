@@ -47,3 +47,17 @@
   padding: 0.2rem;
   font-size: 1.5rem;
 }
+.validate-page.error {
+  margin: 0 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: red;
+}
+
+/* DESKTOP */
+
+@media (min-width: 800px) {
+  .validate-page.error {
+    font-size: 2rem;
+  }
+}

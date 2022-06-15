@@ -104,7 +104,9 @@ export const UserCreate = () => {
             </form>
           </>
         ) : (
-          <p>Registration successful, check your email to continue</p>
+          <p className="register-successful">
+            Registration successful, check your email to continue
+          </p>
         )}
       </main>
     </>

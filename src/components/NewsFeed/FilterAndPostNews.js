@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import {
   createSearchParams,
-  useLocation,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";

@@ -8,7 +8,7 @@ export const LikeDislikeButtons = ({ votes, idNews }) => {
   const [userVote, setUserVote] = useState();
   const navigate = useNavigate();
   const [votesQuantity, setVotesQuantity] = useState(Number(votes));
-  const [error, setError] = useState();
+  const [, setError] = useState();
   const { user, token } = useContext(AuthContext);
   const [newsVotes] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/news/${idNews}/votes`

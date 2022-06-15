@@ -130,12 +130,14 @@ nav.desktop-navmenu > button {
   font-weight: bold;
   display: block;
   color: rgb(219, 26, 26);
+  cursor: pointer;
 }
 
 nav.desktop-navmenu > a {
   text-decoration: none;
   color: rgb(24, 0, 122);
 }
+
 div.desktop-user {
   display: flex;
   align-items: center;
