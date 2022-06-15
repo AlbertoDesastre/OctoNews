@@ -1,7 +1,7 @@
-import { CarouselList } from "../components/Carousel";
-import { FilterAndPostNews } from "../components/FilterAndPostNews";
+import { CarouselList } from "../components/NewsFeed/Carousel";
+import { FilterAndPostNews } from "../components/NewsFeed/FilterAndPostNews";
 import { Header } from "../components/Header";
-import { NewsFeedList } from "../components/NewsFeedList";
+import { NewsFeedList } from "../components/NewsFeed/NewsFeedList";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 

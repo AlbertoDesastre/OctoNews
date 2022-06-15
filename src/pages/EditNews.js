@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { FormNews } from "../components/FormNews";
+import { FormNews } from "../components/SubmitEditNews/FormNews";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 
-export const Edit = () => {
+export const EditNews = () => {
   const { id } = useParams();
   const [mode] = useState("edit");
   const { token, user } = useContext(AuthContext);

@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { Error } from "./Error";
-import { capitalize } from "../utils/capitalizeString";
-import "./FormNews.css";
-import { AuthContext } from "../context/AuthContext";
-import { postFormData, putFormData } from "../utils/api";
+import { Error } from "../Error";
+import { capitalize } from "../../utils/capitalizeString";
+import { AuthContext } from "../../context/AuthContext";
+import { postFormData, putFormData } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import "./FormNews.css";
 
 export const FormNews = ({
   mode,
@@ -23,7 +23,7 @@ export const FormNews = ({
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
   let labelImageStyles = {
-    background: `url("http://localhost:3000/image-upload-icon.svg") 0px center / cover no-repeat `,
+    background: `url("http://localhost:3000/svg-icons/image-upload-icon.svg") 0px center / cover no-repeat `,
   };
 
   if (imageUpload) {

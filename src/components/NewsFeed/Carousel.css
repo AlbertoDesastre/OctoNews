@@ -73,7 +73,7 @@ article.category-items > p {
 /* DESKTOP */
 
 section.cards-container {
-  grid-column: 8/11;
+  grid-column: 8/12;
   grid-row: 2;
   width: 60%;
   justify-self: flex-start;
@@ -88,6 +88,9 @@ section.cards-container {
   li.categories-list:first-child,
   li.categories-list:last-child {
     padding: 0rem;
+  }
+  article.category-items {
+    max-width: 285px;
   }
 
   article.category-items > img {

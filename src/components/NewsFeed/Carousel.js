@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { capitalize } from "../utils/capitalizeString";
+import { capitalize } from "../../utils/capitalizeString";
+import { Error } from "../Error";
+import { Loading } from "../Loading";
 import "./Carousel.css";
-import { Error } from "./Error";
-import { Loading } from "./Loading";
 
 export const CarouselList = ({
   className,
@@ -48,7 +48,7 @@ const CarouselItems = ({ categoryName, categoryColor, categoryIcon }) => {
         {capitalize(categoryName)}
       </p>
       <img
-        src={`/categoryIcons/${categoryIcon}`}
+        src={`${process.env.REACT_APP_BACKEND}/uploads/categories/icons/${categoryIcon}`}
         alt={`category ${categoryName}`}
       />
     </article>

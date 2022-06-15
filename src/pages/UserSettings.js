@@ -8,10 +8,8 @@ import "./UserSettings.css";
 
 export const UserSettings = () => {
   const { id } = useParams();
-  const { user, token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  console.log(user && user.id);
-  console.log(id);
   if (user && user.id !== Number(id)) return <Navigate to={"/"} />;
   return (
     <>

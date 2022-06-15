@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
-import { FilterAndPostNews } from "../components/FilterAndPostNews";
+import { FilterAndPostNews } from "../components/NewsFeed/FilterAndPostNews";
 import { Header } from "../components/Header";
-import { NewsFeedList } from "../components/NewsFeedList";
+import { NewsFeedList } from "../components/NewsFeed/NewsFeedList";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 
 export const Search = () => {

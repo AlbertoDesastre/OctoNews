@@ -86,14 +86,14 @@ div.action-news button:last-child {
 
 button.share {
   min-width: 25px;
-  background: url("/public/share-icon.svg") no-repeat left;
+  background: url("/public/svg-icons/share-icon.svg") no-repeat left;
   background-size: 20px;
   border: none;
 }
 
 button.comments {
   min-width: 50px;
-  background: url("/public/comment-icon.svg") no-repeat left;
+  background: url("/public/svg-icons/comment-icon.svg") no-repeat left;
   background-size: 20px;
   padding-left: 1.5rem;
   border: none;
@@ -101,27 +101,27 @@ button.comments {
 
 button.like {
   min-width: 25px;
-  background: url("/public/like-icon.svg") no-repeat left;
+  background: url("/public/svg-icons/like-icon.svg") no-repeat left;
   background-size: 20px;
   border: none;
 }
 button.no-like {
   min-width: 25px;
-  background: url("/public/like-hollow-icon.svg") no-repeat left;
+  background: url("/public/svg-icons/like-hollow-icon.svg") no-repeat left;
   background-size: 20px;
   border: none;
 }
 
 button.dislike {
   min-width: 25px;
-  background: url("/public/dislike-icon.svg") no-repeat left;
+  background: url("/public/svg-icons/dislike-icon.svg") no-repeat left;
   background-size: 20px;
   border: none;
 }
 
 button.no-dislike {
   min-width: 25px;
-  background: url("/public/dislike-hollow-icon.svg") no-repeat left;
+  background: url("/public/svg-icons/dislike-hollow-icon.svg") no-repeat left;
   background-size: 20px;
   border: none;
 }
@@ -161,6 +161,7 @@ button.no-dislike:hover {
   background-color: white;
   border: none;
   background-color: rgb(197, 71, 71);
+  color: white;
   font-weight: bold;
   font-size: 0.8rem;
 }

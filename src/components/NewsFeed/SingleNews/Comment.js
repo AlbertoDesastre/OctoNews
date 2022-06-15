@@ -2,8 +2,8 @@ import "./Comment.css";
 import { format, sub, add, getDate } from "date-fns";
 import { CreateComment } from "./CreateComment";
 import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { deleteSomeSortOfPostWithoutBody } from "../utils/api";
+import { AuthContext } from "../../../context/AuthContext";
+import { deleteSomeSortOfPostWithoutBody } from "../../../utils/api";
 import { useParams } from "react-router-dom";
 
 export const Comment = ({
@@ -119,7 +119,7 @@ y que si le da que "si" a un alert lo redirija a la página de registro */}
         />
       ) : null}
 
-      {/* If this comment gets any replays it will be rendered here, if replies doesn't
+      {/* If this comment gets any replys it will be rendered here, if replies doesn't
       exist, nothing will be rendered */}
       {replies.length > 0 && showReplies && (
         <div className="news-page-reply">

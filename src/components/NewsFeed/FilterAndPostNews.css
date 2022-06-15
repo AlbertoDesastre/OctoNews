@@ -46,12 +46,12 @@ select.filter {
 }
 
 .new {
-  background: url("/public/new-icon.svg") no-repeat 10px;
+  background: url("/public/svg-icons/new-icon.svg") no-repeat 10px;
   background-size: 25px;
 }
 
 .top {
-  background: url("/public/top-icon.svg") no-repeat 10px;
+  background: url("/public/svg-icons/top-icon.svg") no-repeat 10px;
   background-size: 25px;
 }
 
@@ -61,7 +61,7 @@ button.post-button {
   border-radius: 10px;
   color: rgb(24, 0, 122);
   border: 3px solid rgb(24, 0, 122);
-  background: url("/public/post-icon.svg") no-repeat center white;
+  background: url("/public/svg-icons/post-icon.svg") no-repeat center white;
   background-size: 30px;
 }
 
