@@ -59,5 +59,24 @@ form.auth > button {
   font-size: 1.3rem;
   margin-bottom: 1rem;
 }
+.register-successful,
+.validate-successful {
+  margin: 0 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.validate-successful a {
+  font-size: 2rem;
+}
 
 /* DESKTOP */
+
+@media (min-width: 800px) {
+  .register-successful,
+  .validate-successful {
+    font-size: 2rem;
+  }
+  .validate-successful a {
+    font-size: 2.5rem;
+  }
+}

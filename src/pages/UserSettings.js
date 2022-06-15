@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import { FormChangePassword } from "../components/UserSettings/FormChangePassword";

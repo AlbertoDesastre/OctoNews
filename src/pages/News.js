@@ -3,7 +3,7 @@ import { NewsCards } from "../components/NewsFeed/NewsCards";
 import { LoginOrRegisterBox } from "../components/NewsFeed/SingleNews/LoginOrRegisterBox";
 import { CreateComment } from "../components/NewsFeed/SingleNews/CreateComment";
 import { CommentsBanner } from "../components/NewsFeed/SingleNews/CommentsBanner";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useGetRemoteData } from "../hooks/useGetRemoteData";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -15,16 +15,10 @@ export const News = () => {
   const { id } = idFromParamsThatComesAsObject;
   const { token } = useContext(AuthContext);
 
-  const [
-    news,
-    setNews,
-    isLoadingNews,
-    errorOnNews,
-    ,
-    deleteSomeNewsAndRefreshIt,
-  ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
+  const [news, , isLoadingNews, errorOnNews, , deleteSomeNewsAndRefreshIt] =
+    useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}`);
 
-  const [category, , isLoadingCategory, errorOnCategory] = useGetRemoteData(
+  const [category] = useGetRemoteData(
     `${process.env.REACT_APP_BACKEND}/categories/${news.id_category}`
   );
 
@@ -36,6 +30,8 @@ export const News = () => {
     addAdditionalValue,
     deleteSomeValueAndRefreshIt,
   ] = useGetRemoteData(`${process.env.REACT_APP_BACKEND}/news/${id}/comments`);
+
+  if (news && !category && !news.id) return <Navigate to="/" />;
 
   return (
     <main>

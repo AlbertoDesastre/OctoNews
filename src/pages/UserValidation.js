@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Error } from "../components/Error";
 import { Header } from "../components/Header";
+import "./userAuth.css";
 
 export const UserValidation = () => {
   const { code } = useParams();
@@ -37,15 +39,15 @@ export const UserValidation = () => {
     <>
       <Header />
 
-      <main>
+      <main className="auth">
         {validationOK ? (
-          <p>
+          <p className="validate-successful">
             User validated correctly. You can <Link to={"/login"}>login</Link>
           </p>
         ) : (
           false
         )}
-        {error ? <p>{error}</p> : null}
+        {error && <Error className="validate-page error" error={error} />}
       </main>
     </>
   );

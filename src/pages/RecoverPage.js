@@ -1,9 +1,7 @@
 import { useContext, useState } from "react";
 import { Header } from "../components/Header";
 import { AuthContext } from "../context/AuthContext";
-import { loginUserService, postJson } from "../utils/api";
 import { Navigate, Link } from "react-router-dom";
-import { Error } from "../components/Error";
 import "./RecoverPage.css";
 import { FormRecoveryCodePassword } from "../components/RecoverPassword/FormRecoveryCode";
 import { FormResetPassword } from "../components/RecoverPassword/FormResetPassword";
