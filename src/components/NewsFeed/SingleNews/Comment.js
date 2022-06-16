@@ -34,7 +34,6 @@ export const Comment = ({
 
   const idFromParamsThatComesAsObject = useParams();
   const { id } = idFromParamsThatComesAsObject;
-
   const handleOnDelete = async (e) => {
     try {
       await deleteSomeSortOfPostWithoutBody(
@@ -108,11 +107,9 @@ export const Comment = ({
           </button>
         ) : null}
       </footer>
-
       {error && parentComment.id === error.id_of_error_comment ? (
         <Error className={"comments-error"} error={error} />
       ) : null}
-
       {/* If clicked in reply CreateComment renders the form to create a component  */}
       {isClicked ? (
         <CreateComment
@@ -121,10 +118,9 @@ export const Comment = ({
           addAdditionalComment={addAdditionalComment}
           parentCommentID={parentId}
           idName="news-page-formToSubmitACommentInReplyMode"
-          userAvatar={userAvatar}
+          userAvatar={user.avatar}
         />
       ) : null}
-
       {/* If this comment gets any replys it will be rendered here, if replies doesn't
       exist, nothing will be rendered */}
       {replies.length > 0 && showReplies && (

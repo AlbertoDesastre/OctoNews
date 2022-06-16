@@ -5,7 +5,7 @@ import { Error } from "../Error";
 
 export const FormProfile = () => {
   const [userUpdated, setUserUpdated] = useState();
-  const { user, token } = useContext(AuthContext);
+  const { user, token, refreshUser } = useContext(AuthContext);
   const [imageUpload, setImageUpload] = useState();
   const [biographyInput, setBiographyInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
@@ -33,6 +33,7 @@ export const FormProfile = () => {
       );
 
       setUserUpdated(response);
+      refreshUser();
     } catch (error) {
       setError(error.message);
     }

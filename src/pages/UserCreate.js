@@ -43,7 +43,7 @@ export const UserCreate = () => {
         {!registrationFinished ? (
           <>
             <h1>Register</h1>
-            <form onSubmit={handleForm} className="auth">
+            <form onSubmit={handleForm} className="auth register">
               <fieldset>
                 <label htmlFor="username">User Name</label>
                 <input

@@ -43,7 +43,6 @@ export const CommentsBanner = ({
           new Date(b.creation_date).getTime() -
           new Date(a.creation_date).getTime()
       );
-
   return (
     <section className="news-page-sectionOfCommentsBanner">
       <div className="news-page-divCommentsBanner">
