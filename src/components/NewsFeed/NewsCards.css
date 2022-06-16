@@ -206,7 +206,7 @@ article.news-page img.img-news {
   font-size: 15px;
   line-height: 20px;
   margin-right: 0.7rem;
-  padding-right: 10.9rem;
+  padding-right: 1rem;
   margin-bottom: 0.7rem;
 }
 
@@ -257,6 +257,13 @@ button.news-page.share {
 }
 
 @media (min-width: 1000px) {
+  #news-page-title {
+    font-size: 2.2rem;
+  }
+  #news-page-text {
+    font-size: 1rem;
+    padding-right: 10.9rem;
+  }
   article.news-page img.img-news {
     width: 170px;
     height: 170px;

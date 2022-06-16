@@ -10,7 +10,7 @@ export const CreateComment = ({
   addAdditionalComment,
   parentCommentID,
   idName,
-  avatar,
+  userAvatar,
 }) => {
   const { user, token } = useContext(AuthContext);
   const [textValue, setTextValue] = useState("");
@@ -31,9 +31,9 @@ export const CreateComment = ({
     if (submitLabel === "Reply") {
       try {
         setSendingComment(true);
-
         const data = {
           name: user.name,
+          avatar: user.avatar,
           comment: textValue,
           id_reply_message: Number(parentCommentID),
           creation_date: thisDate,
@@ -55,6 +55,7 @@ export const CreateComment = ({
 
         const data = {
           name: user.name,
+          avatar: user.avatar,
           comment: textValue,
           id_reply_message: Number(parentCommentID),
           creation_date: thisDate,
@@ -84,8 +85,8 @@ export const CreateComment = ({
       >
         <img
           src={
-            avatar
-              ? `${process.env.REACT_APP_BACKEND}/uploads/users/${avatar}`
+            userAvatar
+              ? `${process.env.REACT_APP_BACKEND}/uploads/users/${userAvatar}`
               : "/svg-icons/user-login-default-icon.svg"
           }
           alt="Avatar user"

@@ -10,6 +10,7 @@ section.news-page-sectionOfCommentsBanner {
   height: 98%;
   width: 99%;
   box-sizing: border-box;
+  padding-left: 0.3rem;
 }
 
 .news-page-buttonOrInputWithBorderRadius {
@@ -24,4 +25,16 @@ section.news-page-sectionOfCommentsBanner > div {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* DESKTOP */
+
+@media (min-width: 800px) {
+  #comment {
+    font-size: 1rem;
+  }
+
+  li.news-page-comment > p {
+    font-size: 1rem;
+  }
 }

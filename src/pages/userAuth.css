@@ -8,11 +8,12 @@ main.auth {
 }
 
 form.auth {
-  min-height: 268px;
   min-width: 200px;
   width: 60%;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: rgb(237, 237, 237);
   border-radius: 10px;
   box-shadow: 0px 15px 16px 0px rgba(0, 0, 0, 0.298);
@@ -32,6 +33,7 @@ form.auth fieldset {
 
 form.auth fieldset label {
   display: block;
+  font-weight: bold;
 }
 
 form.auth label.check {
@@ -45,6 +47,7 @@ input#terms {
 
 form.auth fieldset input {
   width: 100%;
+  padding-left: 0.3rem;
 }
 
 form.auth > button {
@@ -72,11 +75,32 @@ form.auth > button {
 /* DESKTOP */
 
 @media (min-width: 800px) {
+  main.auth h1 {
+    font-size: 3rem;
+  }
   .register-successful,
   .validate-successful {
     font-size: 2rem;
   }
   .validate-successful a {
     font-size: 2.5rem;
+  }
+
+  form.auth {
+    height: 350px;
+    align-items: center;
+    gap: 1rem;
+  }
+  form.auth.register {
+    height: 470px;
+    align-items: center;
+    gap: 0;
+  }
+  form.auth fieldset label {
+    font-size: 1.3rem;
+  }
+  form.auth fieldset input {
+    width: 250px;
+    font-size: 1rem;
   }
 }
