@@ -6,6 +6,10 @@ On the front page you will have all the news that have been posted and you have 
 
 Although Octonews is a first mobile web it work from mobile to desktop, you can try it yourself! but here, take a peek.
 
+# LINK TO DEPLOYED PROJECT
+
+--> https://octo-news-48tbhso0p-albertodesastre.vercel.app/ 
+
 ## - Mobile version
 
 <p align="center">
